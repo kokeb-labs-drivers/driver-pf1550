@@ -1300,15 +1300,18 @@ Result<void> PF1550<Port>::Configure() noexcept {
 // -------------------------------------------------------------------------------------------------
 
 template <I2cPort Port>
-Result<void> PF1550<Port>::RequestStandby([[maybe_unused]] bool standby) noexcept {
+Result<void> PF1550<Port>::RequestStandby(bool standby) noexcept {
   if (const Result<void> r = requireInitialized(); !r) {
     return r;
   }
+  // The level is worked out before the port check so the parameter is used in every instantiation
+  // (Rule 0.2.2).
+  const GpioSignal level = standby ? GpioSignal::ACTIVE : GpioSignal::INACTIVE;
   if constexpr (detail::HasGpioSet<Port>) {
-    const GpioSignal level = standby ? GpioSignal::ACTIVE : GpioSignal::INACTIVE;
     return bus_.GetPort().GpioSet(CtrlPin::Standby, level) ? Result<void>::Success()
                                                            : Result<void>::Failure(Error::Bus);
   } else {
+    static_cast<void>(level);
     return Result<void>::Failure(Error::Unsupported);
   }
 }
@@ -1365,8 +1368,9 @@ Result<void> PF1550<Port>::setPwrCtrl3(uint8_t bit) noexcept {
   return wr(reg::kPwrCtrl3, static_cast<uint8_t>(kept | static_cast<uint32_t>(bit)));
 }
 
+// The confirmation is the tag type; its value carries nothing, so the parameter is unnamed.
 template <I2cPort Port>
-Result<void> PF1550<Port>::EnterShip([[maybe_unused]] ShipConfirm confirm) noexcept {
+Result<void> PF1550<Port>::EnterShip(ShipConfirm /*confirm*/) noexcept {
   if (const Result<void> r = requireLive(); !r) {
     return r;
   }
@@ -1383,8 +1387,9 @@ Result<void> PF1550<Port>::EnterShip([[maybe_unused]] ShipConfirm confirm) noexc
   return setPwrCtrl3(reg::kGotoShip);
 }
 
+// The confirmation is the tag type; its value carries nothing, so the parameter is unnamed.
 template <I2cPort Port>
-Result<void> PF1550<Port>::EnterCoreOff([[maybe_unused]] CoreOffConfirm confirm) noexcept {
+Result<void> PF1550<Port>::EnterCoreOff(CoreOffConfirm /*confirm*/) noexcept {
   if (const Result<void> r = requireLive(); !r) {
     return r;
   }
