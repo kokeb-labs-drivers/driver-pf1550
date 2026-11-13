@@ -1,0 +1,1716 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="C++20 driver for the NXP PF1550 power management IC (single-cell Li-ion linear charger, three buck regulators, three LDOs) on I2C">
+      
+      
+      
+        <link rel="canonical" href="https://kokeb-labs-drivers.github.io/driver-pf1550/latest/datasheet/">
+      
+      
+        <link rel="prev" href="../api-reference/">
+      
+      
+        <link rel="next" href="../coverage/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/kokeb/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Datasheet map - PF1550 Driver</title>
+      
+    
+    
+  
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.5%207.75A.75.75%200%200%201%207.25%207h1a.75.75%200%200%201%20.75.75v2.75h.25a.75.75%200%200%201%200%201.5h-2a.75.75%200%200%201%200-1.5h.25v-2h-.25a.75.75%200%200%201-.75-.75M8%206a1%201%200%201%201%200-2%201%201%200%200%201%200%202%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8%201.5c-2.363%200-4%201.69-4%203.75%200%20.984.424%201.625.984%202.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621%201.49a.75.75%200%200%201-1.484.211c-.04-.282-.163-.547-.37-.847a9%209%200%200%200-.542-.68q-.126-.149-.268-.32C3.201%207.75%202.5%206.766%202.5%205.25%202.5%202.31%204.863%200%208%200s5.5%202.31%205.5%205.25c0%201.516-.701%202.5-1.328%203.259q-.142.172-.268.319c-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751%200%200%201-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848q.113-.133.213-.253c.561-.679.985-1.32.985-2.304%200-2.06-1.637-3.75-4-3.75M5.75%2012h4.5a.75.75%200%200%201%200%201.5h-4.5a.75.75%200%200%201%200-1.5M6%2015.25a.75.75%200%200%201%20.75-.75h2.5a.75.75%200%200%201%200%201.5h-2.5a.75.75%200%200%201-.75-.75%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%205.782V2.5h-.25a.75.75%200%200%201%200-1.5h6.5a.75.75%200%200%201%200%201.5H11v3.282l3.666%205.76C15.619%2013.04%2014.543%2015%2012.767%2015H3.233c-1.776%200-2.852-1.96-1.899-3.458Zm-2.4%206.565a.75.75%200%200%200%20.633%201.153h9.534a.75.75%200%200%200%20.633-1.153L12.225%2010.5h-8.45ZM9.5%202.5h-3V6c0%20.143-.04.283-.117.403L4.73%209h6.54L9.617%206.403A.75.75%200%200%201%209.5%206Z%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1.75%202.5h10.5a.75.75%200%200%201%200%201.5H1.75a.75.75%200%200%201%200-1.5m4%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5m0%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5M2.5%207.75v6a.75.75%200%200%201-1.5%200v-6a.75.75%200%200%201%201.5%200%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+  <link rel="stylesheet" href="../assets/kokeb/kokeb.css">
+
+    
+      
+    
+    <link rel="stylesheet" media="print" onload="this.media='all'" href="../assets/kokeb/fonts.css">
+  <noscript><link rel="stylesheet" href="../assets/kokeb/fonts.css"></noscript>
+
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  
+  
+  <meta name="theme-color" content="#0e1726" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b2140" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kokeb Labs">
+  <meta property="og:title" content="Datasheet map - PF1550 Driver">
+  <meta property="og:description" content="C++20 driver for the NXP PF1550 power management IC (single-cell Li-ion linear charger, three buck regulators, three LDOs) on I2C">
+  <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-pf1550/latest/datasheet/">
+  <meta name="twitter:card" content="summary">
+  <script>
+(function () {
+  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
+  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
+      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
+  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
+  var stub = {
+    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
+    render: function (id, text) {
+      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
+      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
+      if (el) el.setAttribute("data-kb-mermaid", "");
+      return near(el).then(load).then(function (m) { return m.render(id, text); });
+    }
+  };
+  function load() {
+    return loading || (loading = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = SRC;
+      s.integrity = SRI;
+      s.crossOrigin = "anonymous";
+      s.onload = function () {
+        real = window.mermaid;
+        window.mermaid = stub;
+        real.initialize(config);
+        resolve(real);
+      };
+      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
+      document.head.appendChild(s);
+    }));
+  }
+  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
+  function watch() {
+    if (io) io.disconnect();
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
+      });
+    }, { rootMargin: ahead ? "100% 0px" : "0px" });
+    waiting.forEach(function (w) { io.observe(w.el); });
+  }
+  function release(which) {
+    waiting = waiting.filter(function (w) {
+      if (!which(w)) return true;
+      io.unobserve(w.el);
+      w.go();
+      return false;
+    });
+  }
+  function near(el) {
+    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
+    return new Promise(function (resolve) {
+      waiting.push({ el: el, go: resolve });
+      if (io) io.observe(el); else watch();
+    });
+  }
+  function engaged() {
+    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
+    ahead = true;
+    if (io) watch();
+  }
+  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
+  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
+  window.mermaid = stub;
+})();
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#datasheet-map" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+  You are reading the documentation of an older version.
+  <a href="https://kokeb-labs-drivers.github.io/driver-pf1550/"><strong>Go to the latest version.</strong></a>
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL(".."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="PF1550 Driver" class="md-header__button md-logo" aria-label="PF1550 Driver" data-md-component="logo">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false" class="kb-mark">
+    <g transform="translate(1.28 1.28) scale(0.12000)"><path d="M232,66 Q265.29,246.71 446,280 Q265.29,313.29 232,494 Q198.71,313.29 18,280 Q198.71,246.71 232,66 Z" fill="#F4B942"/><path d="M386,38 Q399.69,112.31 474,126 Q399.69,139.69 386,214 Q372.31,139.69 298,126 Q372.31,112.31 386,38 Z" fill="#0E1726" stroke="#0E1726" stroke-width="24" stroke-linejoin="round"/><path d="M386,38 Q399.69,112.31 474,126 Q399.69,139.69 386,214 Q372.31,139.69 298,126 Q372.31,112.31 386,38 Z" fill="#D9773B"/></g>
+  </svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          
+          <a class="kb-org" href="https://kokeb-labs.github.io/" title="All Kokeb Labs documentation">Kokeb Labs</a>
+          <span class="kb-org__sep" aria-hidden="true">/</span>
+          <span class="md-ellipsis">
+            PF1550 Driver
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Datasheet map
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Follow the system theme"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Follow the system theme" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kokeb-labs-drivers/driver-pf1550" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kokeb-labs-drivers/driver-pf1550
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../quickstart/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Get started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Concepts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../api-reference/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PF1550 Driver" class="md-nav__button md-logo" aria-label="PF1550 Driver" data-md-component="logo">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false" class="kb-mark">
+    <g transform="translate(1.28 1.28) scale(0.12000)"><path d="M232,66 Q265.29,246.71 446,280 Q265.29,313.29 232,494 Q198.71,313.29 18,280 Q198.71,246.71 232,66 Z" fill="#F4B942"/><path d="M386,38 Q399.69,112.31 474,126 Q399.69,139.69 386,214 Q372.31,139.69 298,126 Q372.31,112.31 386,38 Z" fill="#0E1726" stroke="#0E1726" stroke-width="24" stroke-linejoin="round"/><path d="M386,38 Q399.69,112.31 474,126 Q399.69,139.69 386,214 Q372.31,139.69 298,126 Q372.31,112.31 386,38 Z" fill="#D9773B"/></g>
+  </svg>
+
+    </a>
+    PF1550 Driver
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kokeb-labs-drivers/driver-pf1550" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kokeb-labs-drivers/driver-pf1550
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../quickstart/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get started
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../architecture/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../api-guide/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../diagrams/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasheet map
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasheet map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-not-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is not covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-to-verify-on-the-bench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to verify on the bench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-the-datasheet-and-the-driver-differ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When the datasheet and the driver differ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coverage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coverage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coverage-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coverage matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ambiguities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ambiguities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing and CI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repo-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-not-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is not covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-to-verify-on-the-bench" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to verify on the bench
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-the-datasheet-and-the-driver-differ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When the datasheet and the driver differ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/edit/main/docs/datasheet.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="datasheet-map">Datasheet map<a class="headerlink" href="#datasheet-map" title="Permanent link">&para;</a></h1>
+<p>The driver follows the PF1550 datasheet. This page says which revision, where to get it, and where each part of
+the driver is described in it, so you can check any behaviour against the source. Section names and page numbers
+are the datasheet's own (the printed page numbers).</p>
+<!-- generated: datasheet-map -->
+<ul>
+<li><strong>Datasheet: PF1550 Power management integrated circuit (PMIC) for low power application processors</strong>, NXP
+  Semiconductors PF1550, revision 7 (2021-09-29). Get it from the <a href="https://www.nxp.com/docs/en/data-sheet/PF1550.pdf">vendor
+  page</a>.
+  SHA-256 of the file used: <code>56e58b835c0e9e6e6b67a3211b4d82b3374b9d6d55ed7600750efc36e447bfa8</code>.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Datasheet section</th>
+<th>Page</th>
+<th>In the driver</th>
+<th>Explained on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pins and package</td>
+<td>4.2 Pin definitions</td>
+<td>p. 8</td>
+<td><code>CtrlPin</code>, <code>I2cInterface</code></td>
+<td><a href="../hardware/">Hardware</a>, <a href="../quickstart/">Quickstart</a></td>
+</tr>
+<tr>
+<td>Electrical limits and supply ranges</td>
+<td>5.3 Electrical characteristics</td>
+<td>p. 12</td>
+<td><code>Limits</code>, <code>SingleCellLimits()</code>, <code>Validate()</code></td>
+<td><a href="../configuration/">Configuration</a>, <a href="../contract/">Contract</a></td>
+</tr>
+<tr>
+<td>SW1 and SW2: DVS and non-DVS operation</td>
+<td>6.2.2 SWx DVS and non-DVS operation</td>
+<td>p. 26</td>
+<td><code>BuckConfig::dvs</code>, <code>Dvs</code>, <code>ReadRail()</code></td>
+<td><a href="../configuration/">Configuration</a>, <a href="../contract/">Contract</a></td>
+</tr>
+<tr>
+<td>SWx output voltage setting and DVS-done</td>
+<td>6.2.5 Output voltage setting in SWx</td>
+<td>p. 28</td>
+<td><code>SetRailVoltage()</code>, <code>kDvsWaitMaxUs</code></td>
+<td><a href="../api-guide/">API guide</a>, <a href="../configuration/">Configuration</a></td>
+</tr>
+<tr>
+<td>SW3</td>
+<td>6.3 SW3 detailed description</td>
+<td>p. 31</td>
+<td><code>Rail::Sw3</code>, <code>Error::ReadOnlyRail</code></td>
+<td><a href="../configuration/">Configuration</a></td>
+</tr>
+<tr>
+<td>LDO1 and LDO3</td>
+<td>7.2 LDO1 and LDO3 detailed description</td>
+<td>p. 35</td>
+<td><code>LdoConfig</code>, <code>SetRailVoltage()</code>, <code>SetRailModes()</code></td>
+<td><a href="../configuration/">Configuration</a>, <a href="../api-guide/">API guide</a></td>
+</tr>
+<tr>
+<td>LDO low-power mode</td>
+<td>7.2.5 LDOy low-power mode operation</td>
+<td>p. 37</td>
+<td><code>RailModes::low_power</code>, <code>Acknowledgements::load_below_10ma</code></td>
+<td><a href="../configuration/">Configuration</a></td>
+</tr>
+<tr>
+<td>LDO load switch mode</td>
+<td>7.2.7 LDOy load switch mode</td>
+<td>p. 38</td>
+<td><code>EnableLoadSwitch()</code>, <code>LoadSwitchConfirm</code></td>
+<td><a href="../api-guide/">API guide</a>, <a href="../contract/">Contract</a></td>
+</tr>
+<tr>
+<td>LDO2</td>
+<td>7.3 LDO2 detailed description</td>
+<td>p. 38</td>
+<td><code>Rail::Ldo2</code></td>
+<td><a href="../configuration/">Configuration</a></td>
+</tr>
+<tr>
+<td>VREFDDR</td>
+<td>7.4 VREFDDR reference</td>
+<td>p. 40</td>
+<td><code>VrefDdrConfig</code>, <code>Rail::VrefDdr</code></td>
+<td><a href="../configuration/">Configuration</a></td>
+</tr>
+<tr>
+<td>VSNVS and the coin cell charger</td>
+<td>7.5 VSNVS LDO/switch</td>
+<td>p. 41</td>
+<td><code>VsnvsConfig</code>, <code>CoinCell</code></td>
+<td><a href="../configuration/">Configuration</a></td>
+</tr>
+<tr>
+<td>Charger operating modes</td>
+<td>8.1 Operating modes and behavioral description</td>
+<td>p. 43</td>
+<td><code>SetChargerMode()</code>, <code>ChargerMode</code></td>
+<td><a href="../api-guide/">API guide</a>, <a href="../configuration/">Configuration</a></td>
+</tr>
+<tr>
+<td>Charger input source detection</td>
+<td>8.2 Charger input source detection</td>
+<td>p. 45</td>
+<td><code>ChargerStatus::vbus</code>, <code>VbusFlags</code></td>
+<td><a href="../api-guide/">API guide</a></td>
+</tr>
+<tr>
+<td>Charger state diagram</td>
+<td>8.4 Charger state diagram</td>
+<td>p. 46</td>
+<td><code>ChargerState</code>, <code>ReadChargerStatus()</code></td>
+<td><a href="../api-guide/">API guide</a></td>
+</tr>
+<tr>
+<td>Charging profile</td>
+<td>8.5 Charging profile</td>
+<td>p. 46</td>
+<td><code>ChargerConfig::charge_voltage_mv</code>, <code>charge_current_ma</code>, <code>termination_ma</code>, timers</td>
+<td><a href="../configuration/">Configuration</a></td>
+</tr>
+<tr>
+<td>Power path: VSYS regulation and input current limit</td>
+<td>8.7 Power path features</td>
+<td>p. 55</td>
+<td><code>ChargerConfig::vsys_min</code>, <code>input_limit_ma</code>, <code>thermistor</code></td>
+<td><a href="../configuration/">Configuration</a></td>
+</tr>
+<tr>
+<td>Thermal regulation and foldback</td>
+<td>8.8 Thermal</td>
+<td>p. 57</td>
+<td><code>ChargerConfig::thermal_reg</code>, <code>thermal_foldback</code></td>
+<td><a href="../configuration/">Configuration</a></td>
+</tr>
+<tr>
+<td>Input voltage regulation (DPM)</td>
+<td>8.8.3 Input voltage regulation mode</td>
+<td>p. 59</td>
+<td><code>VbusOptions</code></td>
+<td><a href="../configuration/">Configuration</a></td>
+</tr>
+<tr>
+<td>JEITA thermal control</td>
+<td>8.8.4 JEITA thermal control</td>
+<td>p. 62</td>
+<td><code>JeitaConfig</code></td>
+<td><a href="../configuration/">Configuration</a></td>
+</tr>
+<tr>
+<td>Charger faults and restart</td>
+<td>8.9 Fault states</td>
+<td>p. 64</td>
+<td><code>Fault</code>, <code>RestartCharger()</code>, <code>kMaxChargerRestarts</code></td>
+<td><a href="../api-guide/">API guide</a>, <a href="../troubleshooting/">Troubleshooting</a></td>
+</tr>
+<tr>
+<td>Charger watchdog</td>
+<td>8.9.2 Watchdog timer state</td>
+<td>p. 65</td>
+<td><code>WatchdogConfig</code>, <code>ServiceChargerWatchdog()</code>, <code>kWatchdogServiceMaxS</code></td>
+<td><a href="../api-guide/">API guide</a>, <a href="../troubleshooting/">Troubleshooting</a></td>
+</tr>
+<tr>
+<td>Battery overcurrent limit and BATFET</td>
+<td>8.9.6 Battery overcurrent limit</td>
+<td>p. 66</td>
+<td><code>BatfetConfig</code>, <code>FaultPolicy</code></td>
+<td><a href="../configuration/">Configuration</a>, <a href="../contract/">Contract</a></td>
+</tr>
+<tr>
+<td>Charger LED</td>
+<td>8.10 LED indicator</td>
+<td>p. 67</td>
+<td><code>LedConfig</code></td>
+<td><a href="../configuration/">Configuration</a></td>
+</tr>
+<tr>
+<td>PWRON</td>
+<td>9.1 PWRON</td>
+<td>p. 68</td>
+<td><code>PowerConfig::pwron_debounce</code>, <code>ReadPowerState()</code></td>
+<td><a href="../api-guide/">API guide</a></td>
+</tr>
+<tr>
+<td>STANDBY pin</td>
+<td>9.2 STANDBY</td>
+<td>p. 69</td>
+<td><code>RequestStandby()</code>, <code>CtrlPin::Standby</code>, <code>PowerConfig::standby_inverted</code></td>
+<td><a href="../api-guide/">API guide</a>, <a href="../porting/">Porting</a></td>
+</tr>
+<tr>
+<td>RESETBMCU</td>
+<td>9.3 RESETBMCU</td>
+<td>p. 69</td>
+<td><code>PowerConfig</code>, <code>StartupProfileOf()</code></td>
+<td><a href="../api-guide/">API guide</a></td>
+</tr>
+<tr>
+<td>INTB and the interrupt registers</td>
+<td>9.4 INTB</td>
+<td>p. 70</td>
+<td><code>ServiceInterrupts()</code>, <code>SetIrqMask()</code>, <code>CtrlPin::Intb</code>, <code>IrqSource</code></td>
+<td><a href="../api-guide/">API guide</a>, <a href="../porting/">Porting</a></td>
+</tr>
+<tr>
+<td>I2C address, clock and register framing</td>
+<td>9.7 Control interface I2C block description</td>
+<td>p. 71</td>
+<td><code>I2cInterface</code>, <code>I2cPort</code>, <code>kI2cAddress</code>, <code>kMaxClockHz</code>, every register access</td>
+<td><a href="../hardware/">Hardware</a>, <a href="../porting/">Porting</a>, <a href="../architecture/">Architecture</a></td>
+</tr>
+<tr>
+<td>ONKEY</td>
+<td>9.6 ONKEY</td>
+<td>p. 71</td>
+<td><code>PowerConfig::onkey_debounce</code>, <code>IrqSource::OnkeyPush</code></td>
+<td><a href="../api-guide/">API guide</a></td>
+</tr>
+<tr>
+<td>I2C operation: single-register transfers</td>
+<td>9.7.2 I2C operation</td>
+<td>p. 72</td>
+<td><code>Write()</code>, <code>WriteRead()</code>, <code>kRepeatedStart</code></td>
+<td><a href="../porting/">Porting</a>, <a href="../architecture/">Architecture</a></td>
+</tr>
+<tr>
+<td>State machine and transitions</td>
+<td>10 PF1550 state machine</td>
+<td>p. 72</td>
+<td><code>ReadPowerState()</code>, <code>PowerState</code></td>
+<td><a href="../api-guide/">API guide</a>, <a href="../architecture/">Architecture</a></td>
+</tr>
+<tr>
+<td>System ON, OFF, SHIP and CORE_OFF</td>
+<td>10.2 System OFF states</td>
+<td>p. 74</td>
+<td><code>EnterShip()</code>, <code>EnterCoreOff()</code>, <code>ShipConfirm</code>, <code>CoreOffConfirm</code></td>
+<td><a href="../api-guide/">API guide</a>, <a href="../contract/">Contract</a></td>
+</tr>
+<tr>
+<td>State transition conditions (Table 83)</td>
+<td>10.5 State diagram and transition conditions</td>
+<td>p. 76</td>
+<td><code>EnterShip()</code>, <code>EnterCoreOff()</code>, <code>Error::Refused</code></td>
+<td><a href="../contract/">Contract</a></td>
+</tr>
+<tr>
+<td>Regulator power-up sequencer</td>
+<td>10.6 Regulator power-up sequencer</td>
+<td>p. 77</td>
+<td><code>StartupProfileOf()</code>, <code>PowerUpDelayUs()</code>, <code>PowerUpDurationUs()</code></td>
+<td><a href="../api-guide/">API guide</a></td>
+</tr>
+<tr>
+<td>Regulator power-down sequencer</td>
+<td>10.7 Regulator power-down sequencer</td>
+<td>p. 78</td>
+<td><code>ReadPowerDownSequence()</code>, <code>SetPowerDownSequence()</code>, <code>PowerDownDelayUs()</code></td>
+<td><a href="../api-guide/">API guide</a>, <a href="../contract/">Contract</a></td>
+</tr>
+<tr>
+<td>Device start-up timing and pre-programmed options</td>
+<td>11 Device start up</td>
+<td>p. 78</td>
+<td><code>ColdStartToResetReleaseUs()</code>, <code>ResetReleaseDelayMs()</code>, <code>Option</code></td>
+<td><a href="../api-guide/">API guide</a></td>
+</tr>
+<tr>
+<td>Register map and access types</td>
+<td>12 Register map</td>
+<td>p. 80</td>
+<td><code>inc/pf1550_registers.hpp</code>, <code>IsWritable()</code></td>
+<td><a href="../architecture/">Architecture</a>, <a href="../contract/">Contract</a></td>
+</tr>
+<tr>
+<td>Device ID, silicon revision and OTP flavour</td>
+<td>12.1 Specific PMIC Registers (Offset is 0x00)</td>
+<td>p. 80</td>
+<td><code>EnsureInitialized()</code>, <code>ReadVariant()</code>, <code>Error::DeviceIdMismatch</code></td>
+<td><a href="../api-guide/">API guide</a>, <a href="../troubleshooting/">Troubleshooting</a></td>
+</tr>
+<tr>
+<td>Register OTP bitmap</td>
+<td>12.5 Register OTP bitmap</td>
+<td>p. 128</td>
+<td><code>Dvs</code>, <code>BuckConfig::dvs</code>; the OTP image is not read back</td>
+<td><a href="../configuration/">Configuration</a>, <a href="../contract/">Contract</a></td>
+</tr>
+<tr>
+<td>Example schematic</td>
+<td>13.1 Example schematic</td>
+<td>p. 133</td>
+<td>-</td>
+<td><a href="../hardware/">Hardware</a></td>
+</tr>
+<tr>
+<td>Package outline</td>
+<td>14 Package outline</td>
+<td>p. 139</td>
+<td>-</td>
+<td><a href="../hardware/">Hardware</a></td>
+</tr>
+</tbody>
+</table>
+<!-- /generated -->
+
+<h2 id="what-is-not-covered">What is not covered<a class="headerlink" href="#what-is-not-covered" title="Permanent link">&para;</a></h2>
+<p>The datasheet is covered feature by feature: the <a href="../coverage-matrix/">coverage matrix</a> has one row per fact, and
+<a href="../coverage/">Coverage</a> counts every register, bit field, interrupt
+source, state, pin, electrical parameter, timing and OTP value, and says which are implemented, modelled and tested.
+One item the datasheet cannot support is left out, and one family of values is reported only by option:</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Why</th>
+<th>How to close it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OTP image read-back (<code>OF-RB</code>)</td>
+<td>Rev. 7 documents no read window for the fuses (the KEY1 register at <code>0x6F</code> is listed, no key sequence or window is: ambiguity C5). The driver therefore cannot read the OTP values over I2C</td>
+<td>Obtain the NXP document that describes the OTP read procedure; add a typed read of the image, with a model and a test</td>
+</tr>
+<tr>
+<td>OTP start-up values of A0 and of unlisted flavours</td>
+<td>A0 is "not programmed, internal validation only" (Table 1); flavour values above 9 are not listed (ambiguity C10)</td>
+<td>Read the registers the chip holds: the driver reports raw bytes and <code>Option::Unknown</code>, and assumes nothing</td>
+</tr>
+<tr>
+<td>DVS mode of SW1 and SW2 (<code>OTP_SWx_DVS_SEL</code>)</td>
+<td>A fuse with no register (ambiguity C1)</td>
+<td>You declare it in <code>BuckConfig::dvs</code>; the model's option table gives its own reading of Table 85</td>
+</tr>
+<tr>
+<td>Analog values (accuracy bands, quiescent currents, rise times, thresholds the driver never programs)</td>
+<td>Properties of the chip, not of the driver: the matrix records them as documented decisions</td>
+<td>None; they are listed in the coverage matrix as information rows</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-to-verify-on-the-bench">What to verify on the bench<a class="headerlink" href="#what-to-verify-on-the-bench" title="Permanent link">&para;</a></h2>
+<p>Nothing in this driver has been verified on hardware. The behaviours below rest on the datasheet text alone and each
+has a model knob (<a href="../ambiguities/">Ambiguities</a>); a bench measurement settles them.</p>
+<table>
+<thead>
+<tr>
+<th>Behaviour</th>
+<th>Bench step</th>
+<th>Rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interrupt clearing: write-1-to-clear or clear-on-read</td>
+<td>Set a status bit (plug a supply), read the status register twice, then write the bit back</td>
+<td>C3, C14</td>
+</tr>
+<tr>
+<td><code>RW1S</code> fields: does a written 0 clear a bit loaded from OTP</td>
+<td>Write 0 to a charger field that start-up set, read it back</td>
+<td>C4</td>
+</tr>
+<tr>
+<td>Watchdog expiry code and period</td>
+<td>Enable WDTEN, stop servicing, time the expiry and read CHG_SNS</td>
+<td>C8, C9</td>
+</tr>
+<tr>
+<td>Charger parameter changes while charging</td>
+<td>Change the current in mode <code>Charge</code> and watch the charge current</td>
+<td>C16, C49</td>
+</tr>
+<tr>
+<td>DVS-done timing</td>
+<td>Step SW1 or SW2 and measure the time to DVS-done at each <code>DVSSPEED</code></td>
+<td>C34</td>
+</tr>
+<tr>
+<td>SHIP with VBUS between 1 V and UVLO</td>
+<td>Call <code>EnterShip()</code> with the input at 2 V</td>
+<td>C6</td>
+</tr>
+<tr>
+<td>CORE_OFF outside a system-on state</td>
+<td>Call <code>EnterCoreOff()</code> in Standby</td>
+<td>C7</td>
+</tr>
+<tr>
+<td>Coin cell charge voltage code</td>
+<td>Program <code>VCOIN</code> and measure LICELL</td>
+<td>C40</td>
+</tr>
+<tr>
+<td>Power-up slot numbering, equal and zero power-down orders</td>
+<td>Measure the rails at power-up and power-down with a logic analyser</td>
+<td>C54, C55, C56</td>
+</tr>
+<tr>
+<td>Charge-voltage and current accuracy</td>
+<td>Measure VBATT in constant-voltage charging at the configured value</td>
+<td>Table 5</td>
+</tr>
+</tbody>
+</table>
+<h2 id="when-the-datasheet-and-the-driver-differ">When the datasheet and the driver differ<a class="headerlink" href="#when-the-datasheet-and-the-driver-differ" title="Permanent link">&para;</a></h2>
+<p>The driver is written against the revision above. If you have a newer revision, compare its revision history with
+the topics above; a change to a pin, a register, a timing or a value the driver uses is a bug report for this
+repository. Where the driver deliberately goes beyond the datasheet, the <a href="../contract/">Contract</a> says so.</p>
+<p>The repository never contains the PDF itself: vendors own their documents. Download it from the vendor, and compare
+its SHA-256 with the one above to confirm you have the same file.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../api-reference/" class="md-footer__link md-footer__link--prev" aria-label="Previous: API reference">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                API reference
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../coverage/" class="md-footer__link md-footer__link--next" aria-label="Next: Coverage">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Coverage
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      
+<div class="md-copyright kb-footer">
+  <nav class="kb-footer__links" aria-label="Kokeb Labs">
+    <a href="https://kokeb-labs.github.io/">Kokeb Labs docs</a>
+    <a href="https://github.com/kokeb-labs-drivers">GitHub organisation</a>
+    
+      <a href="https://github.com/kokeb-labs-drivers/driver-pf1550">Source</a>
+      <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/issues">Report an issue</a>
+      <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/main/LICENSE">License</a>
+    
+  </nav>
+  
+    <div class="md-copyright__highlight">Copyright (c) 2026 The driver-pf1550 authors</div>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/kokeb-labs-drivers" target="_blank" rel="noopener" title="Kokeb Labs on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.prune", "navigation.top", "navigation.footer", "navigation.tracking", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.action.edit", "content.tabs.link", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="../search/main.js"></script>
+      
+    
+  </body>
+</html>

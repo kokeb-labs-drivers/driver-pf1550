@@ -1,0 +1,272 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1736" height="902" viewBox="0 0 1736 902" role="img" aria-labelledby="chip-circuit-typical-title chip-circuit-typical-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-circuit-typical-title">PF1550: Control connections to a host processor</title>
+<desc id="chip-circuit-typical-desc">Schematic of the PF1550 control connections to a host processor: the chip with U2 Host, R1 resistor 2.2 kΩ, R2 resistor 2.2 kΩ, R3 resistor 10 kΩ; the MCU wires carry the port hooks GpioGet(CtrlPin::Intb), GpioSet(CtrlPin::Standby), Write(), WriteRead().</desc>
+<rect x="0.5" y="0.5" width="1735" height="901" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#F8D27A">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#E8EDF3">PF1550: Control connections to a host processor</text>
+<text x="32" y="103.8" font-size="15" fill="#9AA6B5">The PF1550 on a host's I2C bus with the STANDBY pin driven by a GPIO through GpioSet() and INTB read by GpioGet(). The power connections (battery, supply, regulator outputs and their capacitors) are in the data sheet's</text>
+<text x="32" y="125.5" font-size="15" fill="#9AA6B5">example schematic and are not redrawn here. Above each MCU wire: the port hook that drives it. Datasheet: 13.1 Example schematic, p. 133.</text>
+<rect x="32" y="141.6" width="1672" height="1" fill="#252F3C"/>
+<path d="M256 543.5 L696 543.5" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M616 447.6 L616 543.5" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M256 495.6 L696 495.6" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M552 447.6 L552 495.6" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M256 471.6 L696 471.6" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M488 447.6 L488 471.6" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M256 519.5 L696 519.5" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<rect x="720" y="231.6" width="920" height="544" rx="4" fill="#151C26" stroke="#F4B942" stroke-width="1.8"/>
+<path d="M720 471.6 L696 471.6" fill="none" stroke="#60A5FA" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M720 495.6 L696 495.6" fill="none" stroke="#60A5FA" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M720 519.5 L696 519.5" fill="none" stroke="#2BB3A3" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M720 543.5 L696 543.5" fill="none" stroke="#FBBF24" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 263.6 L1664 263.6" fill="none" stroke="#2BB3A3" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 287.6 L1664 287.6" fill="none" stroke="#2BB3A3" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 311.6 L1664 311.6" fill="none" stroke="#2BB3A3" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 335.6 L1664 335.6" fill="none" stroke="#FBBF24" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 359.6 L1664 359.6" fill="none" stroke="#D6A26B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 383.6 L1664 383.6" fill="none" stroke="#D6A26B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 407.6 L1664 407.6" fill="none" stroke="#F0ABFC" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 431.6 L1664 431.6" fill="none" stroke="#F0ABFC" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 455.6 L1664 455.6" fill="none" stroke="#D6A26B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 479.6 L1664 479.6" fill="none" stroke="#D6A26B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 503.6 L1664 503.6" fill="none" stroke="#D6A26B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 527.5 L1664 527.5" fill="none" stroke="#D6A26B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 551.5 L1664 551.5" fill="none" stroke="#D6A26B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 575.5 L1664 575.5" fill="none" stroke="#D6A26B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 599.5 L1664 599.5" fill="none" stroke="#F0ABFC" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 623.5 L1664 623.5" fill="none" stroke="#D6A26B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 647.5 L1664 647.5" fill="none" stroke="#D6A26B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 671.5 L1664 671.5" fill="none" stroke="#F0ABFC" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 695.5 L1664 695.5" fill="none" stroke="#D6A26B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 719.5 L1664 719.5" fill="none" stroke="#D6A26B" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1640 743.5 L1664 743.5" fill="none" stroke="#F0ABFC" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M768 231.6 L768 207.6" fill="none" stroke="#FB7185" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M840 231.6 L840 207.6" fill="none" stroke="#FB7185" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M912 231.6 L912 207.6" fill="none" stroke="#FB7185" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M976 231.6 L976 207.6" fill="none" stroke="#FB7185" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1048 231.6 L1048 207.6" fill="none" stroke="#FB7185" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1136 231.6 L1136 207.6" fill="none" stroke="#FB7185" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1216 231.6 L1216 207.6" fill="none" stroke="#FB7185" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1288 231.6 L1288 207.6" fill="none" stroke="#FB7185" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1360 231.6 L1360 207.6" fill="none" stroke="#FB7185" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1424 231.6 L1424 207.6" fill="none" stroke="#FB7185" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1504 231.6 L1504 207.6" fill="none" stroke="#FB7185" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1592 231.6 L1592 207.6" fill="none" stroke="#FB7185" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1152 775.5 L1152 799.5" fill="none" stroke="#94A3B8" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M1208 775.5 L1208 799.5" fill="none" stroke="#94A3B8" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="32" y="423.6" width="200" height="152" rx="4" fill="#18202B" stroke="#D2DAE4" stroke-width="1.8"/>
+<path d="M232 471.6 L256 471.6" fill="none" stroke="#60A5FA" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M232 495.6 L256 495.6" fill="none" stroke="#60A5FA" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M232 519.5 L256 519.5" fill="none" stroke="#2BB3A3" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M232 543.5 L256 543.5" fill="none" stroke="#FBBF24" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M208 423.6 L208 399.6" fill="none" stroke="#FB7185" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M208 575.5 L208 599.5" fill="none" stroke="#94A3B8" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M768 207.6 L768 196.6" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M759 196.6 L777 196.6" fill="none" stroke="#FB7185" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1152 799.5 L1152 807.5" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1144 807.5 L1160 807.5" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1147 811 L1157 811" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1150 814.5 L1154 814.5" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1208 799.5 L1208 807.5" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1200 807.5 L1216 807.5" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1203 811 L1213 811" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1206 814.5 L1210 814.5" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M208 399.6 L208 388.6" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M199 388.6 L217 388.6" fill="none" stroke="#FB7185" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M208 599.5 L208 607.5" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M200 607.5 L216 607.5" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M203 611 L213 611" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M206 614.5 L210 614.5" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M488 399.6 L488 412.6" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M488 434.6 L488 447.6" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M483 412.6 L483 434.6 L493 434.6 L493 412.6 Z" fill="#151C26" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M488 399.6 L488 388.6" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M479 388.6 L497 388.6" fill="none" stroke="#FB7185" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M552 399.6 L552 412.6" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M552 434.6 L552 447.6" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M547 412.6 L547 434.6 L557 434.6 L557 412.6 Z" fill="#151C26" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M552 399.6 L552 388.6" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M543 388.6 L561 388.6" fill="none" stroke="#FB7185" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M616 399.6 L616 412.6" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M616 434.6 L616 447.6" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M611 412.6 L611 434.6 L621 434.6 L621 412.6 Z" fill="#151C26" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M616 399.6 L616 388.6" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M607 388.6 L625 388.6" fill="none" stroke="#FB7185" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M836 211.6 L844 203.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M836 203.6 L844 211.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M908 211.6 L916 203.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M908 203.6 L916 211.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M972 211.6 L980 203.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M972 203.6 L980 211.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1044 211.6 L1052 203.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1044 203.6 L1052 211.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1132 211.6 L1140 203.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1132 203.6 L1140 211.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1212 211.6 L1220 203.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1212 203.6 L1220 211.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1284 211.6 L1292 203.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1284 203.6 L1292 211.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1356 211.6 L1364 203.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1356 203.6 L1364 211.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1420 211.6 L1428 203.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1420 203.6 L1428 211.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1500 211.6 L1508 203.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1500 203.6 L1508 211.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1588 211.6 L1596 203.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1588 203.6 L1596 211.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 267.6 L1668 259.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 259.6 L1668 267.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 291.6 L1668 283.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 283.6 L1668 291.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 315.6 L1668 307.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 307.6 L1668 315.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 339.6 L1668 331.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 331.6 L1668 339.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 363.6 L1668 355.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 355.6 L1668 363.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 387.6 L1668 379.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 379.6 L1668 387.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 411.6 L1668 403.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 403.6 L1668 411.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 435.6 L1668 427.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 427.6 L1668 435.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 459.6 L1668 451.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 451.6 L1668 459.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 483.6 L1668 475.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 475.6 L1668 483.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 507.6 L1668 499.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 499.6 L1668 507.6" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 531.5 L1668 523.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 523.5 L1668 531.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 555.5 L1668 547.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 547.5 L1668 555.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 579.5 L1668 571.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 571.5 L1668 579.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 603.5 L1668 595.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 595.5 L1668 603.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 627.5 L1668 619.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 619.5 L1668 627.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 651.5 L1668 643.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 643.5 L1668 651.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 675.5 L1668 667.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 667.5 L1668 675.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 699.5 L1668 691.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 691.5 L1668 699.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 723.5 L1668 715.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 715.5 L1668 723.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 747.5 L1668 739.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1660 739.5 L1668 747.5" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="726" y="476.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">SDA</text>
+<text x="716" y="467.6" font-size="11" text-anchor="end" fill="#9AA6B5">2</text>
+<text x="726" y="500.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">SCL</text>
+<text x="716" y="491.6" font-size="11" text-anchor="end" fill="#9AA6B5">3</text>
+<text x="726" y="524" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">STANDBY</text>
+<text x="716" y="515.5" font-size="11" text-anchor="end" fill="#9AA6B5">7</text>
+<text x="726" y="548" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">INTB</text>
+<text x="716" y="539.5" font-size="11" text-anchor="end" fill="#9AA6B5">9</text>
+<text x="1634" y="268.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">WDI</text>
+<text x="1644" y="259.6" font-size="11" fill="#9AA6B5">1</text>
+<text x="1634" y="292.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">PWRON</text>
+<text x="1644" y="283.6" font-size="11" fill="#9AA6B5">6</text>
+<text x="1634" y="316.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">ONKEY</text>
+<text x="1644" y="307.6" font-size="11" fill="#9AA6B5">8</text>
+<text x="1634" y="340.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">RESETBMCU</text>
+<text x="1644" y="331.6" font-size="11" fill="#9AA6B5">10</text>
+<text x="1634" y="364.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">VLDO3</text>
+<text x="1644" y="355.6" font-size="11" fill="#9AA6B5">12</text>
+<text x="1634" y="388.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">SW3LX</text>
+<text x="1644" y="379.6" font-size="11" fill="#9AA6B5">13</text>
+<text x="1634" y="412.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">SW3FB</text>
+<text x="1644" y="403.6" font-size="11" fill="#9AA6B5">15</text>
+<text x="1634" y="436.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">SW2FB</text>
+<text x="1644" y="427.6" font-size="11" fill="#9AA6B5">16</text>
+<text x="1634" y="460.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">SW2LX</text>
+<text x="1644" y="451.6" font-size="11" fill="#9AA6B5">18</text>
+<text x="1634" y="484.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">VLDO2</text>
+<text x="1644" y="475.6" font-size="11" fill="#9AA6B5">19</text>
+<text x="1634" y="508.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">VREFDDR</text>
+<text x="1644" y="499.6" font-size="11" fill="#9AA6B5">21</text>
+<text x="1634" y="532" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">VDIG</text>
+<text x="1644" y="523.5" font-size="11" fill="#9AA6B5">23</text>
+<text x="1634" y="556" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">VCORE</text>
+<text x="1644" y="547.5" font-size="11" fill="#9AA6B5">24</text>
+<text x="1634" y="580" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">SW1LX</text>
+<text x="1644" y="571.5" font-size="11" fill="#9AA6B5">25</text>
+<text x="1634" y="604" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">SW1FB</text>
+<text x="1644" y="595.5" font-size="11" fill="#9AA6B5">27</text>
+<text x="1634" y="628" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">VLDO1</text>
+<text x="1644" y="619.5" font-size="11" fill="#9AA6B5">29</text>
+<text x="1634" y="652" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">VSNVS</text>
+<text x="1644" y="643.5" font-size="11" fill="#9AA6B5">30</text>
+<text x="1634" y="676" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">THM</text>
+<text x="1644" y="667.5" font-size="11" fill="#9AA6B5">32</text>
+<text x="1634" y="700" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">INT2P7</text>
+<text x="1644" y="691.5" font-size="11" fill="#9AA6B5">38</text>
+<text x="1634" y="724" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">USBPHY</text>
+<text x="1644" y="715.5" font-size="11" fill="#9AA6B5">39</text>
+<text x="1634" y="748" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">CHGB</text>
+<text x="1644" y="739.5" font-size="11" fill="#9AA6B5">40</text>
+<text x="768" y="247.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">VDDIO</text>
+<text x="772" y="225.6" font-size="11" fill="#9AA6B5">4</text>
+<text x="840" y="247.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">VLDO3IN</text>
+<text x="844" y="225.6" font-size="11" fill="#9AA6B5">11</text>
+<text x="912" y="247.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">SW3IN</text>
+<text x="916" y="225.6" font-size="11" fill="#9AA6B5">14</text>
+<text x="976" y="247.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">SW2IN</text>
+<text x="980" y="225.6" font-size="11" fill="#9AA6B5">17</text>
+<text x="1048" y="247.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">VLDO2IN</text>
+<text x="1052" y="225.6" font-size="11" fill="#9AA6B5">20</text>
+<text x="1136" y="247.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">VINREFDDR</text>
+<text x="1140" y="225.6" font-size="11" fill="#9AA6B5">22</text>
+<text x="1216" y="247.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">SW1IN</text>
+<text x="1220" y="225.6" font-size="11" fill="#9AA6B5">26</text>
+<text x="1288" y="247.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">VLDO1IN</text>
+<text x="1292" y="225.6" font-size="11" fill="#9AA6B5">28</text>
+<text x="1360" y="247.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">LICELL</text>
+<text x="1364" y="225.6" font-size="11" fill="#9AA6B5">31</text>
+<text x="1424" y="247.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">VBATT</text>
+<text x="1428" y="225.6" font-size="11" fill="#9AA6B5">33, 34</text>
+<text x="1504" y="247.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">VSYS</text>
+<text x="1508" y="225.6" font-size="11" fill="#9AA6B5">35, 36</text>
+<text x="1592" y="247.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">VBUSIN</text>
+<text x="1596" y="225.6" font-size="11" fill="#9AA6B5">37</text>
+<text x="1152" y="768.5" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">VDDOTP</text>
+<text x="1156" y="790.3" font-size="11" fill="#9AA6B5">5</text>
+<text x="1208" y="768.5" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">EPAD</text>
+<text x="1212" y="790.3" font-size="11" fill="#9AA6B5">EP</text>
+<text x="1180" y="500.6" font-size="15" font-weight="700" text-anchor="middle" fill="#F8D27A">PF1550</text>
+<text x="1180" y="518.5" font-size="12" text-anchor="middle" fill="#9AA6B5">U1</text>
+<text x="226" y="476.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">I2C SDA</text>
+<text x="226" y="500.1" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">I2C SCL</text>
+<text x="226" y="524" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">GPIO (STANDBY)</text>
+<text x="226" y="548" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">GPIO (INTB)</text>
+<text x="208" y="439.6" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">VIO</text>
+<text x="208" y="568.5" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">GND</text>
+<text x="44" y="445.6" font-size="15" font-weight="700" fill="#E8EDF3">Host</text>
+<text x="44" y="463.6" font-size="12" fill="#9AA6B5">U2</text>
+<text x="768" y="190.6" font-size="12" font-weight="700" text-anchor="middle" fill="#FECDD3">VIO</text>
+<text x="208" y="382.6" font-size="12" font-weight="700" text-anchor="middle" fill="#FECDD3">VIO</text>
+<text x="264" y="465.6" font-size="12" font-weight="500" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#BFDBFE">Write(), WriteRead()</text>
+<text x="264" y="489.6" font-size="12" font-weight="500" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#BFDBFE">Write(), WriteRead()</text>
+<text x="264" y="513.5" font-size="12" font-weight="500" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#A7F3E6">GpioSet(CtrlPin::Standby)</text>
+<text x="264" y="537.5" font-size="12" font-weight="500" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#FDE68A">GpioGet(CtrlPin::Intb)</text>
+<text x="498" y="420.6" font-size="12" font-weight="700" fill="#E8EDF3">R1</text>
+<text x="498" y="434.9" font-size="12" fill="#9AA6B5">2.2 kΩ *</text>
+<text x="488" y="382.6" font-size="12" font-weight="700" text-anchor="middle" fill="#FECDD3">VIO</text>
+<text x="562" y="420.6" font-size="12" font-weight="700" fill="#E8EDF3">R2</text>
+<text x="562" y="434.9" font-size="12" fill="#9AA6B5">2.2 kΩ *</text>
+<text x="552" y="382.6" font-size="12" font-weight="700" text-anchor="middle" fill="#FECDD3">VIO</text>
+<text x="626" y="420.6" font-size="12" font-weight="700" fill="#E8EDF3">R3</text>
+<text x="626" y="434.9" font-size="12" fill="#9AA6B5">10 kΩ *</text>
+<text x="616" y="382.6" font-size="12" font-weight="700" text-anchor="middle" fill="#FECDD3">VIO</text>
+<circle cx="616" cy="543.5" r="3.2" fill="#D2DAE4"/>
+<circle cx="552" cy="495.6" r="3.2" fill="#D2DAE4"/>
+<circle cx="488" cy="471.6" r="3.2" fill="#D2DAE4"/>
+<text x="32" y="836.5" font-size="12.5" fill="#9AA6B5">* Not confirmed in the datasheet: R1 2.2 kΩ: typical value for 400 kHz; size it for the bus; R2 2.2 kΩ: typical value for 400 kHz; size it for the bus; R3 10 kΩ: INTB is open drain; any value that suits the host input.</text>
+<rect x="32" y="855.7" width="14" height="14" rx="4" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="54" y="867.3" font-size="12.5" fill="#9AA6B5">bus hook (SPI, I2C, UART)</text>
+<rect x="242.1" y="855.7" width="14" height="14" rx="4" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<text x="264.1" y="867.3" font-size="12.5" fill="#9AA6B5">GPIO output hook</text>
+<rect x="398.9" y="855.7" width="14" height="14" rx="4" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<text x="420.9" y="867.3" font-size="12.5" fill="#9AA6B5">GPIO input hook</text>
+</svg>

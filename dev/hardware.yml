@@ -1,0 +1,157 @@
+---
+# The chip's hardware in one file: package, pins, the driver hook of each pin, the blocks inside and the reference
+# circuit. `kokeb-docs figures` draws the pinout, the package outline, the block diagram and the circuit from it,
+# `kokeb-docs gen` writes the chip card of the README and the tables of docs/hardware.md,
+# `kokeb-docs hardware --check` validates it. Source: NXP PF1550 data sheet, Rev. 7 (docs/datasheets.yml, document
+# `ds`). Pin sides follow the transparent top view of Figure 4 (pins 1 to 10 left, 11 to 20 bottom, 21 to 30 right,
+# 31 to 40 top).
+schema: 1
+chip: PF1550
+
+refs:
+  pinout: {doc: ds, section: "4.1 Pinning", page: 7}
+  pins: {doc: ds, section: "4.2 Pin definitions", page: 8}
+  supply: {doc: ds, section: "5.3 Electrical characteristics", page: 12}
+  i2c: {doc: ds, section: "9.7 Control interface I2C block description", page: 71}
+  intb: {doc: ds, section: "9.4 INTB", page: 70}
+  standby: {doc: ds, section: "9.2 STANDBY", page: 69}
+  pwron: {doc: ds, section: "9.1 PWRON", page: 68}
+  onkey: {doc: ds, section: "9.6 ONKEY", page: 71}
+  resetbmcu: {doc: ds, section: "9.3 RESETBMCU", page: 69}
+  blocks: {doc: ds, section: "1 General description", page: 1}
+  app: {doc: ds, section: "13.1 Example schematic", page: 133}
+  outline: {doc: ds, section: "14 Package outline", page: 139}
+  order: {doc: ds, section: "2 Ordering information", page: 5}
+  charger: {doc: ds, section: "8 Battery charger description", page: 43}
+  buck: {doc: ds, section: "6 Buck regulators", page: 24}
+  ldo: {doc: ds, section: "7 LDOs and VSNVS", page: 34}
+
+package:
+  type: HVQFN-40
+  pins: 40
+  exposed_pad: true
+  ref: pinout
+  # The body: the data sheet says "40-pin QFN 5.0 mm x 5.0 mm with exposed pad" (section 14); the pitch and the height
+  # are on the drawing only, so they are left out.
+  outline: {length_mm: 5.0, width_mm: 5.0, ref: outline}
+
+# The supply ranges that matter to the application: the charger input and the I/O supply.
+supply:
+  - {name: VDDIO, min_v: 1.7, max_v: 3.3, ref: pins}
+
+hooks:
+  - {id: transfer, call: "Write(), WriteRead()", kind: i2c, source: inc/pf1550_i2c_interface.hpp, symbol: WriteRead}
+  - {id: standby, call: "GpioSet(CtrlPin::Standby)", kind: gpio-out, source: inc/pf1550_i2c_interface.hpp,
+     symbol: GpioSet}
+  - {id: intb, call: "GpioGet(CtrlPin::Intb)", kind: gpio-in, source: inc/pf1550_i2c_interface.hpp,
+     symbol: GpioGet}
+
+pins:
+  - {number: 1, name: WDI, type: digital-in, domain: VDDIO, function: "Watchdog input from the processor", ref: pins}
+  - {number: 2, name: SDA, type: bus, domain: VDDIO, function: "I2C data", hook: transfer, ref: i2c}
+  - {number: 3, name: SCL, type: bus, domain: VDDIO, function: "I2C clock, up to 400 kHz", hook: transfer, ref: i2c}
+  - {number: 4, name: VDDIO, type: power, domain: VDDIO, function: "I/O supply, 1.7 V to 3.3 V", ref: pins}
+  - {number: 5, name: VDDOTP, type: ground, domain: GND, function: "Connect to ground in the application", ref: pins}
+  - {number: 6, name: PWRON, type: digital-in, domain: VDDIO, function: "PWRON input", ref: pwron}
+  - {number: 7, name: STANDBY, type: digital-in, domain: VDDIO, function: "STANDBY input; the driver drives it",
+     hook: standby, unused: "Leave low (STANDBYINV = 0)", ref: standby}
+  - {number: 8, name: ONKEY, type: digital-in, domain: VDDIO, function: "ONKEY push-button input", ref: onkey}
+  - {number: 9, name: INTB, type: open-drain, domain: VDDIO, function: "Interrupt output, active low", hook: intb,
+     unused: "Leave open; poll with ServiceInterrupts()", ref: intb}
+  - {number: 10, name: RESETBMCU, type: open-drain, domain: VDDIO, function: "Reset output to the processor",
+     ref: resetbmcu}
+  - {number: 11, name: VLDO3IN, type: power, domain: VSYS, function: "LDO3 input supply", ref: ldo}
+  - {number: 12, name: VLDO3, type: power-out, domain: VLDO3, function: "LDO3 output", ref: ldo}
+  - {number: 13, name: SW3LX, type: power-out, domain: SW3, function: "Buck 3 switching node", ref: buck}
+  - {number: 14, name: SW3IN, type: power, domain: VSYS, function: "Buck 3 input supply", ref: buck}
+  - {number: 15, name: SW3FB, type: analog, domain: SW3, function: "Buck 3 output voltage feedback", ref: buck}
+  - {number: 16, name: SW2FB, type: analog, domain: SW2, function: "Buck 2 output voltage feedback", ref: buck}
+  - {number: 17, name: SW2IN, type: power, domain: VSYS, function: "Buck 2 input supply", ref: buck}
+  - {number: 18, name: SW2LX, type: power-out, domain: SW2, function: "Buck 2 switching node", ref: buck}
+  - {number: 19, name: VLDO2, type: power-out, domain: VLDO2, function: "LDO2 output", ref: ldo}
+  - {number: 20, name: VLDO2IN, type: power, domain: VSYS, function: "LDO2 input supply", ref: ldo}
+  - {number: 21, name: VREFDDR, type: power-out, domain: VREFDDR, function: "VREFDDR output", ref: ldo}
+  - {number: 22, name: VINREFDDR, type: power, domain: VSYS, function: "VREFDDR input supply", ref: ldo}
+  - {number: 23, name: VDIG, type: power-out, domain: INT, function: "Digital regulator output, used inside the chip",
+     ref: pins}
+  - {number: 24, name: VCORE, type: power-out, domain: INT, function: "Core regulator output, used inside the chip",
+     ref: pins}
+  - {number: 25, name: SW1LX, type: power-out, domain: SW1, function: "Buck 1 switching node", ref: buck}
+  - {number: 26, name: SW1IN, type: power, domain: VSYS, function: "Buck 1 input supply", ref: buck}
+  - {number: 27, name: SW1FB, type: analog, domain: SW1, function: "Buck 1 feedback input", ref: buck}
+  - {number: 28, name: VLDO1IN, type: power, domain: VSYS, function: "LDO1 input supply", ref: ldo}
+  - {number: 29, name: VLDO1, type: power-out, domain: VLDO1, function: "LDO1 output", ref: ldo}
+  - {number: 30, name: VSNVS, type: power-out, domain: VSNVS, function: "VSNVS regulator output", ref: ldo}
+  - {number: 31, name: LICELL, type: power, domain: LICELL, function: "Coin cell input and charger output", ref: pins}
+  - {number: 32, name: THM, type: analog, domain: INT, function: "Thermistor connection; connect the thermistor to ground",
+     ref: pins}
+  - {number: 33, name: VBATT, type: power, domain: VBATT, function: "Battery input", ref: pins}
+  - {number: 34, name: VBATT, type: power, domain: VBATT, function: "Battery input", ref: pins}
+  - {number: 35, name: VSYS, type: power, domain: VSYS, function: "Main input of the PMIC and output of the charger",
+     ref: pins}
+  - {number: 36, name: VSYS, type: power, domain: VSYS, function: "Main input of the PMIC and output of the charger",
+     ref: pins}
+  - {number: 37, name: VBUSIN, type: power, domain: VBUS, function: "Charger input", ref: pins}
+  - {number: 38, name: INT2P7, type: power-out, domain: INT, function: "2.7 V regulator output, also the thermistor bias",
+     ref: pins}
+  - {number: 39, name: USBPHY, type: power-out, domain: USBPHY, function: "USBPHY regulator output", ref: pins}
+  - {number: 40, name: CHGB, type: analog, domain: VSYS, function: "Charger LED connection; the LED goes from VSYS to this pin",
+     ref: pins}
+  - {number: EP, name: EPAD, type: ground, domain: GND, function: "Exposed pad; connect to ground", ref: pins}
+
+block_diagram:
+  ref: blocks
+  blocks:
+    - {id: ctl, label: Control interface, detail: "I2C and INTB", at: [0, 0], tone: blue, pins: [SDA, SCL, INTB]}
+    - {id: seq, label: State machine, detail: "ONKEY, PWRON, STANDBY", at: [0, 1], tone: slate,
+       pins: [PWRON, STANDBY, ONKEY, RESETBMCU]}
+    - {id: snvs, label: VSNVS and coin cell, detail: "always on", at: [0, 2], pins: [VSNVS, LICELL]}
+    - {id: regs, label: Registers, detail: "interrupts, sequencer, OTP", at: [1, 1], tone: violet}
+    - {id: chg, label: Battery charger, detail: "linear charger, power path", at: [2, 0], tone: amber, side: right,
+       pins: [VBUSIN, VBATT, THM]}
+    - {id: buck, label: Buck regulators, detail: "SW1 and SW2 with DVS, SW3", at: [2, 1], tone: teal, side: right,
+       pins: [SW1LX, SW2LX, SW3LX]}
+    - {id: ldo, label: LDOs and VREFDDR, detail: "LDO1 to LDO3, load switch", at: [2, 2], tone: teal, side: right,
+       pins: [VLDO1, VLDO2, VLDO3, VREFDDR]}
+  links:
+    - {from: ctl, to: regs, label: frames, both: true}
+    - {from: seq, to: regs, label: states, both: true}
+    - {from: regs, to: chg, label: charger}
+    - {from: regs, to: buck, label: rails}
+    - {from: regs, to: ldo, label: rails}
+    - {from: regs, to: snvs, label: coin cell}
+
+circuits:
+  - id: typical
+    title: Control connections to a host processor
+    description: >-
+      The PF1550 on a host's I2C bus with the STANDBY pin driven by a GPIO through GpioSet() and INTB read by
+      GpioGet(). The power connections (battery, supply, regulator outputs and their capacitors) are in the data
+      sheet's example schematic and are not redrawn here.
+    ref: app
+    parts:
+      - {id: U1, kind: chip}
+      - id: U2
+        kind: mcu
+        label: Host
+        pins:
+          - {name: SDA, label: I2C SDA}
+          - {name: SCL, label: I2C SCL}
+          - {name: STBY, label: GPIO (STANDBY)}
+          - {name: IRQ, label: GPIO (INTB)}
+          - VIO
+          - GND
+      - {id: R1, kind: resistor, value: 2.2 kΩ, unverified: "typical value for 400 kHz; size it for the bus"}
+      - {id: R2, kind: resistor, value: 2.2 kΩ, unverified: "typical value for 400 kHz; size it for the bus"}
+      - {id: R3, kind: resistor, value: 10 kΩ, unverified: "INTB is open drain; any value that suits the host input"}
+    nets:
+      - {name: "VIO", kind: supply, nodes: [U1.VDDIO, U2.VIO, R1.1, R2.1, R3.1]}
+      - {name: GND, kind: ground, nodes: [U1.EPAD, U1.VDDOTP, U2.GND]}
+      - {name: SDA, nodes: [U1.SDA, U2.SDA, R1.2]}
+      - {name: SCL, nodes: [U1.SCL, U2.SCL, R2.2]}
+      - {name: STANDBY, nodes: [U1.STANDBY, U2.STBY]}
+      - {name: INTB, nodes: [U1.INTB, U2.IRQ, R3.2]}
+    unused: [U1.WDI, U1.PWRON, U1.ONKEY, U1.RESETBMCU, U1.VLDO3IN, U1.VLDO3, U1.SW3LX, U1.SW3IN, U1.SW3FB, U1.SW2FB,
+             U1.SW2IN, U1.SW2LX, U1.VLDO2, U1.VLDO2IN, U1.VREFDDR, U1.VINREFDDR, U1.VDIG, U1.VCORE, U1.SW1LX,
+             U1.SW1IN, U1.SW1FB, U1.VLDO1IN, U1.VLDO1, U1.VSNVS, U1.LICELL, U1.THM, U1.VBATT, U1.VSYS, U1.VBUSIN,
+             U1.INT2P7, U1.USBPHY, U1.CHGB]

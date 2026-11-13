@@ -1,0 +1,1580 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="C++20 driver for the NXP PF1550 power management IC (single-cell Li-ion linear charger, three buck regulators, three LDOs) on I2C">
+      
+      
+      
+        <link rel="canonical" href="https://kokeb-labs-drivers.github.io/driver-pf1550/latest/ambiguities/">
+      
+      
+        <link rel="prev" href="../coverage-matrix/">
+      
+      
+        <link rel="next" href="../testing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/kokeb/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Ambiguities - PF1550 Driver</title>
+      
+    
+    
+  
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.5%207.75A.75.75%200%200%201%207.25%207h1a.75.75%200%200%201%20.75.75v2.75h.25a.75.75%200%200%201%200%201.5h-2a.75.75%200%200%201%200-1.5h.25v-2h-.25a.75.75%200%200%201-.75-.75M8%206a1%201%200%201%201%200-2%201%201%200%200%201%200%202%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8%201.5c-2.363%200-4%201.69-4%203.75%200%20.984.424%201.625.984%202.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621%201.49a.75.75%200%200%201-1.484.211c-.04-.282-.163-.547-.37-.847a9%209%200%200%200-.542-.68q-.126-.149-.268-.32C3.201%207.75%202.5%206.766%202.5%205.25%202.5%202.31%204.863%200%208%200s5.5%202.31%205.5%205.25c0%201.516-.701%202.5-1.328%203.259q-.142.172-.268.319c-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751%200%200%201-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848q.113-.133.213-.253c.561-.679.985-1.32.985-2.304%200-2.06-1.637-3.75-4-3.75M5.75%2012h4.5a.75.75%200%200%201%200%201.5h-4.5a.75.75%200%200%201%200-1.5M6%2015.25a.75.75%200%200%201%20.75-.75h2.5a.75.75%200%200%201%200%201.5h-2.5a.75.75%200%200%201-.75-.75%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%205.782V2.5h-.25a.75.75%200%200%201%200-1.5h6.5a.75.75%200%200%201%200%201.5H11v3.282l3.666%205.76C15.619%2013.04%2014.543%2015%2012.767%2015H3.233c-1.776%200-2.852-1.96-1.899-3.458Zm-2.4%206.565a.75.75%200%200%200%20.633%201.153h9.534a.75.75%200%200%200%20.633-1.153L12.225%2010.5h-8.45ZM9.5%202.5h-3V6c0%20.143-.04.283-.117.403L4.73%209h6.54L9.617%206.403A.75.75%200%200%201%209.5%206Z%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1.75%202.5h10.5a.75.75%200%200%201%200%201.5H1.75a.75.75%200%200%201%200-1.5m4%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5m0%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5M2.5%207.75v6a.75.75%200%200%201-1.5%200v-6a.75.75%200%200%201%201.5%200%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+  <link rel="stylesheet" href="../assets/kokeb/kokeb.css">
+
+    
+      
+    
+    <link rel="stylesheet" media="print" onload="this.media='all'" href="../assets/kokeb/fonts.css">
+  <noscript><link rel="stylesheet" href="../assets/kokeb/fonts.css"></noscript>
+
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  
+  
+  <meta name="theme-color" content="#0e1726" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b2140" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kokeb Labs">
+  <meta property="og:title" content="Ambiguities - PF1550 Driver">
+  <meta property="og:description" content="C++20 driver for the NXP PF1550 power management IC (single-cell Li-ion linear charger, three buck regulators, three LDOs) on I2C">
+  <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-pf1550/latest/ambiguities/">
+  <meta name="twitter:card" content="summary">
+  <script>
+(function () {
+  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
+  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
+      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
+  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
+  var stub = {
+    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
+    render: function (id, text) {
+      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
+      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
+      if (el) el.setAttribute("data-kb-mermaid", "");
+      return near(el).then(load).then(function (m) { return m.render(id, text); });
+    }
+  };
+  function load() {
+    return loading || (loading = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = SRC;
+      s.integrity = SRI;
+      s.crossOrigin = "anonymous";
+      s.onload = function () {
+        real = window.mermaid;
+        window.mermaid = stub;
+        real.initialize(config);
+        resolve(real);
+      };
+      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
+      document.head.appendChild(s);
+    }));
+  }
+  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
+  function watch() {
+    if (io) io.disconnect();
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
+      });
+    }, { rootMargin: ahead ? "100% 0px" : "0px" });
+    waiting.forEach(function (w) { io.observe(w.el); });
+  }
+  function release(which) {
+    waiting = waiting.filter(function (w) {
+      if (!which(w)) return true;
+      io.unobserve(w.el);
+      w.go();
+      return false;
+    });
+  }
+  function near(el) {
+    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
+    return new Promise(function (resolve) {
+      waiting.push({ el: el, go: resolve });
+      if (io) io.observe(el); else watch();
+    });
+  }
+  function engaged() {
+    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
+    ahead = true;
+    if (io) watch();
+  }
+  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
+  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
+  window.mermaid = stub;
+})();
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ambiguities" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+  You are reading the documentation of an older version.
+  <a href="https://kokeb-labs-drivers.github.io/driver-pf1550/"><strong>Go to the latest version.</strong></a>
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL(".."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="PF1550 Driver" class="md-header__button md-logo" aria-label="PF1550 Driver" data-md-component="logo">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false" class="kb-mark">
+    <g transform="translate(1.28 1.28) scale(0.12000)"><path d="M232,66 Q265.29,246.71 446,280 Q265.29,313.29 232,494 Q198.71,313.29 18,280 Q198.71,246.71 232,66 Z" fill="#F4B942"/><path d="M386,38 Q399.69,112.31 474,126 Q399.69,139.69 386,214 Q372.31,139.69 298,126 Q372.31,112.31 386,38 Z" fill="#0E1726" stroke="#0E1726" stroke-width="24" stroke-linejoin="round"/><path d="M386,38 Q399.69,112.31 474,126 Q399.69,139.69 386,214 Q372.31,139.69 298,126 Q372.31,112.31 386,38 Z" fill="#D9773B"/></g>
+  </svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          
+          <a class="kb-org" href="https://kokeb-labs.github.io/" title="All Kokeb Labs documentation">Kokeb Labs</a>
+          <span class="kb-org__sep" aria-hidden="true">/</span>
+          <span class="md-ellipsis">
+            PF1550 Driver
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ambiguities
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Follow the system theme"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Follow the system theme" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kokeb-labs-drivers/driver-pf1550" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kokeb-labs-drivers/driver-pf1550
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../quickstart/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Get started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Concepts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../api-reference/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PF1550 Driver" class="md-nav__button md-logo" aria-label="PF1550 Driver" data-md-component="logo">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false" class="kb-mark">
+    <g transform="translate(1.28 1.28) scale(0.12000)"><path d="M232,66 Q265.29,246.71 446,280 Q265.29,313.29 232,494 Q198.71,313.29 18,280 Q198.71,246.71 232,66 Z" fill="#F4B942"/><path d="M386,38 Q399.69,112.31 474,126 Q399.69,139.69 386,214 Q372.31,139.69 298,126 Q372.31,112.31 386,38 Z" fill="#0E1726" stroke="#0E1726" stroke-width="24" stroke-linejoin="round"/><path d="M386,38 Q399.69,112.31 474,126 Q399.69,139.69 386,214 Q372.31,139.69 298,126 Q372.31,112.31 386,38 Z" fill="#D9773B"/></g>
+  </svg>
+
+    </a>
+    PF1550 Driver
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kokeb-labs-drivers/driver-pf1550" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kokeb-labs-drivers/driver-pf1550
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../quickstart/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get started
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../architecture/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../api-guide/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../diagrams/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datasheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasheet map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coverage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coverage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coverage-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coverage matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ambiguities
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ambiguities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-change-a-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to change a reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing and CI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repo-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-change-a-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to change a reading
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/edit/main/docs/ambiguities.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="ambiguities">Ambiguities<a class="headerlink" href="#ambiguities" title="Permanent link">&para;</a></h1>
+<p>Places where the datasheet (Rev. 7) is silent, inconsistent or typed wrongly, and what the driver does about each.
+The driver is safe under every reading: each row is a documented behaviour, and where the chip could behave in more
+than one way the host-test model has a knob (a field of its <code>Readings</code> structure) that runs the other readings, or the
+row says that there is none and why. The
+numbers C1 to C59 are the ones the <a href="../testing/">tests</a> cite. A reading marked "Resolved" was decided against the
+safe side; the rest are open until someone measures the chip.</p>
+<p>Table, section and page numbers are the datasheet's own (<code>Table n</code>, <code>S</code> for a section, <code>p</code> for the printed page).</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Question (the datasheet is silent or inconsistent)</th>
+<th>Resolution, model knob and driver behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1</td>
+<td><code>OTP_SWx_DVS_SEL</code> (Table 31) has no register: DVS mode of SW1/SW2 cannot be read (6.2.2, p28)</td>
+<td><code>Config</code> declares <code>Dvs::Enabled/Disabled</code> per buck; voltage writes only when declared enabled; model runs both.</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>SW3 voltage registers "read only because DVS is not supported" (Table 122 to Table 124, 6.3.3): are writes ignored or stored?</td>
+<td>Model <code>sw3_write_ignored</code>; driver never writes them.</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>Interrupt clearing: PMIC STAT bits "Read or Write 1 to clear" (Table 90 note); charger CHG_INT is <code>RW1S</code> in Table 150 and RW1C in the bitmap (Table 175)</td>
+<td>Model knob <code>int_clear</code> {WriteOne, OnRead, Both} (all groups); driver copies the value out first, writes 1 only to reported bits, bounded 3 passes.</td>
+</tr>
+<tr>
+<td>C4</td>
+<td><code>RW1S</code> (most charger and rail fields): footnote "Load from OTP fuse, Read, and Write" versus the name "write-1-to-set"</td>
+<td>Model <code>rw1s_set_only</code> (a written 0 does not clear); driver verifies after every write and returns <code>VerifyFailed</code>.</td>
+</tr>
+<tr>
+<td>C5</td>
+<td>KEY1 is at 0x6F in the bitmap (Table 174 p125); Tables 148 and 149 both print ADDR 0x6B (RC_16MHZ is at 0x6B in the bitmap); CHGR_KEY2 "Reserved" at 0x9F (Table 173); no key sequence or OTP window is documented in Rev. 7</td>
+<td><strong>Resolved:</strong> KEY1 = 0x6F (two registers cannot share an address; the table of contents repeats the table error). The model decodes KEY1 at 0x6F and RC_16MHZ at 0x6B; none is exposed.</td>
+</tr>
+<tr>
+<td>C6</td>
+<td><code>GOTO_SHIP</code>: Table 138 "any state"; 10.2.3 "in REGS_DISABLE"; Table 83 G takes RUN/STANDBY/SLEEP to REGS_DISABLE on GOTO_SHIP=1, J enters SHIP only if VBUS &lt; 1.0 V (footnote 10), footnote 4 "does not stay"; AN13554 "GOTO_SHIP = 1 and VBUSIN &lt; 1 V". With VBUS valid the data sheet is silent (power-down happens, SHIP is not stated)</td>
+<td><strong>Resolved to the safe reading:</strong> <code>EnterShip</code> needs state Run/Standby/Sleep and VBUS below UVLO, refuses with VBUS valid (<a href="../contract/">Contract</a>). Model knob <code>ship_with_vbus</code> {RegsDisableOnly, BitIgnored, ShipsAnyway} runs all three; the session test checks that <code>EnterShip</code> is refused with VBUS valid and writes nothing under each.</td>
+</tr>
+<tr>
+<td>C7</td>
+<td><code>GOTO_CORE_OFF</code>: Table 83 I needs VBUS_INVALID and ONKEY = 1; footnotes 8 and 9 say it is set "when system is ON" (secondary processor for other products)</td>
+<td>Model <code>core_off_needs_run</code>; driver <code>EnterCoreOff</code> requires the token, VBUS invalid (VBUS_SNS), ONKEY sense high.</td>
+</tr>
+<tr>
+<td>C8</td>
+<td><code>WD_TIME</code> prints "0" for both 80 s and 32 s (Table 161); tWD 80 s typical with &plusmn;20 % (Table 12): the shortest possible period is 25.6 s</td>
+<td>Model <code>wd_time_one_is_32s</code> with accuracy; driver services at &lt;= 16 s whichever reading holds and defaults to the reset value.</td>
+</tr>
+<tr>
+<td>C9</td>
+<td>Watchdog expiry: 8.9.2 says CHG_SNS = 0x0B, Table 154 marks 0x0B Reserved and defines <code>WDT_SNS</code> b5</td>
+<td>Model <code>wdt_reports_0x0b</code>; driver treats either as expired.</td>
+</tr>
+<tr>
+<td>C10</td>
+<td><code>OTP_FLAVOR</code> values 4 to 9 not listed (Table 87 "continues"); A0 "internal validation only" (Table 1 footnote)</td>
+<td>Driver reports the raw byte, a named option only for listed values, never an error; A0 supported by reading with a contract note.</td>
+</tr>
+<tr>
+<td>C11</td>
+<td>Table 116 is titled "SW1_SLP_VOLT" at 0x36</td>
+<td>Treated as SW1_CTRL1 (consistent with 0x3C, 0x42); register-reference check in Table 04.</td>
+</tr>
+<tr>
+<td>C12</td>
+<td>Table 141 is titled "SW2_PWRDN_SEQ" at 0x61; table 140 has the same title at 0x60</td>
+<td>Treated as SW3_PWRDN_SEQ (bitmap order); not exposed.</td>
+</tr>
+<tr>
+<td>C13</td>
+<td>Tables 148 and 149 share ADDR 0x6B</td>
+<td>See C5 (resolved to 0x6F).</td>
+</tr>
+<tr>
+<td>C14</td>
+<td>Charger CHG_INT bits <code>RW1S</code> footnote versus ordinary status: the bit reset condition differs per field (VCOREDIG_RSTB, CHGPOK_RSTB, POR). <code>VBUS_LIN_ILIM</code> is the one driver-written field with CHGPOK_RSTB: an invalid VBUSIN (a cable removal) puts it back to its OTP value (Table 163)</td>
+<td>The model has two events: <code>Reset()</code> (VCOREDIG or POR: every register) and <code>VbusRemoved()</code> (only <code>VBUS_LIN_ILIM</code>). The driver does not use <code>VBUS_LIN_ILIM</code> as evidence of a chip reset (<code>PartialResetBits</code>), so a cable removal is not <code>DeviceReset</code>; the reverted limit is the OTP one: charging is refused when it is above <code>Limits.input_max_ma</code>, and the status reads, the interrupt service and the watchdog service write the configured limit again (once VBUSIN is valid: while it is invalid the model holds the field in reset, <code>env.vbus_limit_held</code>) or switch the charger off (<code>input_limit_ok</code> in <code>SelfCheck()</code>). No other per-field reset condition of a written field is modelled apart from the whole-chip reset. Bench step: remove and restore VBUSIN and read VBUS_INLIM_CNFG.</td>
+</tr>
+<tr>
+<td>C15</td>
+<td>Reset sources are stated only by the bitmap legend (p122: [1] invalid VCOREDIG, [2] PORB or RESETBMCU, [3] pulse to REGS_DISABLE) and charger "Reset condition" lines; whether an MCU reset leaves PMIC registers unchanged is not stated</td>
+<td>No assumption is made. No knob: the model's <code>Reset()</code> is the reset the chip applies (every register to its start-up value), and the driver sees a reset only by a register it changed reading back differently (C59); <code>EnsureInitialized</code> re-reads identity and the as-found check, <code>Configure</code> re-verifies.</td>
+</tr>
+<tr>
+<td>C16</td>
+<td>Charge parameter change while charging: glitch-free? CHG_OPER 0 to 2 needed to re-latch?</td>
+<td>Model knob <code>apply_delay_us</code> (C49) is the delay before a parameter takes effect; no knob for the glitch; driver writes with the charger not in mode 2, CHG_OPER last, verifies (see C49).</td>
+</tr>
+<tr>
+<td>C17</td>
+<td><code>PRECHGLB_THRS</code> codes 1 to 3 Reserved, only 2.8 V documented</td>
+<td>Only code 0 encodable.</td>
+</tr>
+<tr>
+<td>C18</td>
+<td><code>BOVRC_DISBATFET</code> / <code>BATFET_OC</code>: Table 161 text versus 8.9.6 about what keeps the BATFET closed</td>
+<td>No knob: the driver writes BATFET_OC and BOVRC bits only with the acknowledgement, whichever text is right, and never writes the whole byte from one read (B1).</td>
+</tr>
+<tr>
+<td>C19</td>
+<td>CHG_CC codes above 1000 mA are labelled Reserved while the feature list says 100 to 1000 mA</td>
+<td>Only documented codes encodable; model treats a forced reserved code as no change.</td>
+</tr>
+<tr>
+<td>C20</td>
+<td>VBUS_LIN_ILIM codes 21 to 31 Reserved; low settings (10 to 50 mA) use the linear low-power mode (8.7.2)</td>
+<td>Reserved not encodable.</td>
+</tr>
+<tr>
+<td>C21</td>
+<td><code>CHG_SNS</code> reset 1000 (state 8) while the charger registers reset with VCOREDIG_RSTB: first read after reset</td>
+<td>Model initial value; driver never acts on a first read alone.</td>
+</tr>
+<tr>
+<td>C22</td>
+<td><code>SILICON_REV</code>: fields METAL 001, FULL 010 give 0x11 (Table 88) but the bitmap reset is 0x08 (FULL_LAYER_REV = 001); all fields "Unused"</td>
+<td>Stored raw, no decision made; model knob <code>silicon_rev_reset</code> {0x11, 0x08}.</td>
+</tr>
+<tr>
+<td>C23</td>
+<td><code>USE_DEFAULT_ADDR</code> (Table 147): effect undefined; address 0x08 to 0x0F set by fuses</td>
+<td>Not touched (no knob: the driver never writes the bit, so no reading of its effect is reachable).</td>
+</tr>
+<tr>
+<td>C24</td>
+<td>DPM default: Table 5 says 4.4 V; Table 164 and Table 62 give reset 000 = 3.90 V; Table 85 gives 3.9 V or 4.5 V per option</td>
+<td>Driver always writes its configured <code>dpm_mv</code> and verifies; the model's default is the option's (Table 85); no knob.</td>
+</tr>
+<tr>
+<td>C25</td>
+<td><code>EOC_MODE</code> "Unused" in Table 158 but an option in Table 85 (done to linear mode)</td>
+<td>Not exposed (no knob: the driver has no way to write it).</td>
+</tr>
+<tr>
+<td>C26</td>
+<td>Timer accuracy <code>tacc</code> and <code>tSCIDG</code> 0 to 2 ms: CHG_I and CHG_SNS after a state change</td>
+<td>Driver waits the datasheet maximum before trusting a status; no knob: the model's status registers follow a state change at once.</td>
+</tr>
+<tr>
+<td>C27</td>
+<td>VBUS_SNS, CHG_SNS and BATT_SNS are separate transfers</td>
+<td>Documented non-atomic; <code>consistent</code> flag.</td>
+</tr>
+<tr>
+<td>C28</td>
+<td>Interrupt category summary (INT_CATEGORY) versus charger page: CHG_INT summarised in b0 only</td>
+<td>Model derives the summary from the status bits at once (no knob); <code>ServiceInterrupts</code> loops at most three passes, so a lagging summary is read again.</td>
+</tr>
+<tr>
+<td>C29</td>
+<td>UVDET and LOW_SYS_WARN are OTP-loaded and writable; Table 137 lists rising and falling thresholds (UVDET 2.65/2.55, 2.8/2.7, 3.0/2.9, 3.&#8531;.0 V; LOW_SYS_WARN 3.3/3.1 to 3.9/3.7 V). No ambiguity; a wrong UVDET resets the system (Table 83 G)</td>
+<td>UVDET guarded by <code>undervoltage_threshold</code> for that reason only. Model uses the table values.</td>
+</tr>
+<tr>
+<td>C30</td>
+<td><code>POR_DLY</code> code 001 not defined (Table 135); OTP-loaded</td>
+<td>Not exposed.</td>
+</tr>
+<tr>
+<td>C31</td>
+<td>LDO load-switch mode (7.2.6): no current limit; does LDOx_FAULTI fire?</td>
+<td>Model <code>ls_fault_interrupt</code>; load switch needs a token.</td>
+</tr>
+<tr>
+<td>C32</td>
+<td>Low-power mode <code>LPWR</code> is for loads below 10 mA (7.x, Table 42); no register enforces it</td>
+<td><code>low_power</code> requires the acknowledgement <code>load_below_10ma</code>.</td>
+</tr>
+<tr>
+<td>C33</td>
+<td>SW1/SW2 non-DVS table: 3.30 V for every code 7 to 63 (Table 31)</td>
+<td>Driver writes only code 7 for 3.3 V; any code &gt;= 7 decodes to 3.3 V.</td>
+</tr>
+<tr>
+<td>C34</td>
+<td>DVS done interrupt and settle time (DVSSPEED) not bounded in the register text</td>
+<td>Driver waits the DVS-done event or <code>DelayUs</code> maximum; model <code>dvs_done_delay_us</code>.</td>
+</tr>
+<tr>
+<td>C35</td>
+<td>STBY/SLP voltage registers in non-DVS mode: "read-only and must not be written" (6.2.5) yet marked RW</td>
+<td>Never written; model <code>nondvs_write_accepted</code>.</td>
+</tr>
+<tr>
+<td>C36</td>
+<td><code>STATE_INFO</code> has codes for WAIT, RUN, STANDBY, SLEEP, REGS_DISABLE only; CORE_OFF and SHIP have no I2C-visible state</td>
+<td>Decoded Unknown otherwise; the model reports no state when system off.</td>
+</tr>
+<tr>
+<td>C37</td>
+<td>Table 83 lettering skips D</td>
+<td>Recorded here only; no matrix row.</td>
+</tr>
+<tr>
+<td>C38</td>
+<td>PWRON level or edge sensitivity is <code>OTP_PWRON_CFG</code>, not a register</td>
+<td>Declared in <code>Config</code>; model both columns of Table 83.</td>
+</tr>
+<tr>
+<td>C39</td>
+<td><code>STANDBYDLY</code> and <code>STANDBYINV</code> effects on pin handling (Table 76)</td>
+<td><code>StandbyPin</code> hook optional; no knob (the model does not time the pin).</td>
+</tr>
+<tr>
+<td>C40</td>
+<td><code>VCOIN</code> 0111 is printed as 3.3 V (Table 111 p91) while the step is 100 mV per LSB from 1.8 V (0111 would be 2.5 V); Table 25 (p22) gives a valid range of 1.8 to 3.3 V, which 16 codes fill with 3.3 V = 1111</td>
+<td>Adopted reading: step 100 mV, 3.3 V = 1111. Because the printed code differs, codes above 0 need <code>Limits.coin_cell_max_mv &gt;= 3300</code>. No knob: the model stores VCOIN and does not charge a cell; the literal reading is the bench step in <code>docs/datasheet.md</code>.</td>
+</tr>
+<tr>
+<td>C41</td>
+<td><code>PWRONDBNC</code> / <code>ONKEYDBNC</code> codes 00 and 01 are identical (Table 136)</td>
+<td>Enum offers 31.25 ms once; both codes decode the same.</td>
+</tr>
+<tr>
+<td>C42</td>
+<td><code>TGRESET</code> is a register (Table 135) but 10.4 calls it <code>OTP_TGRESET</code></td>
+<td>Writing guarded (acknowledgement); no knob (the model accepts the write).</td>
+</tr>
+<tr>
+<td>C43</td>
+<td><code>LED_PWM</code> 6-bit field versus duty n/32 (values above 32 undefined)</td>
+<td>Driver encodes 0 to 32 only (no knob: no value above 32 is reachable).</td>
+</tr>
+<tr>
+<td>C44</td>
+<td><code>LED_CURRENT</code> only 01 = 6.0 mA valid</td>
+<td>Only 6 mA encodable.</td>
+</tr>
+<tr>
+<td>C45</td>
+<td>Charger registers all "RW" in the LED/USB blocks but reserved bits RW: reserved bits written 0 or preserved?</td>
+<td>Preserved by read-modify-write; test Table 03.</td>
+</tr>
+<tr>
+<td>C46</td>
+<td><code>REGTEMP</code> code 3 Reserved (Table 162)</td>
+<td>Not encodable.</td>
+</tr>
+<tr>
+<td>C47</td>
+<td><code>IO_DRV0</code> and <code>IO_DRV1</code> appear only in the bitmap (Table 174 p125)</td>
+<td>Not exposed; model stores.</td>
+</tr>
+<tr>
+<td>C48</td>
+<td>Multi-byte reads and auto-increment not described (9.7.2)</td>
+<td>Never used (no knob: no multi-byte transfer is reachable; the bus layer refuses one).</td>
+</tr>
+<tr>
+<td>C49</td>
+<td>Does a charge parameter write take effect at once (C16 timing)?</td>
+<td>Model <code>apply_delay</code>; driver verifies by read-back.</td>
+</tr>
+<tr>
+<td>C50</td>
+<td>SW3_CTRL b4: Table 125 says UNUSED, the bitmap (Table 174 p124) says SW3_DVSSPEED, RW1S; PWRCTRL3 b7:2 and TEMP_INT_MASK0 b3 and b1: tables unused, bitmap RW or reset 1</td>
+<td>Not exposed; reserved bits preserved by read-modify-write; model stores the bitmap type.</td>
+</tr>
+<tr>
+<td>C51</td>
+<td>Table 112 (SW1_VOLT): VOLT[5:0] and UNUSED[7:5] overlap on bit 5; Table 147 (I2C_ADDR) has no row for bits 6:3; the bitmap prints PWRCTRL2 as "015A" and DEVICE_ID FAMILY as [3:7]; OTP_FLAVOR is [7:0] in Table 87 but [5:0] in the bitmap</td>
+<td>Typos recorded; field rows use the table; row FLD-68.GAP_6_3 added; knob none.</td>
+</tr>
+<tr>
+<td>C52</td>
+<td>Feature list (p2) "battery discharge overcurrent up to 3.0 A" and "6.5 V input operating range" versus Table 14 (2.2, 2.8, 3.2 A typical, 2.0 to 4.0 A range) and Table 5 (VBUS valid from UVLO rising 3.8 to 4.2 V up to OVLO rising 6.0 to 7.0 V: a 6.0 V supply can already be in OVLO)</td>
+<td>Driver reports VBUS_OVLO_SNS; the contract states the Table 14 and Table 5 numbers and that a 6.0 V input is not guaranteed valid.</td>
+</tr>
+<tr>
+<td>C53</td>
+<td>Table 160 CHGCV is not one-to-one: codes 0 to 8 all 3.50 V, 9 to 55 = 3.52 to 4.44 V in 20 mV steps, 56 to 63 all 4.44 V</td>
+<td>Only codes 8 to 55 encodable.</td>
+</tr>
+<tr>
+<td>C54</td>
+<td>Power-up sequencer (section 10.6, Table 85): the slot of a regulator with <code>PWRUP_SEQ</code> = n is not stated; is the number 1 the first slot, and does 0 start in the first slot or never?</td>
+<td>Reading: n starts (n - 1) slots after the first one, 0 starts in the first slot. Model <code>seq0_starts_first</code>; <code>PowerUpDelayUs()</code> follows the reading.</td>
+</tr>
+<tr>
+<td>C55</td>
+<td>Power-down sequencer (section 10.7): regulators with the same <code>PWRDN_SEQ</code> number: one after the other or together?</td>
+<td>Reading: together, <code>(highest - own)</code> steps of 2 ms (Table 84, tD5). Model and <code>PowerDownDelayUs()</code> follow it.</td>
+</tr>
+<tr>
+<td>C56</td>
+<td>Power-down sequencer: a regulator with <code>PWRDN_SEQ</code> = 0 while others are non-zero</td>
+<td>Reading: it turns off last, after the highest number's delay. Model <code>seq_order_zero_last</code>; all zero bypasses the sequencer.</td>
+</tr>
+<tr>
+<td>C57</td>
+<td>Table 85 <code>OTP_SW1_DVS_SEL</code> and <code>OTP_SW2_DVS_SEL</code> are printed in merged cells of a wide table; which option column each value belongs to is read from a text extraction of the PDF, not from the table's grid. The flavour byte of options A4 to A9 is not listed (C10)</td>
+<td>The driver trusts the profile only for the listed options A1 to A3 and refuses a declaration that contradicts it for a block it configures; for any other part (including A0) the declaration stands and a DVS declaration needs <code>Acknowledgements::dvs_on_unlisted_part</code>. Model: the option table. Bench step: read SW1 and SW2 in both modes.</td>
+</tr>
+<tr>
+<td>C58</td>
+<td><code>WDTCLR</code> (Table 161) is typed plain RW, "writing 01 clears the watchdog": does the field hold the written value, and does a clear need a 0 to 01 edge?</td>
+<td>The driver writes <code>WDTCLR</code> = 01 and, when it reads 01 back before a service, writes 00 first, so each service is an edge either way; the two bits are not compared in the read-back. Model <code>wdtclr_holds</code>. Bench step: service twice at 8 s and watch <code>CHG_SNS</code> <code>WDT</code>.</td>
+</tr>
+<tr>
+<td>C59</td>
+<td>PWRUP_I: Table 108 and section 10.6 define it as the completion of the STANDBY to RUN and SLEEP to RUN transitions; no text says that a power-on or a reset sets it, and no other bit is defined as a reset flag</td>
+<td>The driver does not use PWRUP_I as a reset flag (it is an ordinary event, also set by a standby wake-up). A reset is seen as hardware lessons 12a asks: after a verified write that changed a register bit, the driver remembers the value, and a changing call first reads the recorded registers back; a difference twice in a row is <code>DeviceReset</code>. A reset that leaves every driver-written bit at its start-up value shows nothing, and needs nothing (the chip holds what the driver wrote). Model knob <code>pwrup_flag_at_reset</code> (default off) runs the reading in which a reset sets PWRUP_I as well; a STANDBY to RUN transition is raised with <code>Raise(0x28, 0)</code>. Bench step: read MISC_INT_STAT0 after a power-up and a UVDET reset.</td>
+</tr>
+<tr>
+<td>C60</td>
+<td><code>VBUS_LIN_ILIM</code> default: Table 163 gives the reset value <code>01101</code> (code 13, 400 mA); the OTP table (OTP_CHG_CFG5) says OTP_CHGR_VBUS_LIN_ILIM "VBUS ILIM = 1500 mA" (code 20). A cable removal puts the field back to its reset condition (CHGPOK_RSTB, C14), so which value comes back is open</td>
+<td>The model uses the OTP value of the option (1500 mA, above the 1 A <code>Limits</code> of the tests), which is the harder case for the driver: the configured limit is written again, or the charger is switched off (<code>OutOfLimits</code>). Under the Table 163 reading (400 mA) the reverted limit is below <code>Limits</code> and the same restore applies. Bench step: remove and restore VBUSIN and read VBUS_INLIM_CNFG.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-to-change-a-reading">How to change a reading<a class="headerlink" href="#how-to-change-a-reading" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The knob of a row is a field of <code>pf1550_test::Readings</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/c2a69dea8279de7d12d040a1738893e26ba5fc4f/tests/mock_pf1550.hpp"><code>tests/mock_pf1550.hpp</code></a>. A
+  test that sets it runs the driver against the other reading.</li>
+<li>When a bench measurement settles a row, change the model's default, keep the knob for the other reading, and say so
+  in the <a href="../changelog/">changelog</a>.</li>
+<li>Nothing here is verified on hardware.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../coverage-matrix/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Coverage matrix">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Coverage matrix
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../testing/" class="md-footer__link md-footer__link--next" aria-label="Next: Testing and CI">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Testing and CI
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      
+<div class="md-copyright kb-footer">
+  <nav class="kb-footer__links" aria-label="Kokeb Labs">
+    <a href="https://kokeb-labs.github.io/">Kokeb Labs docs</a>
+    <a href="https://github.com/kokeb-labs-drivers">GitHub organisation</a>
+    
+      <a href="https://github.com/kokeb-labs-drivers/driver-pf1550">Source</a>
+      <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/issues">Report an issue</a>
+      <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/main/LICENSE">License</a>
+    
+  </nav>
+  
+    <div class="md-copyright__highlight">Copyright (c) 2026 The driver-pf1550 authors</div>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/kokeb-labs-drivers" target="_blank" rel="noopener" title="Kokeb Labs on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.prune", "navigation.top", "navigation.footer", "navigation.tracking", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.action.edit", "content.tabs.link", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="../search/main.js"></script>
+      
+    
+  </body>
+</html>
