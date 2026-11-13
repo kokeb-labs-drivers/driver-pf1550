@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="827" height="604" viewBox="0 0 827 604" role="img" aria-labelledby="chip-outline-title chip-outline-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-outline-title">PF1550 package, HVQFN-40</title>
+<desc id="chip-outline-desc">Outline of the PF1550 in HVQFN-40 drawn to scale from above: body 5.0 x 5.0 mm, 40 pins and an exposed pad.</desc>
+<rect x="0.5" y="0.5" width="826" height="603" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#F8D27A">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#E8EDF3">PF1550 package, HVQFN-40</text>
+<text x="32" y="103.8" font-size="15" fill="#9AA6B5">Package body from above, to scale, pin 1 marked; arrows give the datasheet's dimensions. The pads</text>
+<text x="32" y="125.5" font-size="15" fill="#9AA6B5">are centred on each side, evenly spaced: the land pattern is in the datasheet. Datasheet: 14 Package</text>
+<text x="32" y="147.3" font-size="15" fill="#9AA6B5">outline, p. 139.</text>
+<rect x="32" y="163.3" width="763" height="1" fill="#252F3C"/>
+<path d="M380.5 199.3 L404.5 199.3" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M380.5 499.3 L404.5 499.3" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M76.5 503.3 L76.5 527.3" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M376.5 503.3 L376.5 527.3" fill="none" stroke="#6C7889" stroke-width="1" stroke-dasharray="3 3"/>
+<rect x="76.5" y="199.3" width="300" height="300" rx="8" fill="#18202B" stroke="#D2DAE4" stroke-width="2"/>
+<rect x="166.5" y="307.3" width="120" height="120" rx="6" fill="#151C26" stroke="#94A3B8" stroke-width="1.4" stroke-dasharray="5 4"/>
+<rect x="76.5" y="234.7" width="16.8" height="13.2" rx="2" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="76.5" y="258.7" width="16.8" height="13.2" rx="2" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="76.5" y="282.7" width="16.8" height="13.2" rx="2" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="76.5" y="306.7" width="16.8" height="13.2" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="76.5" y="330.7" width="16.8" height="13.2" rx="2" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="76.5" y="354.7" width="16.8" height="13.2" rx="2" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="76.5" y="378.7" width="16.8" height="13.2" rx="2" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="76.5" y="402.7" width="16.8" height="13.2" rx="2" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="76.5" y="426.7" width="16.8" height="13.2" rx="2" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="76.5" y="450.7" width="16.8" height="13.2" rx="2" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="111.9" y="482.5" width="13.2" height="16.8" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="135.9" y="482.5" width="13.2" height="16.8" rx="2" fill="#2A1F14" stroke="#D6A26B" stroke-width="1.4"/>
+<rect x="159.9" y="482.5" width="13.2" height="16.8" rx="2" fill="#2A1F14" stroke="#D6A26B" stroke-width="1.4"/>
+<rect x="183.9" y="482.5" width="13.2" height="16.8" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="207.9" y="482.5" width="13.2" height="16.8" rx="2" fill="#2E1533" stroke="#F0ABFC" stroke-width="1.4"/>
+<rect x="231.9" y="482.5" width="13.2" height="16.8" rx="2" fill="#2E1533" stroke="#F0ABFC" stroke-width="1.4"/>
+<rect x="255.9" y="482.5" width="13.2" height="16.8" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="279.9" y="482.5" width="13.2" height="16.8" rx="2" fill="#2A1F14" stroke="#D6A26B" stroke-width="1.4"/>
+<rect x="303.9" y="482.5" width="13.2" height="16.8" rx="2" fill="#2A1F14" stroke="#D6A26B" stroke-width="1.4"/>
+<rect x="327.9" y="482.5" width="13.2" height="16.8" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="359.7" y="234.7" width="16.8" height="13.2" rx="2" fill="#2A1F14" stroke="#D6A26B" stroke-width="1.4"/>
+<rect x="359.7" y="258.7" width="16.8" height="13.2" rx="2" fill="#2A1F14" stroke="#D6A26B" stroke-width="1.4"/>
+<rect x="359.7" y="282.7" width="16.8" height="13.2" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="359.7" y="306.7" width="16.8" height="13.2" rx="2" fill="#2E1533" stroke="#F0ABFC" stroke-width="1.4"/>
+<rect x="359.7" y="330.7" width="16.8" height="13.2" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="359.7" y="354.7" width="16.8" height="13.2" rx="2" fill="#2A1F14" stroke="#D6A26B" stroke-width="1.4"/>
+<rect x="359.7" y="378.7" width="16.8" height="13.2" rx="2" fill="#2A1F14" stroke="#D6A26B" stroke-width="1.4"/>
+<rect x="359.7" y="402.7" width="16.8" height="13.2" rx="2" fill="#2A1F14" stroke="#D6A26B" stroke-width="1.4"/>
+<rect x="359.7" y="426.7" width="16.8" height="13.2" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="359.7" y="450.7" width="16.8" height="13.2" rx="2" fill="#2A1F14" stroke="#D6A26B" stroke-width="1.4"/>
+<rect x="111.9" y="199.3" width="13.2" height="16.8" rx="2" fill="#2E1533" stroke="#F0ABFC" stroke-width="1.4"/>
+<rect x="135.9" y="199.3" width="13.2" height="16.8" rx="2" fill="#2A1F14" stroke="#D6A26B" stroke-width="1.4"/>
+<rect x="159.9" y="199.3" width="13.2" height="16.8" rx="2" fill="#2A1F14" stroke="#D6A26B" stroke-width="1.4"/>
+<rect x="183.9" y="199.3" width="13.2" height="16.8" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="207.9" y="199.3" width="13.2" height="16.8" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="231.9" y="199.3" width="13.2" height="16.8" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="255.9" y="199.3" width="13.2" height="16.8" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="279.9" y="199.3" width="13.2" height="16.8" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="303.9" y="199.3" width="13.2" height="16.8" rx="2" fill="#2E1533" stroke="#F0ABFC" stroke-width="1.4"/>
+<rect x="327.9" y="199.3" width="13.2" height="16.8" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<circle cx="90.5" cy="213.3" r="6" fill="#D2DAE4"/>
+<path d="M398.5 199.3 L398.5 499.3" fill="none" stroke="#D2DAE4" stroke-width="1.2"/>
+<path d="M398.5 199.3 L401.5 206.3 L395.5 206.3 Z" fill="#D2DAE4"/>
+<path d="M398.5 499.3 L395.5 492.3 L401.5 492.3 Z" fill="#D2DAE4"/>
+<path d="M76.5 521.3 L376.5 521.3" fill="none" stroke="#D2DAE4" stroke-width="1.2"/>
+<path d="M76.5 521.3 L83.5 518.3 L83.5 524.3 Z" fill="#D2DAE4"/>
+<path d="M376.5 521.3 L369.5 524.3 L369.5 518.3 Z" fill="#D2DAE4"/>
+<text x="226.5" y="341.3" font-size="20" font-weight="700" text-anchor="middle" fill="#E8EDF3">PF1550</text>
+<text x="226.5" y="363.3" font-size="13" text-anchor="middle" fill="#9AA6B5">HVQFN-40</text>
+<text x="408.5" y="353.8" font-size="12.5" font-weight="600" fill="#D2DAE4">5.0 mm</text>
+<text x="226.5" y="539.3" font-size="12.5" font-weight="600" text-anchor="middle" fill="#D2DAE4">5.0 mm</text>
+<text x="518.8" y="221.3" font-size="22" font-weight="700" fill="#E8EDF3">5.0 x 5.0 mm</text>
+<text x="518.8" y="249.3" font-size="13.5" fill="#9AA6B5">HVQFN-40, 40 pins and an exposed pad</text>
+<text x="518.8" y="271.3" font-size="13.5" fill="#9AA6B5">Pads inside the body edge</text>
+<rect x="32" y="558.4" width="14" height="14" rx="4" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<text x="54" y="570" font-size="12.5" fill="#9AA6B5">power</text>
+<rect x="117.6" y="558.4" width="14" height="14" rx="4" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<text x="139.6" y="570" font-size="12.5" fill="#9AA6B5">ground</text>
+<rect x="208.5" y="558.4" width="14" height="14" rx="4" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="230.5" y="570" font-size="12.5" fill="#9AA6B5">bus</text>
+<rect x="277.4" y="558.4" width="14" height="14" rx="4" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<text x="299.4" y="570" font-size="12.5" fill="#9AA6B5">digital in</text>
+<rect x="375.8" y="558.4" width="14" height="14" rx="4" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<text x="397.8" y="570" font-size="12.5" fill="#9AA6B5">open drain</text>
+<rect x="488.7" y="558.4" width="14" height="14" rx="4" fill="#2E1533" stroke="#F0ABFC" stroke-width="1.4"/>
+<text x="510.7" y="570" font-size="12.5" fill="#9AA6B5">analog</text>
+<rect x="576.7" y="558.4" width="14" height="14" rx="4" fill="#2A1F14" stroke="#D6A26B" stroke-width="1.4"/>
+<text x="598.7" y="570" font-size="12.5" fill="#9AA6B5">power output</text>
+</svg>
