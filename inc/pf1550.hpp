@@ -463,20 +463,20 @@ public:
    * stays set (the bit is plain read/write, Table 138): it acts again at the next REGS_DISABLE.
    * `CancelShutdownRequest()` clears it. Recovery from SHIP is by a charger or a battery attach.
    * Not verified on hardware.
-   * @param confirm The caller's confirmation that every supply turns off.
+   * Pass `ShipConfirm{}`: the tag is the caller's confirmation that every supply turns off.
    * @return `Ok`, `Refused`, `Bus`.
    */
-  Result<void> EnterShip(ShipConfirm confirm) noexcept;
+  Result<void> EnterShip(ShipConfirm /*confirm*/) noexcept;
   /**
    * @brief Arm CORE_OFF (GOTO_CORE_OFF). The bit stays set; it takes effect when the part is in
    * REGS_DISABLE (VBUS invalid, ONKEY high; Table 83 I and footnotes 8 and 9, section 10.2.2): in
    * Run, Standby or Sleep alone nothing happens, and a later REGS_DISABLE acts on it. Refused
    * unless STATE_INFO is Run, Standby or Sleep, VBUS reads invalid and ONKEY reads high.
    * `CancelShutdownRequest()` disarms it. Not verified on hardware.
-   * @param confirm The caller's confirmation that the PMIC core turns off.
+   * Pass `CoreOffConfirm{}`: the tag is the caller's confirmation that the PMIC core turns off.
    * @return `Ok`, `Refused`, `DeviceReset`, `Bus`.
    */
-  Result<void> EnterCoreOff(CoreOffConfirm confirm) noexcept;
+  Result<void> EnterCoreOff(CoreOffConfirm /*confirm*/) noexcept;
   /**
    * @brief Clear GOTO_SHIP and GOTO_CORE_OFF (write 0 to PWRCTRL3) and read it back. Works after
    * DEVICE_ID has passed, whatever else failed: switching a request off is never refused.
