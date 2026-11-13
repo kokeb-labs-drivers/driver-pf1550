@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['c110_0',['C110',['../group__pf1550__types.html#gga15706d06978132f3a2f2f643439db97eaeae0bd58650bdd21373e6b88990e3931',1,'pf1550']]],
+  ['c80_1',['C80',['../group__pf1550__types.html#gga15706d06978132f3a2f2f643439db97eafc27f8f22dbd9816442fdb9a34f88864',1,'pf1550']]],
+  ['c95_2',['C95',['../group__pf1550__types.html#gga15706d06978132f3a2f2f643439db97ea0001322b57cde6634fc6736951565f82',1,'pf1550']]],
+  ['cannotchargepastprecharge_3',['CannotChargePastPrecharge',['../group__pf1550__types.html#gga19ca6f51dbce19825b39c4ba2cc76aa8a201f413dc6ae7da6e98dbf2c4ed03bc2',1,'pf1550']]],
+  ['cfg_4',['Cfg',['../group__pf1550__registers.html#gga8fee79eacdfad7709df74b81c2888987a52c481288546ff35821c43f66f517920',1,'pf1550::reg']]],
+  ['charge_5',['Charge',['../group__pf1550__types.html#gga338c3030e37a997011a16eb99a76f2aea517349a3cdc1acf50617693e3ba33988',1,'pf1550']]],
+  ['charger_6',['Charger',['../group__pf1550__types.html#ggab150c0561c5a208be0a67c3280c5903eab728d9571d34cd80c23104e44dff869c',1,'pf1550']]],
+  ['chargerfault_7',['ChargerFault',['../group__pf1550__types.html#gga0a89cabbc112585d0a257b782fe2ab96a8308c4e00978c65f867e19f5ba6a09a9',1,'pf1550']]],
+  ['chgbat2soc_8',['ChgBat2Soc',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daa8e6f120094b5c615794ea931c5247b5d',1,'pf1550']]],
+  ['chgbattery_9',['ChgBattery',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daa40effc7a7e6db77ccf6bff6978faeab1',1,'pf1550']]],
+  ['chgcharger_10',['ChgCharger',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daabf811d7e10f99388f7c118972372b134',1,'pf1550']]],
+  ['chgsupplement_11',['ChgSupplement',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daa06c15be745e78e473ee7ae026f50a91b',1,'pf1550']]],
+  ['chgthermistor_12',['ChgThermistor',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daae51e9e5786bce3c07659f68511c8ce58',1,'pf1550']]],
+  ['chgvbus_13',['ChgVbus',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daae521e5e6ebe6bfd2ff76a9e535753297',1,'pf1550']]],
+  ['chgvbusdpm_14',['ChgVbusDpm',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daa407f2350d498772dccd0ddfe3893dabf',1,'pf1550']]],
+  ['command_15',['Command',['../group__pf1550__registers.html#gga8fee79eacdfad7709df74b81c2888987aee97be03cb04119af45014d815621ce1',1,'pf1550::reg']]],
+  ['crc_16',['Crc',['../group__pf1550__types.html#gga0a89cabbc112585d0a257b782fe2ab96a55e731c6b6315941e95a1fe250b82e37',1,'pf1550']]]
+];
