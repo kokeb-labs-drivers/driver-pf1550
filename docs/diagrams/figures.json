@@ -1,0 +1,62 @@
+{
+  "chip-blocks": {
+    "title": "Inside the PF1550",
+    "alt": "Block diagram of the PF1550: its function blocks, how they connect and which package pins reach each block.",
+    "description": "The PF1550's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.",
+    "profile": "detail",
+    "width": 1200,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/pf1550_i2c_interface.hpp"
+    ]
+  },
+  "chip-circuit-typical": {
+    "title": "PF1550: Control connections to a host processor",
+    "alt": "Schematic of the PF1550 control connections to a host processor: the chip with U2 Host, R1 resistor 2.2 kΩ, R2 resistor 2.2 kΩ, R3 resistor 10 kΩ; the MCU wires carry the port hooks GpioGet(CtrlPin::Intb), GpioSet(CtrlPin::Standby), Write(), WriteRead().",
+    "description": "A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.",
+    "profile": "detail",
+    "width": 1736,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/pf1550_i2c_interface.hpp"
+    ]
+  },
+  "chip-outline": {
+    "title": "PF1550 package, HVQFN-40",
+    "alt": "Outline of the PF1550 in HVQFN-40 drawn to scale from above: body 5.0 x 5.0 mm, 40 pins and an exposed pad.",
+    "description": "The PF1550 package seen from the top and, when the height is known, from the side, drawn to scale: 5.0 x 5.0 mm. The arrows carry the datasheet's dimensions, the dot marks pin 1 and the pads are numbered counter-clockwise from it, coloured by the pin's electrical type (legend below). Pads sit centred on each side, evenly spaced; the datasheet's land pattern is the reference for a board.",
+    "profile": "detail",
+    "width": 827,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/pf1550_i2c_interface.hpp"
+    ]
+  },
+  "chip-pinout": {
+    "title": "PF1550 pinout, HVQFN-40",
+    "alt": "Pinout of the PF1550 in HVQFN-40, top view: 40 pins and an exposed pad, each with its name, its electrical type as a colour and the driver hook that uses it.",
+    "description": "The PF1550 seen from the top, in its HVQFN-40 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver. The dashed square is the exposed pad.",
+    "profile": "detail",
+    "width": 1182,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/pf1550_i2c_interface.hpp"
+    ]
+  },
+  "driver-layers": {
+    "title": "The layers, one of them yours",
+    "alt": "Layer diagram: your application calls the PF1550 core, which sends register reads and writes through the I2C port contract to the port class you write, which drives the chip; the core and the contract are the same on every MCU.",
+    "description": "Top to bottom, each arrow is a call. Your application calls one object, whose public calls are listed from the umbrella header in inc/. The core turns each call into register reads and writes and hands them to the port contract (the CRTP base in inc/*_interface.hpp), which forwards them, at compile time, to the hooks of the port class you write; your port moves the bytes on the bus. The notes on the right say which layers stay the same on every MCU and which one you write. A library without a port contract has only the first two layers.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/diagrams/figures/driver-layers.py",
+    "sources": [
+      "inc/pf1550.hpp:public calls",
+      "inc/pf1550_i2c_interface.hpp:I2cInterface"
+    ]
+  }
+}

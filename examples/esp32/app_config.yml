@@ -1,0 +1,62 @@
+---
+# PF1550 ESP32 examples: the app matrix read by the build scripts, the CI and the docs Examples page.
+version: "1.0"
+
+metadata:
+  project: "ESP32 PF1550 Driver Examples"
+  default_app: "pf1550_basic_example"
+  target: "esp32c6"
+  idf_versions: ["release/v5.5"]
+  build_types: [["Debug", "Release"]]
+
+apps:
+  pf1550_basic_example:
+    description: "Start the PF1550, write the configuration, log the charger state and LDO1 once a second"
+    source_file: "pf1550_basic_example.cpp"
+    category: "example"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+    hardware_required: true
+    features:
+      - "ESP-IDF i2c_master port with every optional hook"
+      - "Limits from Kconfig (menuconfig) through pf1550_kconfig.hpp"
+      - "Every Result checked and logged by name"
+
+  pf1550_interrupt_example:
+    description: "Charge with the charger watchdog serviced every 10 s and react to INTB events"
+    source_file: "pf1550_interrupt_example.cpp"
+    category: "example"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: false
+    hardware_required: true
+    features:
+      - "INTB polled through GpioGet(): no bus traffic while the pin is high"
+      - "Charger watchdog serviced inside the 16 s limit"
+      - "Charger restart after a fault"
+
+build_config:
+  build_types:
+    Debug:
+      description: "Debug build"
+      cmake_build_type: "Debug"
+      optimization: "-O0"
+      debug_level: "-g3"
+      defines: ["DEBUG"]
+    Release:
+      description: "Release build"
+      cmake_build_type: "Release"
+      optimization: "-O2"
+      debug_level: "-g0"
+      defines: ["NDEBUG"]
+  build_directory_pattern: "build-app-{app_type}-type-{build_type}-target-{target}-idf-{idf_version}"
+  project_name_pattern: "esp32_pf1550_{app_type}_app"
+
+ci_config:
+  timeout_minutes: 30
+  fail_fast: false
+  exclude_combinations: []
+  special_apps: []

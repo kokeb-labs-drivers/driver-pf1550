@@ -1,0 +1,44 @@
+{
+  "name": "pf1550",
+  "cls": "PF1550",
+  "calls": [
+    "EnsureInitialized",
+    "Configure",
+    "ReadVariant",
+    "ReadPowerState",
+    "ReadSnapshot",
+    "SelfCheck",
+    "CheckChargerAgainstLimits",
+    "ReadChargerStatus",
+    "SetChargerMode",
+    "RestartCharger",
+    "ServiceChargerWatchdog",
+    "ReadRail",
+    "SetRailModes",
+    "SetRailVoltage",
+    "EnableLoadSwitch",
+    "RequestStandby",
+    "EnterShip",
+    "EnterCoreOff",
+    "CancelShutdownRequest",
+    "ReadPowerDownSequence",
+    "SetPowerDownSequence",
+    "ReadRegister",
+    "SetIrqMask",
+    "ReadCategories",
+    "ReadSense",
+    "ServiceInterrupts",
+    "IntbAsserted"
+  ],
+  "sources": [
+    "inc/pf1550.hpp:public calls",
+    "inc/pf1550_i2c_interface.hpp:I2cInterface"
+  ],
+  "bus": "I2C",
+  "base": "I2cInterface",
+  "hooks": [
+    "EnsureInitialized",
+    "Write",
+    "WriteRead"
+  ]
+}

@@ -1,0 +1,268 @@
+# The vendor documents this driver was written against (handbook ADR-0019), and where the driver relies on them.
+# Never commit a PDF: `sha256` identifies the exact file that was used, so a reader can confirm they hold the same
+# revision. `pdf` is a stable direct link when the vendor publishes one; otherwise readers download from `url`.
+#
+# The README card, docs/datasheet.md and the "Datasheet" box on each page are generated from this file by
+# tools/docs/generators/datasheet.py (`kokeb-docs gen`).
+documents:
+  - id: ds
+    vendor: NXP Semiconductors
+    title: "PF1550 Power management integrated circuit (PMIC) for low power application processors"
+    kind: Datasheet
+    number: PF1550
+    revision: "7"
+    date: 2021-09-29
+    url: https://www.nxp.com/docs/en/data-sheet/PF1550.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "56e58b835c0e9e6e6b67a3211b4d82b3374b9d6d55ed7600750efc36e447bfa8"
+
+# One row per thing the driver takes from a document: the datasheet's own section names and printed page
+# numbers, the driver API that implements it, and the docs pages that explain it (file names in docs/).
+topics:
+  - topic: Pins and package
+    doc: ds
+    section: "4.2 Pin definitions"
+    page: 8
+    driver: "`CtrlPin`, `I2cInterface`"
+    docs: [hardware, quickstart]
+  - topic: Package outline
+    doc: ds
+    section: "14 Package outline"
+    page: 139
+    driver: "-"
+    docs: [hardware]
+  - topic: Electrical limits and supply ranges
+    doc: ds
+    section: "5.3 Electrical characteristics"
+    page: 12
+    driver: "`Limits`, `SingleCellLimits()`, `Validate()`"
+    docs: [configuration, contract]
+  - topic: I2C address, clock and register framing
+    doc: ds
+    section: "9.7 Control interface I2C block description"
+    page: 71
+    driver: "`I2cInterface`, `I2cPort`, `kI2cAddress`, `kMaxClockHz`, every register access"
+    docs: [hardware, porting, architecture]
+  - topic: "I2C operation: single-register transfers"
+    doc: ds
+    section: "9.7.2 I2C operation"
+    page: 72
+    driver: "`Write()`, `WriteRead()`, `kRepeatedStart`"
+    docs: [porting, architecture]
+  - topic: Register map and access types
+    doc: ds
+    section: "12 Register map"
+    page: 80
+    driver: "`inc/pf1550_registers.hpp`, `IsWritable()`"
+    docs: [architecture, contract]
+  - topic: Device ID, silicon revision and OTP flavour
+    doc: ds
+    section: "12.1 Specific PMIC Registers (Offset is 0x00)"
+    page: 80
+    driver: "`EnsureInitialized()`, `ReadVariant()`, `Error::DeviceIdMismatch`"
+    docs: [api-guide, troubleshooting]
+  - topic: Register OTP bitmap
+    doc: ds
+    section: "12.5 Register OTP bitmap"
+    page: 128
+    driver: "`Dvs`, `BuckConfig::dvs`; the OTP image is not read back"
+    docs: [configuration, contract]
+  - topic: State machine and transitions
+    doc: ds
+    section: "10 PF1550 state machine"
+    page: 72
+    driver: "`ReadPowerState()`, `PowerState`"
+    docs: [api-guide, architecture]
+  - topic: System ON, OFF, SHIP and CORE_OFF
+    doc: ds
+    section: "10.2 System OFF states"
+    page: 74
+    driver: "`EnterShip()`, `EnterCoreOff()`, `ShipConfirm`, `CoreOffConfirm`"
+    docs: [api-guide, contract]
+  - topic: State transition conditions (Table 83)
+    doc: ds
+    section: "10.5 State diagram and transition conditions"
+    page: 76
+    driver: "`EnterShip()`, `EnterCoreOff()`, `Error::Refused`"
+    docs: [contract]
+  - topic: Regulator power-up sequencer
+    doc: ds
+    section: "10.6 Regulator power-up sequencer"
+    page: 77
+    driver: "`StartupProfileOf()`, `PowerUpDelayUs()`, `PowerUpDurationUs()`"
+    docs: [api-guide]
+  - topic: Regulator power-down sequencer
+    doc: ds
+    section: "10.7 Regulator power-down sequencer"
+    page: 78
+    driver: "`ReadPowerDownSequence()`, `SetPowerDownSequence()`, `PowerDownDelayUs()`"
+    docs: [api-guide, contract]
+  - topic: Device start-up timing and pre-programmed options
+    doc: ds
+    section: "11 Device start up"
+    page: 78
+    driver: "`ColdStartToResetReleaseUs()`, `ResetReleaseDelayMs()`, `Option`"
+    docs: [api-guide]
+  - topic: Charger operating modes
+    doc: ds
+    section: "8.1 Operating modes and behavioral description"
+    page: 43
+    driver: "`SetChargerMode()`, `ChargerMode`"
+    docs: [api-guide, configuration]
+  - topic: Charger input source detection
+    doc: ds
+    section: "8.2 Charger input source detection"
+    page: 45
+    driver: "`ChargerStatus::vbus`, `VbusFlags`"
+    docs: [api-guide]
+  - topic: Charger state diagram
+    doc: ds
+    section: "8.4 Charger state diagram"
+    page: 46
+    driver: "`ChargerState`, `ReadChargerStatus()`"
+    docs: [api-guide]
+  - topic: Charging profile
+    doc: ds
+    section: "8.5 Charging profile"
+    page: 46
+    driver: "`ChargerConfig::charge_voltage_mv`, `charge_current_ma`, `termination_ma`, timers"
+    docs: [configuration]
+  - topic: "Power path: VSYS regulation and input current limit"
+    doc: ds
+    section: "8.7 Power path features"
+    page: 55
+    driver: "`ChargerConfig::vsys_min`, `input_limit_ma`, `thermistor`"
+    docs: [configuration]
+  - topic: Thermal regulation and foldback
+    doc: ds
+    section: "8.8 Thermal"
+    page: 57
+    driver: "`ChargerConfig::thermal_reg`, `thermal_foldback`"
+    docs: [configuration]
+  - topic: Input voltage regulation (DPM)
+    doc: ds
+    section: "8.8.3 Input voltage regulation mode"
+    page: 59
+    driver: "`VbusOptions`"
+    docs: [configuration]
+  - topic: JEITA thermal control
+    doc: ds
+    section: "8.8.4 JEITA thermal control"
+    page: 62
+    driver: "`JeitaConfig`"
+    docs: [configuration]
+  - topic: Charger faults and restart
+    doc: ds
+    section: "8.9 Fault states"
+    page: 64
+    driver: "`Fault`, `RestartCharger()`, `kMaxChargerRestarts`"
+    docs: [api-guide, troubleshooting]
+  - topic: Charger watchdog
+    doc: ds
+    section: "8.9.2 Watchdog timer state"
+    page: 65
+    driver: "`WatchdogConfig`, `ServiceChargerWatchdog()`, `kWatchdogServiceMaxS`"
+    docs: [api-guide, troubleshooting]
+  - topic: Battery overcurrent limit and BATFET
+    doc: ds
+    section: "8.9.6 Battery overcurrent limit"
+    page: 66
+    driver: "`BatfetConfig`, `FaultPolicy`"
+    docs: [configuration, contract]
+  - topic: Charger LED
+    doc: ds
+    section: "8.10 LED indicator"
+    page: 67
+    driver: "`LedConfig`"
+    docs: [configuration]
+  - topic: "SW1 and SW2: DVS and non-DVS operation"
+    doc: ds
+    section: "6.2.2 SWx DVS and non-DVS operation"
+    page: 26
+    driver: "`BuckConfig::dvs`, `Dvs`, `ReadRail()`"
+    docs: [configuration, contract]
+  - topic: SWx output voltage setting and DVS-done
+    doc: ds
+    section: "6.2.5 Output voltage setting in SWx"
+    page: 28
+    driver: "`SetRailVoltage()`, `kDvsWaitMaxUs`"
+    docs: [api-guide, configuration]
+  - topic: SW3
+    doc: ds
+    section: "6.3 SW3 detailed description"
+    page: 31
+    driver: "`Rail::Sw3`, `Error::ReadOnlyRail`"
+    docs: [configuration]
+  - topic: LDO1 and LDO3
+    doc: ds
+    section: "7.2 LDO1 and LDO3 detailed description"
+    page: 35
+    driver: "`LdoConfig`, `SetRailVoltage()`, `SetRailModes()`"
+    docs: [configuration, api-guide]
+  - topic: LDO low-power mode
+    doc: ds
+    section: "7.2.5 LDOy low-power mode operation"
+    page: 37
+    driver: "`RailModes::low_power`, `Acknowledgements::load_below_10ma`"
+    docs: [configuration]
+  - topic: LDO load switch mode
+    doc: ds
+    section: "7.2.7 LDOy load switch mode"
+    page: 38
+    driver: "`EnableLoadSwitch()`, `LoadSwitchConfirm`"
+    docs: [api-guide, contract]
+  - topic: LDO2
+    doc: ds
+    section: "7.3 LDO2 detailed description"
+    page: 38
+    driver: "`Rail::Ldo2`"
+    docs: [configuration]
+  - topic: VREFDDR
+    doc: ds
+    section: "7.4 VREFDDR reference"
+    page: 40
+    driver: "`VrefDdrConfig`, `Rail::VrefDdr`"
+    docs: [configuration]
+  - topic: VSNVS and the coin cell charger
+    doc: ds
+    section: "7.5 VSNVS LDO/switch"
+    page: 41
+    driver: "`VsnvsConfig`, `CoinCell`"
+    docs: [configuration]
+  - topic: PWRON
+    doc: ds
+    section: "9.1 PWRON"
+    page: 68
+    driver: "`PowerConfig::pwron_debounce`, `ReadPowerState()`"
+    docs: [api-guide]
+  - topic: STANDBY pin
+    doc: ds
+    section: "9.2 STANDBY"
+    page: 69
+    driver: "`RequestStandby()`, `CtrlPin::Standby`, `PowerConfig::standby_inverted`"
+    docs: [api-guide, porting]
+  - topic: RESETBMCU
+    doc: ds
+    section: "9.3 RESETBMCU"
+    page: 69
+    driver: "`PowerConfig`, `StartupProfileOf()`"
+    docs: [api-guide]
+  - topic: INTB and the interrupt registers
+    doc: ds
+    section: "9.4 INTB"
+    page: 70
+    driver: "`ServiceInterrupts()`, `SetIrqMask()`, `CtrlPin::Intb`, `IrqSource`"
+    docs: [api-guide, porting]
+  - topic: ONKEY
+    doc: ds
+    section: "9.6 ONKEY"
+    page: 71
+    driver: "`PowerConfig::onkey_debounce`, `IrqSource::OnkeyPush`"
+    docs: [api-guide]
+  - topic: Example schematic
+    doc: ds
+    section: "13.1 Example schematic"
+    page: 133
+    driver: "-"
+    docs: [hardware]

@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="687" viewBox="0 0 1200 687" role="img" aria-labelledby="chip-blocks-title chip-blocks-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-blocks-title">Inside the PF1550</title>
+<desc id="chip-blocks-desc">Block diagram of the PF1550: its function blocks, how they connect and which package pins reach each block.</desc>
+<defs><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8893A2"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="686" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#7A360E">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#0E1726">Inside the PF1550</text>
+<text x="32" y="103.8" font-size="15" fill="#566070">Function blocks and their links, from the datasheet's block diagram (1 General description, p. 1). Pins on the edge carry their package number.</text>
+<rect x="32" y="119.8" width="1136" height="1" fill="#E2E7EE"/>
+<rect x="168" y="137.8" width="864" height="488" rx="14" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1.2"/>
+<path d="M175 217.8 L208 217.8" fill="none" stroke="#2563EB" stroke-width="1.8"/>
+<path d="M175 241.8 L208 241.8" fill="none" stroke="#2563EB" stroke-width="1.8"/>
+<path d="M175 265.8 L208 265.8" fill="none" stroke="#C26A05" stroke-width="1.8"/>
+<path d="M175 353.8 L208 353.8" fill="none" stroke="#0B7A72" stroke-width="1.8"/>
+<path d="M175 377.8 L208 377.8" fill="none" stroke="#0B7A72" stroke-width="1.8"/>
+<path d="M175 401.8 L208 401.8" fill="none" stroke="#0B7A72" stroke-width="1.8"/>
+<path d="M175 425.8 L208 425.8" fill="none" stroke="#C26A05" stroke-width="1.8"/>
+<path d="M175 529.8 L208 529.8" fill="none" stroke="#7C4A1E" stroke-width="1.8"/>
+<path d="M175 553.8 L208 553.8" fill="none" stroke="#DB2752" stroke-width="1.8"/>
+<path d="M1025 217.8 L992 217.8" fill="none" stroke="#DB2752" stroke-width="1.8"/>
+<path d="M1025 241.8 L992 241.8" fill="none" stroke="#DB2752" stroke-width="1.8"/>
+<path d="M1025 265.8 L992 265.8" fill="none" stroke="#A21CAF" stroke-width="1.8"/>
+<path d="M1025 361.8 L992 361.8" fill="none" stroke="#7C4A1E" stroke-width="1.8"/>
+<path d="M1025 385.8 L992 385.8" fill="none" stroke="#7C4A1E" stroke-width="1.8"/>
+<path d="M1025 409.8 L992 409.8" fill="none" stroke="#7C4A1E" stroke-width="1.8"/>
+<path d="M1025 505.8 L992 505.8" fill="none" stroke="#7C4A1E" stroke-width="1.8"/>
+<path d="M1025 529.8 L992 529.8" fill="none" stroke="#7C4A1E" stroke-width="1.8"/>
+<path d="M1025 553.8 L992 553.8" fill="none" stroke="#7C4A1E" stroke-width="1.8"/>
+<path d="M1025 577.8 L992 577.8" fill="none" stroke="#7C4A1E" stroke-width="1.8"/>
+<path d="M404 249.8 L410 249.8 Q416 249.8 416 255.8 L416 377.8 Q416 385.8 424 385.8 L500 385.8" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)" marker-start="url(#fk-arrow-rail)"/>
+<path d="M404 409.8 L500 409.8" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)" marker-start="url(#fk-arrow-rail)"/>
+<path d="M700 385.8 L776 385.8 Q784 385.8 784 377.8 L784 255.8 Q784 249.8 790 249.8 L796 249.8" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M700 409.8 L796 409.8" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M700 361.8 L760 361.8 Q768 361.8 768 369.8 L768 529.8 Q768 537.8 776 537.8 L796 537.8" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M500 361.8 L440 361.8 Q432 361.8 432 369.8 L432 529.8 Q432 537.8 424 537.8 L404 537.8" fill="none" stroke="#8893A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<rect x="208" y="201.8" width="192" height="88" rx="10" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="208" y="209.8" width="4" height="72" rx="2" fill="#2563EB"/>
+<rect x="208" y="337.8" width="192" height="104" rx="10" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4"/>
+<rect x="208" y="345.8" width="4" height="88" rx="2" fill="#64748B"/>
+<rect x="208" y="489.8" width="192" height="104" rx="10" fill="#FBEFE6" stroke="#9A4A17" stroke-width="1.4"/>
+<rect x="208" y="497.8" width="4" height="88" rx="2" fill="#9A4A17"/>
+<rect x="504" y="337.8" width="192" height="104" rx="10" fill="#F3EEFF" stroke="#7C3AED" stroke-width="1.4"/>
+<rect x="504" y="345.8" width="4" height="88" rx="2" fill="#7C3AED"/>
+<rect x="800" y="201.8" width="192" height="88" rx="10" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<rect x="800" y="209.8" width="4" height="72" rx="2" fill="#C26A05"/>
+<rect x="800" y="337.8" width="192" height="104" rx="10" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="800" y="345.8" width="4" height="88" rx="2" fill="#0B7A72"/>
+<rect x="800" y="489.8" width="192" height="104" rx="10" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="800" y="497.8" width="4" height="88" rx="2" fill="#0B7A72"/>
+<rect x="161" y="210.8" width="14" height="14" rx="3" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="161" y="234.8" width="14" height="14" rx="3" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="161" y="258.8" width="14" height="14" rx="3" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<rect x="161" y="346.8" width="14" height="14" rx="3" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="161" y="370.8" width="14" height="14" rx="3" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="161" y="394.8" width="14" height="14" rx="3" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="161" y="418.8" width="14" height="14" rx="3" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<rect x="161" y="522.8" width="14" height="14" rx="3" fill="#F8F1EA" stroke="#7C4A1E" stroke-width="1.4"/>
+<rect x="161" y="546.8" width="14" height="14" rx="3" fill="#FFEEF2" stroke="#DB2752" stroke-width="1.4"/>
+<rect x="1025" y="210.8" width="14" height="14" rx="3" fill="#FFEEF2" stroke="#DB2752" stroke-width="1.4"/>
+<rect x="1025" y="234.8" width="14" height="14" rx="3" fill="#FFEEF2" stroke="#DB2752" stroke-width="1.4"/>
+<rect x="1025" y="258.8" width="14" height="14" rx="3" fill="#FDF0FF" stroke="#A21CAF" stroke-width="1.4"/>
+<rect x="1025" y="354.8" width="14" height="14" rx="3" fill="#F8F1EA" stroke="#7C4A1E" stroke-width="1.4"/>
+<rect x="1025" y="378.8" width="14" height="14" rx="3" fill="#F8F1EA" stroke="#7C4A1E" stroke-width="1.4"/>
+<rect x="1025" y="402.8" width="14" height="14" rx="3" fill="#F8F1EA" stroke="#7C4A1E" stroke-width="1.4"/>
+<rect x="1025" y="498.8" width="14" height="14" rx="3" fill="#F8F1EA" stroke="#7C4A1E" stroke-width="1.4"/>
+<rect x="1025" y="522.8" width="14" height="14" rx="3" fill="#F8F1EA" stroke="#7C4A1E" stroke-width="1.4"/>
+<rect x="1025" y="546.8" width="14" height="14" rx="3" fill="#F8F1EA" stroke="#7C4A1E" stroke-width="1.4"/>
+<rect x="1025" y="570.8" width="14" height="14" rx="3" fill="#F8F1EA" stroke="#7C4A1E" stroke-width="1.4"/>
+<text x="184" y="162.8" font-size="13" font-weight="700" fill="#334155">PF1550</text>
+<text x="245.4" y="162.8" font-size="12" fill="#334155">HVQFN-40</text>
+<text x="228" y="228.6" font-size="15" font-weight="700" fill="#1E429F">Control interface</text>
+<text x="228" y="253.4" font-size="13" fill="#2B3442">I2C and INTB</text>
+<text x="228" y="364.6" font-size="15" font-weight="700" fill="#334155">State machine</text>
+<text x="228" y="389.4" font-size="13" fill="#2B3442">ONKEY, PWRON,</text>
+<text x="228" y="408.3" font-size="13" fill="#2B3442">STANDBY</text>
+<text x="228" y="516.5" font-size="15" font-weight="700" fill="#7A360E">VSNVS and coin cell</text>
+<text x="228" y="541.4" font-size="13" fill="#2B3442">always on</text>
+<text x="524" y="364.6" font-size="15" font-weight="700" fill="#5B21B6">Registers</text>
+<text x="524" y="389.4" font-size="13" fill="#2B3442">interrupts, sequencer,</text>
+<text x="524" y="408.3" font-size="13" fill="#2B3442">OTP</text>
+<text x="820" y="228.6" font-size="15" font-weight="700" fill="#8A3C0B">Battery charger</text>
+<text x="820" y="253.4" font-size="13" fill="#2B3442">linear charger, power</text>
+<text x="820" y="272.2" font-size="13" fill="#2B3442">path</text>
+<text x="820" y="364.6" font-size="15" font-weight="700" fill="#0B5F59">Buck regulators</text>
+<text x="820" y="389.4" font-size="13" fill="#2B3442">SW1 and SW2 with</text>
+<text x="820" y="408.3" font-size="13" fill="#2B3442">DVS, SW3</text>
+<text x="820" y="516.5" font-size="15" font-weight="700" fill="#0B5F59">LDOs and VREFDDR</text>
+<text x="820" y="541.4" font-size="13" fill="#2B3442">LDO1 to LDO3, load</text>
+<text x="820" y="560.2" font-size="13" fill="#2B3442">switch</text>
+<text x="154" y="222.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">SDA  2</text>
+<text x="154" y="246.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">SCL  3</text>
+<text x="154" y="270.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">INTB  9</text>
+<text x="154" y="358.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">PWRON  6</text>
+<text x="154" y="382.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">STANDBY  7</text>
+<text x="154" y="406.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">ONKEY  8</text>
+<text x="154" y="430.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">RESETBMCU  10</text>
+<text x="154" y="534.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">VSNVS  30</text>
+<text x="154" y="558.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#0E1726">LICELL  31</text>
+<text x="1046" y="222.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">VBUSIN  37</text>
+<text x="1046" y="246.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">VBATT  33, 34</text>
+<text x="1046" y="270.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">THM  32</text>
+<text x="1046" y="366.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">SW1LX  25</text>
+<text x="1046" y="390.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">SW2LX  18</text>
+<text x="1046" y="414.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">SW3LX  13</text>
+<text x="1046" y="510.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">VLDO1  29</text>
+<text x="1046" y="534.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">VLDO2  19</text>
+<text x="1046" y="558.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">VLDO3  12</text>
+<text x="1046" y="582.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">VREFDDR  21</text>
+<circle cx="208" cy="217.8" r="3" fill="#2563EB"/>
+<circle cx="208" cy="241.8" r="3" fill="#2563EB"/>
+<circle cx="208" cy="265.8" r="3" fill="#C26A05"/>
+<circle cx="208" cy="353.8" r="3" fill="#0B7A72"/>
+<circle cx="208" cy="377.8" r="3" fill="#0B7A72"/>
+<circle cx="208" cy="401.8" r="3" fill="#0B7A72"/>
+<circle cx="208" cy="425.8" r="3" fill="#C26A05"/>
+<circle cx="208" cy="529.8" r="3" fill="#7C4A1E"/>
+<circle cx="208" cy="553.8" r="3" fill="#DB2752"/>
+<circle cx="992" cy="217.8" r="3" fill="#DB2752"/>
+<circle cx="992" cy="241.8" r="3" fill="#DB2752"/>
+<circle cx="992" cy="265.8" r="3" fill="#A21CAF"/>
+<circle cx="992" cy="361.8" r="3" fill="#7C4A1E"/>
+<circle cx="992" cy="385.8" r="3" fill="#7C4A1E"/>
+<circle cx="992" cy="409.8" r="3" fill="#7C4A1E"/>
+<circle cx="992" cy="505.8" r="3" fill="#7C4A1E"/>
+<circle cx="992" cy="529.8" r="3" fill="#7C4A1E"/>
+<circle cx="992" cy="553.8" r="3" fill="#7C4A1E"/>
+<circle cx="992" cy="577.8" r="3" fill="#7C4A1E"/>
+<rect x="388.7" y="307.8" width="54.6" height="20" rx="10" fill="#FFFFFF"/>
+<text x="416" y="322.1" font-size="12" font-weight="500" text-anchor="middle" fill="#566070">frames</text>
+<rect x="446.7" y="399.8" width="49.1" height="20" rx="10" fill="#FFFFFF"/>
+<text x="471.2" y="414.1" font-size="12" font-weight="500" text-anchor="middle" fill="#566070">states</text>
+<rect x="754.3" y="307.8" width="59.4" height="20" rx="10" fill="#FFFFFF"/>
+<text x="784" y="322.1" font-size="12" font-weight="500" text-anchor="middle" fill="#566070">charger</text>
+<rect x="710.1" y="399.8" width="37.4" height="20" rx="10" fill="#FFFFFF"/>
+<text x="728.8" y="414.1" font-size="12" font-weight="500" text-anchor="middle" fill="#566070">rails</text>
+<rect x="749.3" y="439.8" width="37.4" height="20" rx="10" fill="#FFFFFF"/>
+<text x="768" y="454.1" font-size="12" font-weight="500" text-anchor="middle" fill="#566070">rails</text>
+<rect x="434.8" y="351.8" width="62.5" height="20" rx="10" fill="#FFFFFF"/>
+<text x="466" y="366.1" font-size="12" font-weight="500" text-anchor="middle" fill="#566070">coin cell</text>
+<rect x="32" y="641.2" width="14" height="14" rx="4" fill="#FFEEF2" stroke="#DB2752" stroke-width="1.4"/>
+<text x="54" y="652.8" font-size="12.5" fill="#566070">power</text>
+<rect x="117.6" y="641.2" width="14" height="14" rx="4" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<text x="139.6" y="652.8" font-size="12.5" fill="#566070">bus</text>
+<rect x="186.6" y="641.2" width="14" height="14" rx="4" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<text x="208.6" y="652.8" font-size="12.5" fill="#566070">digital in</text>
+<rect x="285" y="641.2" width="14" height="14" rx="4" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<text x="307" y="652.8" font-size="12.5" fill="#566070">open drain</text>
+<rect x="397.9" y="641.2" width="14" height="14" rx="4" fill="#FDF0FF" stroke="#A21CAF" stroke-width="1.4"/>
+<text x="419.9" y="652.8" font-size="12.5" fill="#566070">analog</text>
+<rect x="485.9" y="641.2" width="14" height="14" rx="4" fill="#F8F1EA" stroke="#7C4A1E" stroke-width="1.4"/>
+<text x="507.9" y="652.8" font-size="12.5" fill="#566070">power output</text>
+<path d="M615.6 647.4L645.6 647.4" fill="none" stroke="#8893A2" stroke-width="1.6" marker-end="url(#fk-arrow-rail)"/>
+<text x="659.6" y="652.8" font-size="12.5" fill="#566070">signal or data between blocks</text>
+</svg>

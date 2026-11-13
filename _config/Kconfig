@@ -1,0 +1,42 @@
+# Kconfig for the PF1550 driver. The root CMakeLists.txt registers it with ESP-IDF
+# (idf_component_register(... KCONFIG _config/Kconfig)), so `idf.py menuconfig` shows
+# "PF1550 power management IC". The values reach the code only through
+# inc/pf1550_kconfig.hpp; no public driver signature uses them.
+menuconfig PF1550
+    bool "PF1550 power management IC"
+    default y
+    help
+      Defaults for pf1550::KconfigDefaults(): the limits of the cell and the supply.
+      The driver itself does not need Kconfig. A wrong limit here lets the charger run
+      at a voltage or current the cell does not tolerate: set them from the cell's data sheet.
+
+if PF1550
+
+config PF1550_CELL_MAX_MV
+    int "Highest cell charge voltage (mV)"
+    range 3500 4440
+    default 4200
+    help
+      Limits.cell_max_mv. The charge voltage of the configuration may not exceed it.
+
+config PF1550_CELL_MAX_CHARGE_MA
+    int "Highest cell charge current (mA)"
+    range 100 1000
+    default 500
+    help
+      Limits.cell_max_charge_ma.
+
+config PF1550_INPUT_MAX_MA
+    int "Supply current (mA)"
+    range 10 1500
+    default 1000
+    help
+      Limits.input_max_ma: what the supply on VBUS can deliver.
+
+config PF1550_AS_FOUND_MAKE_SAFE
+    bool "Switch off battery charging when it is found on and unsafe"
+    default n
+    help
+      AsFoundPolicy::MakeSafe. Off: EnsureInitialized() returns the error and writes nothing.
+
+endif

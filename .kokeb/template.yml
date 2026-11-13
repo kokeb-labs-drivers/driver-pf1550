@@ -1,0 +1,19 @@
+---
+# How this repository was made from kokeb-labs/driver-template. The template's drift check
+# (tools/scaffold.py --check-drift, CI: kokeb-labs/ci-tools ru-template-drift) scaffolds the template again
+# with these arguments and compares the files it manages. List a file under `local` only when it differs on
+# purpose, with the reason.
+template: unknown
+kind: "driver"
+name: "pf1550"
+bus: "i2c"
+namespace: "pf1550"
+description: "C++20 driver for the NXP PF1550 power management IC (single-cell Li-ion linear charger, three buck regulators, three LDOs) on I2C"
+include_root: null
+org: "kokeb-labs-drivers"
+repo: "driver-pf1550"
+author: "The driver-pf1550 authors"
+license: "MIT"
+datasheet: "https://www.nxp.com/docs/en/data-sheet/PF1550.pdf"
+platforms: [host, esp32]
+local: []
