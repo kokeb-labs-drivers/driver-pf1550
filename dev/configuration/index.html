@@ -1701,9 +1701,9 @@ enabled without run (EN gates both); <code>Unsafe</code> for a downgrade without
 returned, in this order: limits, rail order, charger, rails, peripherals, power.</p>
 <h2 id="kconfig">Kconfig<a class="headerlink" href="#kconfig" title="Permanent link">&para;</a></h2>
 <p>Under ESP-IDF, <code>idf.py menuconfig</code> shows <strong>PF1550 power management IC</strong> when the driver is a component of the project
-(<a href="../installation/">Installation</a>); the menu is <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/c2a69dea8279de7d12d040a1738893e26ba5fc4f/_config/Kconfig"><code>_config/Kconfig</code></a>. The options are only the
+(<a href="../installation/">Installation</a>); the menu is <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/c45f52351738a9107f65ad0d4bb895cb8e1ff5d3/_config/Kconfig"><code>_config/Kconfig</code></a>. The options are only the
 limits and the as-found policy, and they reach the code only through
-<a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/c2a69dea8279de7d12d040a1738893e26ba5fc4f/inc/pf1550_kconfig.hpp"><code>inc/pf1550_kconfig.hpp</code></a>, never through a driver signature:</p>
+<a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/c45f52351738a9107f65ad0d4bb895cb8e1ff5d3/inc/pf1550_kconfig.hpp"><code>inc/pf1550_kconfig.hpp</code></a>, never through a driver signature:</p>
 <table>
 <thead>
 <tr>
