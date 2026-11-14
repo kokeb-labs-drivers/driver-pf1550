@@ -121,7 +121,7 @@ The register map is split in two pages by address: the PMIC registers `0x00` to 
 | Setting | Value |
 | --- | --- |
 | Clock | Up to 400 kHz (`kMaxClockHz`), fast mode |
-| Address | 7-bit, `0x08` to `0x0F` set by OTP (`kI2cAddress` = `0x08`); pass it to the constructor |
+| Address | 7-bit `0x08` (S9.7.1 and every OTP option of Table 85); the I2C_ADDR fuses can select `0x08` to `0x0F` (Table 147, [Ambiguities](ambiguities.md) C61), so another address goes to the constructor (`kI2cAddress` = `0x08`) |
 | Write | START, address + W, register, one data byte, STOP |
 | Read | START, address + W, register, repeated START, address + R, one data byte, STOP |
 | Burst | Not used: the datasheet does not describe auto-increment (ambiguity C48) |

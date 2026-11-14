@@ -63,15 +63,15 @@ three linear regulators and an RTC supply (1 General description, p. 1).
 ## Where it is used
 
 <!-- generated: chip-uses -->
-- Smart mobile and wearable devices (1.2, p. 2)
-- Low-power IoT devices (1.2, p. 2)
-- Wireless game controllers (1.2, p. 2)
-- Embedded monitoring systems (1.2, p. 2)
-- Home automation (1.2, p. 2)
-- Point-of-sale terminals (1.2, p. 2)
-- E-readers (1.2, p. 2)
+- Smart mobile and wearable devices
+- Low-power IoT devices
+- Wireless game controllers
+- Embedded monitoring systems
+- Home automation
+- Point-of-sale terminals
+- E-readers
 
-Uses named by the datasheet (1 General description, p. 1).
+Uses named by the datasheet (1.2 Applications, p. 2).
 <!-- /generated -->
 
 ## Inside the chip

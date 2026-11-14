@@ -60,14 +60,15 @@ overview:
     linear regulators and an RTC supply
   category: Power management IC with Li-ion charger
   ref: general
+  applications_ref: applications
   applications:
-    - {label: Smart mobile and wearable devices, ref: applications}
-    - {label: Low-power IoT devices, ref: applications}
-    - {label: Wireless game controllers, ref: applications}
-    - {label: Embedded monitoring systems, ref: applications}
-    - {label: Home automation, ref: applications}
-    - {label: Point-of-sale terminals, ref: applications}
-    - {label: E-readers, ref: applications}
+    - Smart mobile and wearable devices
+    - Low-power IoT devices
+    - Wireless game controllers
+    - Embedded monitoring systems
+    - Home automation
+    - Point-of-sale terminals
+    - E-readers
   specs:
     - {value: "4.1 to 6.0 V", label: "charger input on VBUSIN, USB or adapter", ref: features}
     - {value: "3 x 1.0 A", label: "buck converters, two with voltage scaling", ref: features}

@@ -55,15 +55,15 @@ The site at <https://kokeb-labs-drivers.github.io/driver-pf1550/> opens when the
 ## Where it is used
 
 <!-- generated: chip-uses -->
-- Smart mobile and wearable devices (1.2, p. 2)
-- Low-power IoT devices (1.2, p. 2)
-- Wireless game controllers (1.2, p. 2)
-- Embedded monitoring systems (1.2, p. 2)
-- Home automation (1.2, p. 2)
-- Point-of-sale terminals (1.2, p. 2)
-- E-readers (1.2, p. 2)
+- Smart mobile and wearable devices
+- Low-power IoT devices
+- Wireless game controllers
+- Embedded monitoring systems
+- Home automation
+- Point-of-sale terminals
+- E-readers
 
-Uses named by the datasheet (1 General description, p. 1).
+Uses named by the datasheet (1.2 Applications, p. 2).
 <!-- /generated -->
 
 ## Inside the chip
@@ -194,7 +194,7 @@ class that moves bytes on your I2C bus, and it does the rest.
 
 | | |
 | --- | --- |
-| **Bus** | I2C up to 400 kHz, 7-bit address `0x08` to `0x0F` set by OTP, single-register transfers |
+| **Bus** | I2C up to 400 kHz, 7-bit address `0x08` (every listed OTP option; fuses can set `0x08` to `0x0F`), single-register transfers |
 | **Also drives** | STANDBY (optional `GpioSet()`) and reads INTB (optional `GpioGet()`) |
 | **Driver** | Header-only C++20; no heap, exceptions, RTTI or virtual calls; every call returns `Result<T>` |
 | **Safety** | Mandatory `Limits`, explicit acknowledgements, read-back of every write, guarded SHIP and CORE_OFF |
