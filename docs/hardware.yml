@@ -18,13 +18,23 @@ refs:
   pwron: {doc: ds, section: "9.1 PWRON", page: 68}
   onkey: {doc: ds, section: "9.6 ONKEY", page: 71}
   resetbmcu: {doc: ds, section: "9.3 RESETBMCU", page: 69}
-  blocks: {doc: ds, section: "1 General description", page: 1}
+  blocks: {doc: ds, section: "2.2 Internal block diagram", page: 5}
   app: {doc: ds, section: "13.1 Example schematic", page: 133}
   outline: {doc: ds, section: "14 Package outline", page: 139}
-  order: {doc: ds, section: "2 Ordering information", page: 5}
-  charger: {doc: ds, section: "8 Battery charger description", page: 43}
-  buck: {doc: ds, section: "6 Buck regulators", page: 24}
-  ldo: {doc: ds, section: "7 LDOs and VSNVS", page: 34}
+  order: {doc: ds, section: "3 Orderable parts", page: 5}
+  charger: {doc: ds, section: "8 Battery charger description", page: 42}
+  buck: {doc: ds, section: "6.1 Buck regulators", page: 25}
+  ldo: {doc: ds, section: "7 Low dropout linear regulators, VREFDDR and VSNVS", page: 34}
+  general: {doc: ds, section: "1 General description", page: 1}
+  features: {doc: ds, section: "1.1 Features and benefits", page: 1}
+  features_chg: {doc: ds, section: "1.1 Features and benefits", page: 2}
+  applications: {doc: ds, section: "1.2 Applications", page: 2}
+  i2c_op: {doc: ds, section: "9.7.2 I2C operation", page: 72}
+  vsnvs: {doc: ds, section: "7.5 VSNVS LDO/switch", page: 41}
+  powerpath: {doc: ds, section: "8.7 Power path features", page: 55}
+  thermistor: {doc: ds, section: "8.7.3 Battery thermistor", page: 56}
+  states: {doc: ds, section: "10 PF1550 state machine", page: 72}
+  startup: {doc: ds, section: "11.2 Device start up configuration", page: 79}
 
 package:
   type: HVQFN-40
@@ -38,6 +48,88 @@ package:
 # The supply ranges that matter to the application: the charger input and the I/O supply.
 supply:
   - {name: VDDIO, min_v: 1.7, max_v: 3.3, ref: pins}
+
+
+# The chip-first README: what the chip is and does, where it is used and how the driver covers it. `kokeb-docs
+# figures` draws chip-hero and chip-capabilities from it, `kokeb-docs gen` the README's chip-summary, chip-uses and
+# chip-coverage regions. No frame figure: I2C transfers have no fixed length.
+overview:
+  summary: >-
+    a power management IC for battery-powered boards built around a low-power application processor: it charges a
+    single Li-ion cell and supplies the processor, the memory and the peripherals from three buck converters, three
+    linear regulators and an RTC supply
+  category: Power management IC with Li-ion charger
+  ref: general
+  applications:
+    - {label: Smart mobile and wearable devices, ref: applications}
+    - {label: Low-power IoT devices, ref: applications}
+    - {label: Wireless game controllers, ref: applications}
+    - {label: Embedded monitoring systems, ref: applications}
+    - {label: Home automation, ref: applications}
+    - {label: Point-of-sale terminals, ref: applications}
+    - {label: E-readers, ref: applications}
+  specs:
+    - {value: "4.1 to 6.0 V", label: "charger input on VBUSIN, USB or adapter", ref: features}
+    - {value: "3 x 1.0 A", label: "buck converters, two with voltage scaling", ref: features}
+    - {value: "3 LDOs", label: "300 mA, 400 mA and 300 mA", ref: features}
+    - {value: "up to 1 A", label: "charge current from 100 mA, charge voltage 3.5 to 4.44 V", ref: features_chg}
+    - {value: "400 kHz", label: "I2C, fast mode, 7-bit address", ref: i2c_op}
+    - {value: "5 x 5 mm", label: "40-pin QFN with exposed pad", ref: outline}
+  system:
+    host: MCU
+    bus: I2C
+    drives:
+      - {label: Supply rails, detail: "SW1 to SW3, LDO1 to LDO3, VREFDDR, VSNVS", ref: features}
+      - {label: Processor and memory, detail: "and the system peripherals", ref: general}
+    senses:
+      - {label: Charger input, detail: "VBUSIN, USB or adapter", ref: charger}
+      - {label: Li-ion cell, detail: "VBATT and its thermistor on THM", ref: thermistor}
+      - {label: Push buttons, detail: "ONKEY, PWRON", ref: onkey}
+
+# Headers the capability `api` and `registers` names are checked against.
+driver:
+  api: [inc/pf1550.hpp, inc/pf1550_config.hpp, inc/pf1550_types.hpp]
+  registers: [inc/pf1550_registers.hpp]
+
+capabilities:
+  - {id: charger, title: Battery charger, icon: current, status: supported, ref: charger, docs: "api-guide.md#charge",
+     what: "Charges one Li-ion cell: charge voltage and current, termination, timers, watchdog and the status LED",
+     note: "charging starts only through SetChargerMode, within the Limits you declare",
+     api: [SetChargerMode, RestartCharger, ServiceChargerWatchdog, ReadChargerStatus, CheckChargerAgainstLimits],
+     registers: [CHG_OPER, BATT_REG, CHG_CURR_CNFG, CHG_EOC_CNFG, CHG_TMR, LED_CNFG]}
+  - {id: powerpath, title: Power path, icon: flow, status: supported, ref: powerpath,
+     docs: "configuration.md#charger-chargerconfig",
+     what: "Runs the system from the input while the cell charges: input current limit, VSYS minimum, battery FET",
+     api: [Configure, VbusOptions, BatfetConfig],
+     registers: [VBUS_INLIM_CNFG, VBUS_LIN_DPM, VBUS2SYS_CNFG, BATFET_CNFG]}
+  - {id: thermistor, title: Battery thermistor and JEITA, icon: temperature, status: supported, ref: thermistor,
+     docs: "configuration.md#charger-chargerconfig",
+     what: "Reads the cell's thermistor and lowers or stops the charge when the cell is too cold or too hot",
+     api: [Configure, JeitaConfig], registers: [THM_REG_CNFG, THM_ADJ_SETTING, THM_COLD, THM_HOT]}
+  - {id: bucks, title: Buck regulators, icon: chopper, status: supported, ref: buck, docs: "api-guide.md#rails",
+     what: "Sets SW1 to SW3 per state (run, standby, sleep), with dynamic voltage scaling on SW1 and SW2",
+     api: [SetRailVoltage, SetRailModes, ReadRail, BuckConfig],
+     registers: [SW1_VOLT, SW1_CTRL, SW2_VOLT, SW2_CTRL, SW3_VOLT, SW3_CTRL]}
+  - {id: ldos, title: "LDOs, VREFDDR and VSNVS", icon: power, status: supported, ref: ldo, docs: "api-guide.md#rails",
+     what: "Sets LDO1 to LDO3, the DDR reference, the RTC supply, the coin cell charger and the USB PHY regulator",
+     note: "the LDO1 and LDO3 load switch mode needs a confirmation token",
+     api: [SetRailVoltage, SetRailModes, EnableLoadSwitch, LdoConfig, CoinCell],
+     registers: [LDO1_VOLT, LDO1_CTRL, VREFDDR_CTRL, VSNVS_CTRL, COINCELL_CONTROL, USB_PHY_LDO_CNFG]}
+  - {id: interrupts, title: Interrupts and status, icon: alert, status: supported, ref: intb,
+     docs: "api-guide.md#interrupts",
+     what: "Pulls INTB low on a fault or event; the driver reads, latches and clears each interrupt group",
+     api: [ServiceInterrupts, SetIrqMask, ReadCategories, GetLatchedEvents, ReadSnapshot],
+     registers: [INT_CATEGORY, CHG_INT, SW_INT_STAT0, LDO_INT_STAT0, MISC_INT_STAT0]}
+  - {id: states, title: Power states and sequencer, icon: sleep, status: guarded, ref: states,
+     docs: "api-guide.md#power-states",
+     what: "Run, standby, sleep, core off and ship states, with the order rails start and stop in",
+     note: "SHIP and CORE_OFF need a confirmation token, the power-down order an acknowledgement",
+     api: [RequestStandby, EnterShip, EnterCoreOff, ReadPowerState, SetPowerDownSequence],
+     registers: [PWRCTRL0, PWRCTRL3, STATE_INFO, SW1_PWRDN_SEQ, LDO1_PWRDN_SEQ]}
+  - {id: otp, title: OTP start-up configuration, icon: memory, status: not-covered, ref: startup,
+     docs: "datasheet.md#what-is-not-covered",
+     what: "Fuses hold the start-up sequence, voltages and charger defaults; the driver reads the option, never fuses",
+     api: [ReadVariant], registers: [OTP_FLAVOR]}
 
 hooks:
   - {id: transfer, call: "Write(), WriteRead()", kind: i2c, source: inc/pf1550_i2c_interface.hpp, symbol: WriteRead}

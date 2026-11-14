@@ -51,21 +51,21 @@ HVQFN-40, 40 pins and an exposed pad (4.1 Pinning, p. 7).
 | 10 | `RESETBMCU` | open drain (VDDIO) | Reset output to the processor | - | - | 9.3, p. 69 |
 | 11 | `VLDO3IN` | power (VSYS) | LDO3 input supply | - | - | 7, p. 34 |
 | 12 | `VLDO3` | power output (VLDO3) | LDO3 output | - | - | 7, p. 34 |
-| 13 | `SW3LX` | power output (SW3) | Buck 3 switching node | - | - | 6, p. 24 |
-| 14 | `SW3IN` | power (VSYS) | Buck 3 input supply | - | - | 6, p. 24 |
-| 15 | `SW3FB` | analog (SW3) | Buck 3 output voltage feedback | - | - | 6, p. 24 |
-| 16 | `SW2FB` | analog (SW2) | Buck 2 output voltage feedback | - | - | 6, p. 24 |
-| 17 | `SW2IN` | power (VSYS) | Buck 2 input supply | - | - | 6, p. 24 |
-| 18 | `SW2LX` | power output (SW2) | Buck 2 switching node | - | - | 6, p. 24 |
+| 13 | `SW3LX` | power output (SW3) | Buck 3 switching node | - | - | 6.1, p. 25 |
+| 14 | `SW3IN` | power (VSYS) | Buck 3 input supply | - | - | 6.1, p. 25 |
+| 15 | `SW3FB` | analog (SW3) | Buck 3 output voltage feedback | - | - | 6.1, p. 25 |
+| 16 | `SW2FB` | analog (SW2) | Buck 2 output voltage feedback | - | - | 6.1, p. 25 |
+| 17 | `SW2IN` | power (VSYS) | Buck 2 input supply | - | - | 6.1, p. 25 |
+| 18 | `SW2LX` | power output (SW2) | Buck 2 switching node | - | - | 6.1, p. 25 |
 | 19 | `VLDO2` | power output (VLDO2) | LDO2 output | - | - | 7, p. 34 |
 | 20 | `VLDO2IN` | power (VSYS) | LDO2 input supply | - | - | 7, p. 34 |
 | 21 | `VREFDDR` | power output (VREFDDR) | VREFDDR output | - | - | 7, p. 34 |
 | 22 | `VINREFDDR` | power (VSYS) | VREFDDR input supply | - | - | 7, p. 34 |
 | 23 | `VDIG` | power output (INT) | Digital regulator output, used inside the chip | - | - | 4.2, p. 8 |
 | 24 | `VCORE` | power output (INT) | Core regulator output, used inside the chip | - | - | 4.2, p. 8 |
-| 25 | `SW1LX` | power output (SW1) | Buck 1 switching node | - | - | 6, p. 24 |
-| 26 | `SW1IN` | power (VSYS) | Buck 1 input supply | - | - | 6, p. 24 |
-| 27 | `SW1FB` | analog (SW1) | Buck 1 feedback input | - | - | 6, p. 24 |
+| 25 | `SW1LX` | power output (SW1) | Buck 1 switching node | - | - | 6.1, p. 25 |
+| 26 | `SW1IN` | power (VSYS) | Buck 1 input supply | - | - | 6.1, p. 25 |
+| 27 | `SW1FB` | analog (SW1) | Buck 1 feedback input | - | - | 6.1, p. 25 |
 | 28 | `VLDO1IN` | power (VSYS) | LDO1 input supply | - | - | 7, p. 34 |
 | 29 | `VLDO1` | power output (VLDO1) | LDO1 output | - | - | 7, p. 34 |
 | 30 | `VSNVS` | power output (VSNVS) | VSNVS regulator output | - | - | 7, p. 34 |

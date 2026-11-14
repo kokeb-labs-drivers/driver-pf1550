@@ -5,7 +5,7 @@
 <rect x="0.5" y="0.5" width="1199" height="686" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
 <text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#7A360E">HARDWARE</text>
 <text x="32" y="77.3" font-size="26" font-weight="700" fill="#0E1726">Inside the PF1550</text>
-<text x="32" y="103.8" font-size="15" fill="#566070">Function blocks and their links, from the datasheet's block diagram (1 General description, p. 1). Pins on the edge carry their package number.</text>
+<text x="32" y="103.8" font-size="15" fill="#566070">Function blocks and their links, from the datasheet's block diagram (2.2 Internal block diagram, p. 5). Pins on the edge carry their package number.</text>
 <rect x="32" y="119.8" width="1136" height="1" fill="#E2E7EE"/>
 <rect x="168" y="137.8" width="864" height="488" rx="14" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1.2"/>
 <path d="M175 217.8 L208 217.8" fill="none" stroke="#2563EB" stroke-width="1.8"/>
