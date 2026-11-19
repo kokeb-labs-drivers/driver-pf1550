@@ -1,0 +1,6 @@
+header_only:
+  pf1550_codec: constants and inline or constexpr functions only, nothing to compile separately
+  pf1550_config: constants and inline or constexpr functions only, nothing to compile separately
+  pf1550_irq: constants and inline or constexpr functions only, nothing to compile separately
+  pf1550_plan: constants and inline or constexpr functions only, nothing to compile separately
+  pf1550_sequencer: constants and inline or constexpr functions only, nothing to compile separately
