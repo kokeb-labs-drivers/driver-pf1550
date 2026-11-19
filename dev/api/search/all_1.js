@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['batfet_0',['batfet',['../structpf1550_1_1ChargerConfig.html#a93613616ab92c756bb4d9d4b1c51fc89',1,'pf1550::ChargerConfig']]],
+  ['batfet_5foc_1',['batfet_oc',['../structpf1550_1_1ChargerAsFound.html#a10dc5fb31bc699c74db6c37f3d3bc097',1,'pf1550::ChargerAsFound']]],
+  ['batfetconfig_2',['BatfetConfig',['../structpf1550_1_1BatfetConfig.html',1,'pf1550']]],
+  ['batfetoc_3',['batfetoc',['../group__pf1550__types.html#ga2252367b2cb594bdf345853e4ea86b1f',1,'pf1550::BatfetOc'],['../group__pf1550__registers.html#ga690a17c9e2f28a2b812702339b440db3',1,'pf1550::reg::BatfetOc']]],
+  ['battery_4',['battery',['../structpf1550_1_1ChargerStatus.html#a87ac2c76f45a3cbfee98c528ffb8bc16',1,'pf1550::ChargerStatus']]],
+  ['battery_5fhas_5fown_5fntc_5fprotection_5',['battery_has_own_ntc_protection',['../structpf1550_1_1Acknowledgements.html#a6fe484a1ca7cdc725daa6c4688ce6b34',1,'pf1550::Acknowledgements']]],
+  ['battery_5fovercurrent_6',['battery_overcurrent',['../structpf1550_1_1ChargerStatus.html#a9fdbac6dc7dd919046700c57477eeac0',1,'pf1550::ChargerStatus']]],
+  ['batterymissing_7',['BatteryMissing',['../group__pf1550__types.html#gga51ea2f1b3a8e4ff60c8dcaf6df7a55c9a022dfe7ab12ac2f835e99b08760a8d0e',1,'pf1550']]],
+  ['batteryovercurrent_8',['BatteryOvercurrent',['../group__pf1550__types.html#gga51ea2f1b3a8e4ff60c8dcaf6df7a55c9a2ba9381475ed7e60fbd14588cbea2d86',1,'pf1550']]],
+  ['batteryovervoltage_9',['batteryovervoltage',['../group__pf1550__types.html#ggab1f72c47ce166906591362fdfde6024ea9ffe9731a89523b1f28cacc29acfd5b3',1,'pf1550::BatteryOvervoltage'],['../group__pf1550__types.html#gga51ea2f1b3a8e4ff60c8dcaf6df7a55c9a9ffe9731a89523b1f28cacc29acfd5b3',1,'pf1550::BatteryOvervoltage']]],
+  ['batterystate_10',['BatteryState',['../group__pf1550__types.html#ga19ca6f51dbce19825b39c4ba2cc76aa8',1,'pf1550']]],
+  ['battsnsstate_11',['BattSnsState',['../group__pf1550__registers.html#gabc0ae7455bbfdb54bebd2fa55ec28db0',1,'pf1550::reg']]],
+  ['belowprecharge_12',['BelowPrecharge',['../group__pf1550__types.html#gga19ca6f51dbce19825b39c4ba2cc76aa8a6d90307ff5cd419c0d5680449528ce40',1,'pf1550']]],
+  ['bit_13',['bit',['../structpf1550_1_1IrqLocation.html#a248e5ff5d842f760949b5f21025d0c03',1,'pf1550::IrqLocation']]],
+  ['buckconfig_14',['BuckConfig',['../structpf1550_1_1BuckConfig.html',1,'pf1550']]],
+  ['buckdvscode_15',['BuckDvsCode',['../group__pf1550__codec.html#ga6120822db2850f3ef03971ebe82d05b3',1,'pf1550']]],
+  ['buckdvsuv_16',['BuckDvsUv',['../group__pf1550__codec.html#ga1304b9b4c124ccaf40c14ff5843009b1',1,'pf1550']]],
+  ['buckfixeduvof_17',['BuckFixedUvOf',['../group__pf1550__codec.html#ga4f89d5b673d9d62b35f7534286fdefd6',1,'pf1550']]],
+  ['buckilim_18',['BuckIlim',['../group__pf1550__registers.html#gaa0380928aced9bd75cd8c6d6b4340451',1,'pf1550::reg']]],
+  ['buckvolt4_19',['BuckVolt4',['../group__pf1550__registers.html#ga26657bfbf13f6ad6cfda1a4d62b3668e',1,'pf1550::reg']]],
+  ['buckvolt6_20',['BuckVolt6',['../group__pf1550__registers.html#ga42c5d59e891fe8efd4fb38007fa4bec5',1,'pf1550::reg']]],
+  ['bus_21',['bus',['../namespacepf1550.html#afb388918d591ff2bf3a0962ffcab1b11a6e4b38bfd57741ac1597c440a1c98074',1,'pf1550::Bus'],['../group__pf1550__types.html#gga0a89cabbc112585d0a257b782fe2ab96a6e4b38bfd57741ac1597c440a1c98074',1,'pf1550::Bus']]],
+  ['busy_22',['Busy',['../group__pf1550__types.html#gga0a89cabbc112585d0a257b782fe2ab96ad8a942ef2b04672adfafef0ad817a407',1,'pf1550']]]
+];
