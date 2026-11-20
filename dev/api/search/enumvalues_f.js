@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['s32_0',['S32',['../group__pf1550__types.html#gga5defe5e0818075e6c0f7986d0457a85eaa1e28eee0339658d39a8b4d325b56e9c',1,'pf1550']]],
+  ['s80_1',['S80',['../group__pf1550__types.html#gga5defe5e0818075e6c0f7986d0457a85ea46a9b48b0502dfa16aeb6c92bb166807',1,'pf1550']]],
+  ['sleep_2',['Sleep',['../group__pf1550__types.html#ggabf675232818d8ab79682babfca40cc2ca243924bfd56a682be235638b53961e09',1,'pf1550']]],
+  ['standby_3',['standby',['../namespacepf1550.html#a8ebe2283b2a786a11c1955d26cae25f8a2dbec34a65724db94f81e8533ee18192',1,'pf1550::Standby'],['../group__pf1550__types.html#ggabf675232818d8ab79682babfca40cc2ca2dbec34a65724db94f81e8533ee18192',1,'pf1550::Standby']]],
+  ['status_4',['Status',['../group__pf1550__registers.html#gga8fee79eacdfad7709df74b81c2888987aec53a8c4f07baed5d8825072c89799be',1,'pf1550::reg']]],
+  ['suspend_5',['Suspend',['../group__pf1550__types.html#gga6515a97fa66813f20cda273f777a4a8dab3834d6f7a63e5e750e0ca5ecf31e3b9',1,'pf1550']]],
+  ['sw1_6',['Sw1',['../group__pf1550__types.html#ggaa25fae884bee32450880d78d2cf6ae09a6660f42d239b11f40346960738850d57',1,'pf1550']]],
+  ['sw1dvsdone_7',['Sw1DvsDone',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daa87275b00bc4b600f551e4474dcef08fc',1,'pf1550']]],
+  ['sw1highsidelimit_8',['Sw1HighSideLimit',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daa8d029c9019728dee5c016df84f2bd39c',1,'pf1550']]],
+  ['sw1lowsidelimit_9',['Sw1LowSideLimit',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daa811526ac44470042436728f57a34f880',1,'pf1550']]],
+  ['sw2_10',['Sw2',['../group__pf1550__types.html#ggaa25fae884bee32450880d78d2cf6ae09a21c4c026e673bf3f53d6fef61e7acc0c',1,'pf1550']]],
+  ['sw2dvsdone_11',['Sw2DvsDone',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daa9269c77e7755c404e7191931341f507f',1,'pf1550']]],
+  ['sw2highsidelimit_12',['Sw2HighSideLimit',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daaf692607f823e35e351c0be77921396c2',1,'pf1550']]],
+  ['sw2lowsidelimit_13',['Sw2LowSideLimit',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daa871233c079c4c4b3db9b0140758d7388',1,'pf1550']]],
+  ['sw3_14',['Sw3',['../group__pf1550__types.html#ggaa25fae884bee32450880d78d2cf6ae09a5e31f5874ed5c5ba827919f32c38d3d2',1,'pf1550']]],
+  ['sw3highsidelimit_15',['Sw3HighSideLimit',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daad4802a61ca1821528025f6793bcde6ce',1,'pf1550']]],
+  ['sw3lowsidelimit_16',['Sw3LowSideLimit',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daa502db8d1775dfd23f593b21c41dda84d',1,'pf1550']]],
+  ['swdvs_17',['SwDvs',['../group__pf1550__types.html#ggab150c0561c5a208be0a67c3280c5903ea76184d10d4c67b026c518b26371a458e',1,'pf1550']]],
+  ['swhighside_18',['SwHighSide',['../group__pf1550__types.html#ggab150c0561c5a208be0a67c3280c5903ea5db40951d1985a1d3732c7dde70fd73a',1,'pf1550']]],
+  ['swlowside_19',['SwLowSide',['../group__pf1550__types.html#ggab150c0561c5a208be0a67c3280c5903ea4a103a741e2a3a3eab29be30cebd18ae',1,'pf1550']]],
+  ['sysovervoltage_20',['SysOvervoltage',['../group__pf1550__types.html#ggad057dbe16c9099f32854f02d39cff3daaee0f76bb75a7b95b97404551b2b31005',1,'pf1550']]]
+];
