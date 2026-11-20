@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="608" height="631" viewBox="0 0 608 631" role="img" aria-labelledby="one-call-through-the-layers-title one-call-through-the-layers-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="one-call-through-the-layers-title">One call through the layers</title>
+<desc id="one-call-through-the-layers-desc">One call through the layers: your code calls SetRailVoltage(Ldo1, 2.8 V), the core exchanges frames with the chip through your port and returns the result to your code.</desc>
+<defs><marker id="one-call-through-the-layers-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6C7889"/></marker></defs>
+<rect x="0.5" y="0.5" width="607" height="630" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="54.8" font-size="26" font-weight="700" fill="#E8EDF3">One call through the layers</text>
+<rect x="32" y="70.8" width="544" height="1" fill="#252F3C"/>
+<path d="M104.8 144.8 L104.8 634.8" fill="none" stroke="#6C7889" stroke-width="1.2" stroke-dasharray="5 5"/>
+<path d="M298.3 144.8 L298.3 634.8" fill="none" stroke="#6C7889" stroke-width="1.2" stroke-dasharray="5 5"/>
+<path d="M503.2 144.8 L503.2 634.8" fill="none" stroke="#6C7889" stroke-width="1.2" stroke-dasharray="5 5"/>
+<path d="M108.8 180.8 L294.3 180.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#one-call-through-the-layers-arrow-rail)"/>
+<path d="M302.3 276.8 L499.2 276.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#one-call-through-the-layers-arrow-rail)"/>
+<path d="M499.2 320.8 L302.3 320.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#one-call-through-the-layers-arrow-rail)"/>
+<path d="M302.3 416.8 L499.2 416.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#one-call-through-the-layers-arrow-rail)"/>
+<path d="M302.3 460.8 L499.2 460.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#one-call-through-the-layers-arrow-rail)"/>
+<path d="M499.2 504.8 L302.3 504.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#one-call-through-the-layers-arrow-rail)"/>
+<path d="M294.3 600.8 L108.8 600.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#one-call-through-the-layers-arrow-rail)"/>
+<rect x="39.8" y="88.8" width="130" height="52" rx="10" fill="#2E1533" stroke="#F0ABFC" stroke-width="1.4"/>
+<rect x="39.8" y="96.8" width="4" height="36" rx="2" fill="#F0ABFC"/>
+<rect x="221.8" y="88.8" width="152.9" height="52" rx="10" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="221.8" y="96.8" width="4" height="36" rx="2" fill="#4ADE80"/>
+<rect x="438.2" y="88.8" width="130" height="52" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="438.2" y="96.8" width="4" height="36" rx="2" fill="#2BB3A3"/>
+<rect x="228.3" y="208.8" width="344.9" height="41" rx="10" fill="#2C2310" stroke="#6A5220" stroke-width="1"/>
+<rect x="228.3" y="348.8" width="344.9" height="41" rx="10" fill="#2C2310" stroke="#6A5220" stroke-width="1"/>
+<rect x="228.3" y="532.8" width="344.9" height="41" rx="10" fill="#2C2310" stroke="#6A5220" stroke-width="1"/>
+<text x="107.8" y="119.3" font-size="15" font-weight="700" text-anchor="middle" fill="#F5D0FE">Your code</text>
+<text x="301.3" y="119.3" font-size="15" font-weight="700" text-anchor="middle" fill="#BBF7D0">PF1550&lt;Port&gt;</text>
+<text x="506.2" y="119.3" font-size="15" font-weight="700" text-anchor="middle" fill="#A7F3E6">Your port</text>
+<rect x="112.8" y="156.8" width="177.5" height="20" rx="10" fill="#0E131A"/>
+<text x="201.5" y="171.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">SetRailVoltage(Ldo1, 2.8 V)</text>
+<text x="242.3" y="233.9" font-size="13" fill="#FDE68A">grid code, Limits window, rail declared</text>
+<rect x="307.1" y="252.8" width="187.3" height="20" rx="10" fill="#0E131A"/>
+<text x="400.7" y="267.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">WriteRead(read LDO1_VOLT)</text>
+<rect x="365.4" y="296.8" width="70.6" height="20" rx="10" fill="#0E131A"/>
+<text x="400.7" y="311.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">true, byte</text>
+<text x="242.3" y="373.9" font-size="13" fill="#FDE68A">read-modify-write, IsWritable()</text>
+<rect x="306.3" y="392.8" width="188.9" height="20" rx="10" fill="#0E131A"/>
+<text x="400.7" y="407.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">Write(LDO1_VOLT, new byte)</text>
+<rect x="307.1" y="436.8" width="187.3" height="20" rx="10" fill="#0E131A"/>
+<text x="400.7" y="451.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">WriteRead(read LDO1_VOLT)</text>
+<rect x="365.4" y="480.8" width="70.6" height="20" rx="10" fill="#0E131A"/>
+<text x="400.7" y="495.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">true, byte</text>
+<text x="242.3" y="557.9" font-size="13" fill="#FDE68A">equal? else VerifyFailed</text>
+<rect x="141.1" y="576.8" width="120.9" height="20" rx="10" fill="#0E131A"/>
+<text x="201.5" y="591.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">Result&lt;void&gt;{Ok}</text>
+</svg>

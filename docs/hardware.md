@@ -127,15 +127,14 @@ The register map is split in two pages by address: the PMIC registers `0x00` to 
 | Burst | Not used: the datasheet does not describe auto-increment (ambiguity C48) |
 | I/O levels | Set by VDDIO, 1.7 V to 3.3 V |
 
-```mermaid
-sequenceDiagram
-    participant Host
-    participant PF1550
-    Host->>PF1550: START, 0x08 + W, 0x00 (DEVICE_ID)
-    Host->>PF1550: repeated START, 0x08 + R
-    PF1550-->>Host: 0x7C
-    Host->>PF1550: NACK, STOP
-```
+<!-- figure: i2c-register-read -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="diagrams/i2c-register-read.dark.svg">
+  <img src="diagrams/i2c-register-read.svg"
+    alt="A register read on the PF1550 I2C bus: the host writes the register address 0x00, repeats the start
+    with the read address, reads one byte and ends with NACK and STOP.">
+</picture>
+<!-- /figure -->
 
 An address that nothing acknowledges (no chip, no power, a wrong address) is reported as `Error::NoDevice` when your
 port has the optional `GetLastFailure()` hook; without it the driver cannot tell it from another bus fault and returns

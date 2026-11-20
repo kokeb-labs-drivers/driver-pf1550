@@ -1,0 +1,28 @@
+---
+# Model of the figure 'one-call-through-the-layers'. Edit this file; `kokeb-docs figures` draws it. Never edit the SVGs.
+kind: seq
+id: one-call-through-the-layers
+title: "One call through the layers"
+alt: >-
+  One call through the layers: your code calls SetRailVoltage(Ldo1, 2.8 V), the core exchanges frames with the
+  chip through your port and returns the result to your code.
+reads: >-
+  Participants, left to right: Your code, PF1550<Port> and Your port. The steps run from top to bottom. Your code sends SetRailVoltage(Ldo1, 2.8 V) to PF1550<Port>. A note over PF1550<Port> says: grid code, Limits window, rail declared. PF1550<Port> sends WriteRead(read LDO1_VOLT) to Your port. Your port returns true, byte to PF1550<Port>. A note over PF1550<Port> says: read-modify-write, IsWritable(). PF1550<Port> sends Write(LDO1_VOLT, new byte) to Your port. PF1550<Port> sends WriteRead(read LDO1_VOLT) to Your port. Your port returns true, byte to PF1550<Port>. A note over PF1550<Port> says: equal? else VerifyFailed. PF1550<Port> returns Result<void>{Ok} to Your code.
+print: landscape
+sources:
+  - docs/model/one-call-through-the-layers.seq.yml
+participants:
+  - {id: app, label: "Your code", tone: magenta}
+  - {id: core, label: "PF1550<Port>", tone: green}
+  - {id: port, label: "Your port", tone: teal}
+steps:
+  - {from: app, to: core, label: "SetRailVoltage(Ldo1, 2.8 V)"}
+  - {note: "grid code, Limits window, rail declared", over: [core, port]}
+  - {from: core, to: port, label: "WriteRead(read LDO1_VOLT)"}
+  - {from: port, to: core, label: "true, byte", return: true}
+  - {note: "read-modify-write, IsWritable()", over: [core, port]}
+  - {from: core, to: port, label: "Write(LDO1_VOLT, new byte)"}
+  - {from: core, to: port, label: "WriteRead(read LDO1_VOLT)"}
+  - {from: port, to: core, label: "true, byte", return: true}
+  - {note: "equal? else VerifyFailed", over: [core, port]}
+  - {from: core, to: app, label: "Result<void>{Ok}", return: true}

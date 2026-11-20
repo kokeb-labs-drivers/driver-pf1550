@@ -97,3 +97,37 @@ Drawn from:
 
 - `public calls` in [`inc/pf1550.hpp`](../../inc/pf1550.hpp)
 - `I2cInterface` in [`inc/pf1550_i2c_interface.hpp`](../../inc/pf1550_i2c_interface.hpp)
+
+## One register read on the I2C bus
+
+<!-- figure: i2c-register-read -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="i2c-register-read.dark.svg">
+  <img src="i2c-register-read.svg"
+    alt="A register read on the PF1550 I2C bus: the host writes the register address 0x00, repeats the start
+    with the read address, reads one byte and ends with NACK and STOP.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/i2c-register-read.seq.yml`](../model/i2c-register-read.seq.yml)
+
+Drawn from:
+
+- [`docs/model/i2c-register-read.seq.yml`](../model/i2c-register-read.seq.yml)
+
+## One call through the layers
+
+<!-- figure: one-call-through-the-layers -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="one-call-through-the-layers.dark.svg">
+  <img src="one-call-through-the-layers.svg"
+    alt="One call through the layers: your code calls SetRailVoltage(Ldo1, 2.8 V), the core exchanges frames
+    with the chip through your port and returns the result to your code.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/one-call-through-the-layers.seq.yml`](../model/one-call-through-the-layers.seq.yml)
+
+Drawn from:
+
+- [`docs/model/one-call-through-the-layers.seq.yml`](../model/one-call-through-the-layers.seq.yml)
