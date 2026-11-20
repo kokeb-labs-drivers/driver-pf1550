@@ -1038,7 +1038,7 @@
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top to bottom, each arrow is a call. Your application calls one object, whose public calls are listed from the umbrella header in inc/. The core turns each call into register reads and writes and hands them to the port contract (the CRTP base in inc/*_interface.hpp), which forwards them, at compile time, to the hooks of the port class you write; your port moves the bytes on the bus. The notes on the right say which layers stay the same on every MCU and which one you write. A library without a port contract has only the first two layers.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550.hpp"><code>inc/pf1550.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a> <code>I2cInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550.hpp"><code>inc/pf1550.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a> <code>I2cInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
 </details>
 <h2 id="layers">Layers<a class="headerlink" href="#layers" title="Permanent link">&para;</a></h2>
 <table>
@@ -1052,37 +1052,37 @@
 <tbody>
 <tr>
 <td>Core</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550.hpp"><code>inc/pf1550.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/src/pf1550.ipp"><code>src/pf1550.ipp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550.hpp"><code>inc/pf1550.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/src/pf1550.ipp"><code>src/pf1550.ipp</code></a></td>
 <td>Lifecycle, the typed calls, the guards, the read-back, the bounded waits, errors</td>
 </tr>
 <tr>
 <td>Configuration</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_config.hpp"><code>inc/pf1550_config.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_codec.hpp"><code>inc/pf1550_codec.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_config.hpp"><code>inc/pf1550_config.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_codec.hpp"><code>inc/pf1550_codec.hpp</code></a></td>
 <td><code>Limits</code>, <code>Acknowledgements</code>, every block of <code>Config</code>, <code>Validate()</code>; the datasheet grids as <code>constexpr</code> codecs</td>
 </tr>
 <tr>
 <td>Plans</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_plan.hpp"><code>inc/pf1550_plan.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_plan.hpp"><code>inc/pf1550_plan.hpp</code></a></td>
 <td>A block turned into a list of <code>{register, mask, value}</code> writes, as pure <code>constexpr</code> functions</td>
 </tr>
 <tr>
 <td>Types and registers</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_types.hpp"><code>inc/pf1550_types.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_registers.hpp"><code>inc/pf1550_registers.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_types.hpp"><code>inc/pf1550_types.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_registers.hpp"><code>inc/pf1550_registers.hpp</code></a></td>
 <td><code>Error</code>, <code>Result&lt;T&gt;</code>, the enumerations; the register map with each register's access type</td>
 </tr>
 <tr>
 <td>Interrupts</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_irq.hpp"><code>inc/pf1550_irq.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_irq.hpp"><code>inc/pf1550_irq.hpp</code></a></td>
 <td>The 31 sources: where each lives, the categories, fault classification</td>
 </tr>
 <tr>
 <td>Sequencer</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_sequencer.hpp"><code>inc/pf1550_sequencer.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_sequencer.hpp"><code>inc/pf1550_sequencer.hpp</code></a></td>
 <td>The start-up options of Table 85 and the power-up and power-down timing, as <code>constexpr</code> data</td>
 </tr>
 <tr>
 <td>Port contract</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></td>
 <td>The CRTP base, <code>CtrlPin</code>, <code>GpioSignal</code>, <code>I2cFailure</code>, the <code>I2cPort</code> concept, the register framing</td>
 </tr>
 <tr>
@@ -1092,26 +1092,22 @@
 </tr>
 <tr>
 <td>Kconfig layer</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_kconfig.hpp"><code>inc/pf1550_kconfig.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_kconfig.hpp"><code>inc/pf1550_kconfig.hpp</code></a></td>
 <td>Optional: the limits from ESP-IDF menuconfig</td>
 </tr>
 </tbody>
 </table>
 <h2 id="one-call-through-the-layers">One call through the layers<a class="headerlink" href="#one-call-through-the-layers" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>sequenceDiagram
-    participant App as Your code
-    participant Core as PF1550&lt;Port&gt;
-    participant Port as Your port
-    App-&gt;&gt;Core: SetRailVoltage(Ldo1, 2.8 V)
-    Note over Core: grid code, Limits window, rail declared
-    Core-&gt;&gt;Port: WriteRead(read LDO1_VOLT)
-    Port--&gt;&gt;Core: true, byte
-    Note over Core: read-modify-write, IsWritable()
-    Core-&gt;&gt;Port: Write(LDO1_VOLT, new byte)
-    Core-&gt;&gt;Port: WriteRead(read LDO1_VOLT)
-    Port--&gt;&gt;Core: true, byte
-    Note over Core: equal? else VerifyFailed
-    Core--&gt;&gt;App: Result&lt;void&gt;{Ok}</code></pre>
+<figure class="kb-figure">
+<img src="../diagrams/one-call-through-the-layers.svg#only-light" alt="One call through the layers: your code calls SetRailVoltage(Ldo1, 2.8 V), the core exchanges frames with the chip through your port and returns the result to your code." width="608" height="631" loading="lazy"><img src="../diagrams/one-call-through-the-layers.dark.svg#only-dark" alt="One call through the layers: your code calls SetRailVoltage(Ldo1, 2.8 V), the core exchanges frames with the chip through your port and returns the result to your code." width="608" height="631" loading="lazy">
+<figcaption>One call through the layers</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>Participants, left to right: Your code, PF1550<Port> and Your port. The steps run from top to bottom. Your code sends SetRailVoltage(Ldo1, 2.8 V) to PF1550<Port>. A note over PF1550<Port> says: grid code, Limits window, rail declared. PF1550<Port> sends WriteRead(read LDO1_VOLT) to Your port. Your port returns true, byte to PF1550<Port>. A note over PF1550<Port> says: read-modify-write, IsWritable(). PF1550<Port> sends Write(LDO1_VOLT, new byte) to Your port. PF1550<Port> sends WriteRead(read LDO1_VOLT) to Your port. Your port returns true, byte to PF1550<Port>. A note over PF1550<Port> says: equal? else VerifyFailed. PF1550<Port> returns Result<void>{Ok} to Your code.</p>
+<p>Drawn from: <a href="../model/one-call-through-the-layers.seq.yml"><code>docs/model/one-call-through-the-layers.seq.yml</code></a>.</p>
+</details>
 <p>A write is always a read, a masked change, a write and a read. <code>Configure()</code> is the same, applied to the plan of each
 block, with the charger last: a plan is a short list of <code>{register, mask, value}</code> entries that a test can check
 without a bus.</p>
@@ -1147,27 +1143,27 @@ without a bus.</p>
 <tbody>
 <tr>
 <td>The public API</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550.hpp"><code>inc/pf1550.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550.hpp"><code>inc/pf1550.hpp</code></a></td>
 </tr>
 <tr>
 <td>How a call is implemented</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/src/pf1550.ipp"><code>src/pf1550.ipp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/src/pf1550.ipp"><code>src/pf1550.ipp</code></a></td>
 </tr>
 <tr>
 <td>The configuration and its checks</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_config.hpp"><code>inc/pf1550_config.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_config.hpp"><code>inc/pf1550_config.hpp</code></a></td>
 </tr>
 <tr>
 <td>Register addresses, bits and access types</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_registers.hpp"><code>inc/pf1550_registers.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_registers.hpp"><code>inc/pf1550_registers.hpp</code></a></td>
 </tr>
 <tr>
 <td>The sequencer model</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_sequencer.hpp"><code>inc/pf1550_sequencer.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_sequencer.hpp"><code>inc/pf1550_sequencer.hpp</code></a></td>
 </tr>
 <tr>
 <td>The port contract</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></td>
 </tr>
 </tbody>
 </table>

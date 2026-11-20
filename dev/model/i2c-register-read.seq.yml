@@ -1,0 +1,21 @@
+---
+# Model of the figure 'i2c-register-read'. Edit this file; `kokeb-docs figures` draws it. Never edit the SVGs.
+kind: seq
+id: i2c-register-read
+title: "One register read on the I2C bus"
+alt: >-
+  A register read on the PF1550 I2C bus: the host writes the register address 0x00, repeats the start with the
+  read address, reads one byte and ends with NACK and STOP.
+reads: >-
+  Participants, left to right: Host and PF1550. The steps run from top to bottom. Host sends START, 0x08 + W, 0x00 (DEVICE_ID) to PF1550. Host sends repeated START, 0x08 + R to PF1550. PF1550 returns 0x7C to Host. Host sends NACK, STOP to PF1550.
+print: landscape
+sources:
+  - docs/model/i2c-register-read.seq.yml
+participants:
+  - {id: host, label: "Host", tone: magenta}
+  - {id: pf1550, label: "PF1550", tone: amber}
+steps:
+  - {from: host, to: pf1550, label: "START, 0x08 + W, 0x00 (DEVICE_ID)"}
+  - {from: host, to: pf1550, label: "repeated START, 0x08 + R"}
+  - {from: pf1550, to: host, label: "0x7C", return: true}
+  - {from: host, to: pf1550, label: "NACK, STOP"}

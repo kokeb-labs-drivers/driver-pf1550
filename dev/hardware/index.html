@@ -1211,7 +1211,7 @@ here.</p>
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The PF1550 seen from the top, in its HVQFN-40 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver. The dashed square is the exposed pad.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
 </details>
 <!-- generated: chip-pins -->
 <p>HVQFN-40, 40 pins and an exposed pad (4.1 Pinning, p. 7).</p>
@@ -1615,7 +1615,7 @@ where the datasheet makes them registers.</p>
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The PF1550's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
 </details>
 <p>The register map is split in two pages by address: the PMIC registers <code>0x00</code> to <code>0x6F</code> and the charger registers
 <code>0x80</code> to <code>0x9F</code>, both on the same I2C address.</p>
@@ -1667,13 +1667,16 @@ where the datasheet makes them registers.</p>
 </tr>
 </tbody>
 </table>
-<pre class="mermaid"><code>sequenceDiagram
-    participant Host
-    participant PF1550
-    Host-&gt;&gt;PF1550: START, 0x08 + W, 0x00 (DEVICE_ID)
-    Host-&gt;&gt;PF1550: repeated START, 0x08 + R
-    PF1550--&gt;&gt;Host: 0x7C
-    Host-&gt;&gt;PF1550: NACK, STOP</code></pre>
+<figure class="kb-figure">
+<img src="../diagrams/i2c-register-read.svg#only-light" alt="A register read on the PF1550 I2C bus: the host writes the register address 0x00, repeats the start with the read address, reads one byte and ends with NACK and STOP." width="463" height="343" loading="lazy"><img src="../diagrams/i2c-register-read.dark.svg#only-dark" alt="A register read on the PF1550 I2C bus: the host writes the register address 0x00, repeats the start with the read address, reads one byte and ends with NACK and STOP." width="463" height="343" loading="lazy">
+<figcaption>One register read on the I2C bus</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>Participants, left to right: Host and PF1550. The steps run from top to bottom. Host sends START, 0x08 + W, 0x00 (DEVICE_ID) to PF1550. Host sends repeated START, 0x08 + R to PF1550. PF1550 returns 0x7C to Host. Host sends NACK, STOP to PF1550.</p>
+<p>Drawn from: <a href="../model/i2c-register-read.seq.yml"><code>docs/model/i2c-register-read.seq.yml</code></a>.</p>
+</details>
 <p>An address that nothing acknowledges (no chip, no power, a wrong address) is reported as <code>Error::NoDevice</code> when your
 port has the optional <code>GetLastFailure()</code> hook; without it the driver cannot tell it from another bus fault and returns
 <code>Bus</code>.</p>
@@ -1734,7 +1737,7 @@ values are typical and marked as not confirmed.</p>
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
 </details>
 <!-- generated: chip-parts -->
 <table>
@@ -1830,11 +1833,11 @@ of the driver is in the datasheet: <a href="../datasheet/">Datasheet map</a>.</p
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_registers.hpp"><code>inc/pf1550_registers.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_registers.hpp"><code>inc/pf1550_registers.hpp</code></a></td>
 <td>The register map as the driver uses it, with datasheet table numbers</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/f54fadd6988c992fe2ec36aff83b46505e6cf9d1/inc/pf1550_sequencer.hpp"><code>inc/pf1550_sequencer.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_sequencer.hpp"><code>inc/pf1550_sequencer.hpp</code></a></td>
 <td>The start-up options and the sequencer timing as <code>constexpr</code> data</td>
 </tr>
 </tbody>
