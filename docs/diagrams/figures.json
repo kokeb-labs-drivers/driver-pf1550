@@ -58,5 +58,39 @@
       "inc/pf1550.hpp:public calls",
       "inc/pf1550_i2c_interface.hpp:I2cInterface"
     ]
+  },
+  "i2c-register-read": {
+    "title": "One register read on the I2C bus",
+    "alt": "A register read on the PF1550 I2C bus: the host writes the register address 0x00, repeats the start with the read address, reads one byte and ends with NACK and STOP.",
+    "description": "Participants, left to right: Host and PF1550. The steps run from top to bottom. Host sends START, 0x08 + W, 0x00 (DEVICE_ID) to PF1550. Host sends repeated START, 0x08 + R to PF1550. PF1550 returns 0x7C to Host. Host sends NACK, STOP to PF1550.",
+    "profile": "detail",
+    "width": 463,
+    "source": "docs/model/i2c-register-read.seq.yml",
+    "sources": [
+      "docs/model/i2c-register-read.seq.yml"
+    ],
+    "kind": "seq",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": false,
+    "font": ""
+  },
+  "one-call-through-the-layers": {
+    "title": "One call through the layers",
+    "alt": "One call through the layers: your code calls SetRailVoltage(Ldo1, 2.8 V), the core exchanges frames with the chip through your port and returns the result to your code.",
+    "description": "Participants, left to right: Your code, PF1550<Port> and Your port. The steps run from top to bottom. Your code sends SetRailVoltage(Ldo1, 2.8 V) to PF1550<Port>. A note over PF1550<Port> says: grid code, Limits window, rail declared. PF1550<Port> sends WriteRead(read LDO1_VOLT) to Your port. Your port returns true, byte to PF1550<Port>. A note over PF1550<Port> says: read-modify-write, IsWritable(). PF1550<Port> sends Write(LDO1_VOLT, new byte) to Your port. PF1550<Port> sends WriteRead(read LDO1_VOLT) to Your port. Your port returns true, byte to PF1550<Port>. A note over PF1550<Port> says: equal? else VerifyFailed. PF1550<Port> returns Result<void>{Ok} to Your code.",
+    "profile": "detail",
+    "width": 608,
+    "source": "docs/model/one-call-through-the-layers.seq.yml",
+    "sources": [
+      "docs/model/one-call-through-the-layers.seq.yml"
+    ],
+    "kind": "seq",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": false,
+    "font": ""
   }
 }

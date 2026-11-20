@@ -41,22 +41,14 @@ How the driver is built: three layers, one of them yours, and what happens in ea
 
 ## One call through the layers
 
-```mermaid
-sequenceDiagram
-    participant App as Your code
-    participant Core as PF1550<Port>
-    participant Port as Your port
-    App->>Core: SetRailVoltage(Ldo1, 2.8 V)
-    Note over Core: grid code, Limits window, rail declared
-    Core->>Port: WriteRead(read LDO1_VOLT)
-    Port-->>Core: true, byte
-    Note over Core: read-modify-write, IsWritable()
-    Core->>Port: Write(LDO1_VOLT, new byte)
-    Core->>Port: WriteRead(read LDO1_VOLT)
-    Port-->>Core: true, byte
-    Note over Core: equal? else VerifyFailed
-    Core-->>App: Result<void>{Ok}
-```
+<!-- figure: one-call-through-the-layers -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="diagrams/one-call-through-the-layers.dark.svg">
+  <img src="diagrams/one-call-through-the-layers.svg"
+    alt="One call through the layers: your code calls SetRailVoltage(Ldo1, 2.8 V), the core exchanges frames
+    with the chip through your port and returns the result to your code.">
+</picture>
+<!-- /figure -->
 
 A write is always a read, a masked change, a write and a read. `Configure()` is the same, applied to the plan of each
 block, with the charger last: a plan is a short list of `{register, mask, value}` entries that a test can check
