@@ -187,6 +187,23 @@ Drawn from:
 
 - [`docs/model/i2c-register-read.seq.yml`](../model/i2c-register-read.seq.yml)
 
+## I2C address byte
+
+<!-- figure: i2c-timing -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="i2c-timing.dark.svg">
+  <img src="i2c-timing.svg"
+    alt="I2C address byte of the PF1550: the start condition, the 7-bit address 0x08 with the write bit and
+    the acknowledge, with the clock limit and the minimum edge time the data sheet gives.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/i2c-timing.timing.yml`](../model/i2c-timing.timing.yml)
+
+Drawn from:
+
+- [`docs/model/i2c-timing.timing.yml`](../model/i2c-timing.timing.yml)
+
 ## One call through the layers
 
 <!-- figure: one-call-through-the-layers -->

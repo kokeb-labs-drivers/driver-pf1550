@@ -40,9 +40,10 @@ are the datasheet's own (the printed page numbers).
 | STANDBY pin | 9.2 STANDBY | p. 69 | `RequestStandby()`, `CtrlPin::Standby`, `PowerConfig::standby_inverted` | [API guide](api-guide.md), [Porting](porting.md) |
 | RESETBMCU | 9.3 RESETBMCU | p. 69 | `PowerConfig`, `StartupProfileOf()` | [API guide](api-guide.md) |
 | INTB and the interrupt registers | 9.4 INTB | p. 70 | `ServiceInterrupts()`, `SetIrqMask()`, `CtrlPin::Intb`, `IrqSource` | [API guide](api-guide.md), [Porting](porting.md) |
-| I2C address, clock and register framing | 9.7 Control interface I2C block description | p. 71 | `I2cInterface`, `I2cPort`, `kI2cAddress`, `kMaxClockHz`, every register access | [Hardware](hardware.md), [Porting](porting.md), [Architecture](architecture.md) |
+| I2C address, clock and register framing | 9.7 Control interface I2C block description | p. 71 | `I2cInterface`, `I2cPort`, `kI2cAddress`, `kMaxClockHz`, every register access | [Hardware](hardware.md), [Porting](porting.md), [Architecture](architecture.md), [On the bus](bus.md) |
+| I2C device address 0x08 | 9.7.1 I2C device ID | p. 71 | `kI2cAddress` | [On the bus](bus.md) |
 | ONKEY | 9.6 ONKEY | p. 71 | `PowerConfig::onkey_debounce`, `IrqSource::OnkeyPush` | [API guide](api-guide.md) |
-| I2C operation: single-register transfers | 9.7.2 I2C operation | p. 72 | `Write()`, `WriteRead()`, `kRepeatedStart` | [Porting](porting.md), [Architecture](architecture.md) |
+| I2C operation: single-register transfers | 9.7.2 I2C operation | p. 72 | `Write()`, `WriteRead()`, `kRepeatedStart` | [Porting](porting.md), [Architecture](architecture.md), [On the bus](bus.md) |
 | State machine and transitions | 10 PF1550 state machine | p. 72 | `ReadPowerState()`, `PowerState` | [API guide](api-guide.md), [Architecture](architecture.md) |
 | System ON, OFF, SHIP and CORE_OFF | 10.2 System OFF states | p. 74 | `EnterShip()`, `EnterCoreOff()`, `ShipConfirm`, `CoreOffConfirm` | [API guide](api-guide.md), [Contract](contract.md) |
 | State transition conditions (Table 83) | 10.5 State diagram and transition conditions | p. 76 | `EnterShip()`, `EnterCoreOff()`, `Error::Refused` | [Contract](contract.md) |

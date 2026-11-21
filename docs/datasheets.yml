@@ -43,13 +43,19 @@ topics:
     section: "9.7 Control interface I2C block description"
     page: 71
     driver: "`I2cInterface`, `I2cPort`, `kI2cAddress`, `kMaxClockHz`, every register access"
-    docs: [hardware, porting, architecture]
+    docs: [hardware, porting, architecture, bus]
+  - topic: I2C device address 0x08
+    doc: ds
+    section: "9.7.1 I2C device ID"
+    page: 71
+    driver: "`kI2cAddress`"
+    docs: [bus]
   - topic: "I2C operation: single-register transfers"
     doc: ds
     section: "9.7.2 I2C operation"
     page: 72
     driver: "`Write()`, `WriteRead()`, `kRepeatedStart`"
-    docs: [porting, architecture]
+    docs: [porting, architecture, bus]
   - topic: Register map and access types
     doc: ds
     section: "12 Register map"

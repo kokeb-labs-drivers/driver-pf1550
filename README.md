@@ -194,7 +194,7 @@ class that moves bytes on your I2C bus, and it does the rest.
 
 | | |
 | --- | --- |
-| **Bus** | I2C up to 400 kHz, 7-bit address `0x08` (every listed OTP option; fuses can set `0x08` to `0x0F`), single-register transfers |
+| **Bus** | I2C up to 400 kHz, 7-bit address `0x08` (section 9.7.1 and every OTP option of Table 85; the I2C_ADDR fuse code decodes `0x08` to `0x0F`, Table 147), single-register transfers |
 | **Also drives** | STANDBY (optional `GpioSet()`) and reads INTB (optional `GpioGet()`) |
 | **Driver** | Header-only C++20; no heap, exceptions, RTTI or virtual calls; every call returns `Result<T>` |
 | **Safety** | Mandatory `Limits`, explicit acknowledgements, read-back of every write, guarded SHIP and CORE_OFF |

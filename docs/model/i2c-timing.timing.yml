@@ -1,0 +1,34 @@
+---
+# Model of the figure 'i2c-timing'. Edit this file; `kokeb-docs figures` draws it. Never edit the SVGs.
+# The PF1550 data sheet gives no I2C timing table: section 9.7.2 refers to the I2C-bus specification. The figure
+# draws only what the data sheet gives: the address, the clock limit and the edge rate of sections 9.7 to 9.7.2.
+kind: timing
+id: i2c-timing
+title: I2C address byte
+kicker: On the bus
+alt: >-
+  I2C address byte of the PF1550: the start condition, the 7-bit address 0x08 with the write bit and the
+  acknowledge, with the clock limit and the minimum edge time the data sheet gives.
+reads: >-
+  The two lanes are SCL and SDA, left to right in time. SDA falls while SCL is high (the start), the seven address
+  bits and the write bit follow, each stable while SCL is high, then the PF1550 pulls SDA low for the acknowledge.
+  The table gives the fast-mode clock limit and the edge time the lines must exceed.
+print: landscape
+sources:
+  - docs/model/i2c-timing.timing.yml
+bus: i2c
+refs:
+  i2c-id: {doc: ds, section: "9.7.1 I2C device ID", page: 71}
+  i2c-seq: {doc: ds, section: "9.7.2 I2C operation, Figure 25 I2C sequence", page: 72}
+signals:
+  - {id: scl, label: SCL, wave: "11nnnnnnnnn1"}
+  - {id: sda, label: SDA, wave: "10========0.", data: [A6, A5, A4, A3, A2, A1, A0, W]}
+groups:
+  - {from: 2, to: 9, label: "address 0x08 and W", ref: i2c-id}
+  - {from: 10, to: 11, label: ACK, ref: i2c-seq}
+params:
+  - {id: fscl, symbol: fSCL, label: "SCL clock rate, fast mode", max: 400, unit: kHz, ref: i2c_op}
+  - {id: tr, symbol: tr, label: Rise time of SCL and SDA, min: 20, unit: ns, ref: i2c}
+  - {id: tf, symbol: tf, label: Fall time of SCL and SDA, min: 20, unit: ns, ref: i2c}
+notes:
+  - {text: "7-bit addresses only; no general call.", ref: i2c_op}

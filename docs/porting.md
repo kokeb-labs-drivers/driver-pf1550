@@ -48,7 +48,7 @@ The driver states what the chip needs as `constexpr` values; check your port aga
 
 | Constant | Value | Why |
 | --- | --- | --- |
-| `kI2cAddress` | `0x08` | Default 7-bit address; OTP sets `0x08` to `0x0F` |
+| `kI2cAddress` | `0x08` | 7-bit address of every listed part (section 9.7.1, Table 85); the I2C_ADDR fuse code decodes `0x08` to `0x0F` (Table 147) |
 | `kMaxClockHz` | 400 000 | Fast mode (section 9.7.2) |
 | `kRepeatedStart` | `true` | A register read is a combined write-read with a repeated START; the port must not send a STOP between them |
 | `kMinEdgeNs` | 20 | Shortest SCL and SDA rise and fall time the chip accepts |
