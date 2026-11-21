@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['valid_0',['valid',['../structpf1550_1_1VbusFlags.html#af6e5029b12e82a2aa5bdefe0543fc2c1',1,'pf1550::VbusFlags']]],
+  ['validate_1',['Validate',['../group__pf1550__config.html#ga00bf3291900d37b9b630b79ca885dfce',1,'pf1550']]],
+  ['value_2',['value',['../structpf1550_1_1Result.html#ab96169fbd2ccbefa26b90ff366f1fe55',1,'pf1550::Result::value'],['../structpf1550_1_1Microvolts.html#a3d94d0c04071ca6eaaf8580f8d31d58c',1,'pf1550::Microvolts::value']]],
+  ['variant_3',['variant',['../structpf1550_1_1Snapshot.html#ad657ff4bc97fd904d8d522988e1a9cbd',1,'pf1550::Snapshot']]],
+  ['variantinfo_4',['VariantInfo',['../structpf1550_1_1VariantInfo.html',1,'pf1550']]],
+  ['vbus_5',['vbus',['../structpf1550_1_1ChargerConfig.html#a4b41babb473635f9fd22582a19d66c3f',1,'pf1550::ChargerConfig::vbus'],['../structpf1550_1_1ChargerStatus.html#a9bc8ca334d5ad6c7e10194da85ad5129',1,'pf1550::ChargerStatus::vbus']]],
+  ['vbus2sys_5fdebounce_6',['vbus2sys_debounce',['../structpf1550_1_1VbusOptions.html#a42bf2bc8f3575c08420182314aff6969',1,'pf1550::VbusOptions']]],
+  ['vbus2sys_5fthreshold_7',['vbus2sys_threshold',['../structpf1550_1_1VbusOptions.html#afad19647c641b89d1ebf5517e9e04a51',1,'pf1550::VbusOptions']]],
+  ['vbus2systdb_8',['Vbus2SysTdb',['../group__pf1550__registers.html#ga721ae6206fc925d10182ab893903cd59',1,'pf1550::reg']]],
+  ['vbus2systhreshold_9',['Vbus2SysThreshold',['../group__pf1550__types.html#ga14e2b05c53669e3dfb681d8643514b36',1,'pf1550']]],
+  ['vbusdpmreg_10',['VbusDpmReg',['../group__pf1550__registers.html#ga602882e54489bd0227172b38c3368901',1,'pf1550::reg']]],
+  ['vbusflags_11',['VbusFlags',['../structpf1550_1_1VbusFlags.html',1,'pf1550']]],
+  ['vbuslinilim_12',['VbusLinIlim',['../group__pf1550__registers.html#ga2991a311ff93743d23772a667cacf179',1,'pf1550::reg']]],
+  ['vbusoptions_13',['VbusOptions',['../structpf1550_1_1VbusOptions.html',1,'pf1550']]],
+  ['vbusovtdb_14',['VbusOvTdb',['../group__pf1550__registers.html#gada056e42cdfb20d3acc5bb965a68f42a',1,'pf1550::reg']]],
+  ['verifyfailed_15',['VerifyFailed',['../group__pf1550__types.html#gga0a89cabbc112585d0a257b782fe2ab96a79b7ccc45b143fe9b3137e6a77c138dd',1,'pf1550']]],
+  ['volt_16',['volt',['../structpf1550_1_1RailReadout.html#aab55d474ee77be4dc266485bff20164f',1,'pf1550::RailReadout::volt'],['../structpf1550_1_1LdoConfig.html#a0884a680027db174c54bc96b91fb0762',1,'pf1550::LdoConfig::volt']]],
+  ['voltage_17',['voltage',['../structpf1550_1_1UsbPhyConfig.html#aa75362ac7cb16d5d53e6e6ee813b1472',1,'pf1550::UsbPhyConfig']]],
+  ['voltage_5fmv_18',['voltage_mv',['../structpf1550_1_1CoinCell.html#a46ce7b355959abfd2c3d985795f748dd',1,'pf1550::CoinCell']]],
+  ['vrefddr_19',['vrefddr',['../structpf1550_1_1Config.html#a38f4b1ff89d60a79392eecb31bdaab22',1,'pf1550::Config::vrefddr'],['../group__pf1550__types.html#ggaa25fae884bee32450880d78d2cf6ae09a5c0e90f23028d3929ed9eacee16534f5',1,'pf1550::VrefDdr']]],
+  ['vrefddrconfig_20',['VrefDdrConfig',['../structpf1550_1_1VrefDdrConfig.html',1,'pf1550']]],
+  ['vsnvs_21',['vsnvs',['../structpf1550_1_1Config.html#a868a578825f14fb8870e0a79d1ccfc24',1,'pf1550::Config']]],
+  ['vsnvsconfig_22',['VsnvsConfig',['../structpf1550_1_1VsnvsConfig.html',1,'pf1550']]],
+  ['vsys_5fmin_23',['vsys_min',['../structpf1550_1_1ChargerConfig.html#a9510c4a8849b7f7e615f80e07731a294',1,'pf1550::ChargerConfig']]],
+  ['vsysmin_24',['VsysMin',['../group__pf1550__registers.html#ga158fcca663bff93c80fd5491fea6dfc0',1,'pf1550::reg']]]
+];
