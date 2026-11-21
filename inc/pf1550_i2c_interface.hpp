@@ -76,11 +76,11 @@ struct EnumLast<I2cFailure> {
  * configuration check their settings against these with `static_assert` (handbook KB-CPP-123).
  * @{
  */
-/// Default 7-bit I2C address (section 9.7.1).
+/// Default 7-bit I2C address (section 9.7.1; every OTP option of Table 85).
 inline constexpr uint8_t kI2cAddress = 0x08;
-/// Lowest address OTP can select (`I2C_ADDR[2:0]` = 000).
+/// Lowest address the fuses can select (`I2C_ADDR[2:0]` = 000, Table 147).
 inline constexpr uint8_t kMinI2cAddress = 0x08;
-/// Highest address OTP can select (`I2C_ADDR[2:0]` = 111).
+/// Highest address the fuses can select (`I2C_ADDR[2:0]` = 111, Table 147).
 inline constexpr uint8_t kMaxI2cAddress = 0x0F;
 /// Highest SCL frequency: fast mode (section 9.7.2).
 inline constexpr uint32_t kMaxClockHz = 400'000;

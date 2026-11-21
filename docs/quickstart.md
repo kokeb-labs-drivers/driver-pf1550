@@ -45,8 +45,9 @@ and runs this example on every pull request.
 | GPIO input | INTB | Optional, open drain, active low |
 | 1.7 V to 3.3 V | VDDIO | The I/O supply |
 
-The chip answers at `0x08` unless its OTP set another address (`0x08` to `0x0F`); pass the address as the third
-constructor argument. The [Hardware](hardware.md) page has the full pin list, and the datasheet's example
+The chip answers at `0x08` (section 9.7.1, p. 71, and every option of Table 85, p. 79); a part whose fuses hold
+another code answers at `0x09` to `0x0F` (I2C_ADDR, Table 147, p. 104): pass that address as the third constructor
+argument. The [Hardware](hardware.md) page has the full pin list, and the datasheet's example
 schematic the power connections (battery, supply, regulator outputs and capacitors).
 
 ## 2. Add the driver

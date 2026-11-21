@@ -268,7 +268,8 @@ public:
    * @param port The port; it must outlive the driver.
    * @param config What the driver validates and writes; checked in `EnsureInitialized()`, before
    * any I/O. `Config{}` has no `Limits` and is rejected there.
-   * @param address 7-bit I2C address, 0x08 to 0x0F (OTP selects it, section 9.7.1).
+   * @param address 7-bit I2C address: 0x08 (section 9.7.1), or 0x09 to 0x0F on a part fused
+   * otherwise (Table 147).
    */
   explicit PF1550(Port& port, const Config& config, uint8_t address = kI2cAddress) noexcept
       : bus_(port, address), config_(config) {}

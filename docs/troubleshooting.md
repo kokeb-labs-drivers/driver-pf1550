@@ -31,8 +31,9 @@ Nothing acknowledged the address. This needs the optional `GetLastFailure()` hoo
 `Bus`.
 
 1. Is the chip powered (VSYS, VBUSIN or a battery) and is VDDIO present?
-2. Is the address right? OTP sets it to `0x08` to `0x0F`; pass it as the third constructor argument. Scan the bus
-   with a logic analyser: which address acknowledges?
+2. Is the address right? Every listed OTP option answers at `0x08` (Table 85); a part fused otherwise answers at
+   `0x09` to `0x0F` (I2C_ADDR, Table 147): pass it as the third constructor argument. Scan the bus with a logic
+   analyser: which address acknowledges?
 3. Are SDA and SCL swapped, or missing their pull-ups to VDDIO?
 
 ## EnsureInitialized returns Bus
