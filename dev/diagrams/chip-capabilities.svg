@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1158" viewBox="0 0 1200 1158" role="img" aria-labelledby="chip-capabilities-title chip-capabilities-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-capabilities-title">What the PF1550 does</title>
+<desc id="chip-capabilities-desc">Capability map of the PF1550: Battery charger (supported): Charges one Li-ion cell: charge voltage and current, termination, timers, watchdog and the status LED; Power path (supported): Runs the system from the input while the cell charges: input current limit, VSYS minimum, battery FET; Battery thermistor and JEITA (supported): Reads the cell's thermistor and lowers or stops the charge when the cell is too cold or too hot; Buck regulators (supported): Sets SW1 to SW3 per state (run, standby, sleep), with dynamic voltage scaling on SW1 and SW2; LDOs, VREFDDR and VSNVS (supported): Sets LDO1 to LDO3, the DDR reference, the RTC supply, the coin cell charger and the USB PHY regulator; Interrupts and status (supported): Pulls INTB low on a fault or event; the driver reads, latches and clears each interrupt group; Power states and sequencer (guarded): Run, standby, sleep, core off and ship states, with the order rails start and stop in; OTP start-up configuration (not covered): Fuses hold the start-up sequence, voltages and charger defaults; the driver reads the option, never fuses.</desc>
+<rect x="0.5" y="0.5" width="1199" height="1157" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#7A360E">CAPABILITIES</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#0E1726">What the PF1550 does</text>
+<text x="32" y="115.4" font-size="18" fill="#566070">One card per function of the chip, with how this driver covers it and the registers behind it.</text>
+<rect x="32" y="131.4" width="1136" height="1" fill="#E2E7EE"/>
+<rect x="32" y="149.4" width="365.3" height="283.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="417.3" y="149.4" width="365.3" height="283.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="802.7" y="149.4" width="365.3" height="283.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="32" y="453.3" width="365.3" height="308.6" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="417.3" y="453.3" width="365.3" height="308.6" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="802.7" y="453.3" width="365.3" height="308.6" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="32" y="781.9" width="365.3" height="249.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="417.3" y="781.9" width="365.3" height="249.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<circle cx="78" cy="195.4" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M65 195.4 L91 195.4" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M65 195.4 L66.1 193.2 L67.2 191.1 L68.2 189.3 L69.3 187.9 L70.4 187 L71.5 186.7 L72.6 187 L73.7 187.9 L74.7 189.3 L75.8 191.1 L76.9 193.2 L78 195.4 L79.1 197.6 L80.2 199.7 L81.3 201.5 L82.3 202.9 L83.4 203.8 L84.5 204.1 L85.6 203.8 L86.7 202.9 L87.8 201.5 L88.8 199.7 L89.9 197.6 L91 195.4" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="120" y="201.4" font-size="20" font-weight="700" fill="#0E1726">Battery charger</text>
+<text x="50" y="249.8" font-size="17" fill="#2B3442">Charges one Li-ion cell: charge</text>
+<text x="50" y="274.5" font-size="17" fill="#2B3442">voltage and current, termination,</text>
+<text x="50" y="299.1" font-size="17" fill="#2B3442">timers, watchdog and the status LED</text>
+<rect x="50" y="317.7" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="58" y="335.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<rect x="161.4" y="317.7" width="107.5" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="169.4" y="335.8" font-size="16" font-weight="700" fill="#334155">CHG_OPER</text>
+<rect x="50" y="351.7" width="104.8" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="58" y="369.8" font-size="16" font-weight="700" fill="#334155">BATT_REG</text>
+<rect x="162.8" y="351.7" width="165.5" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="170.8" y="369.8" font-size="16" font-weight="700" fill="#334155">CHG_CURR_CNFG</text>
+<rect x="50" y="385.7" width="85.4" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="58" y="403.8" font-size="16" font-weight="700" fill="#334155">+3 more</text>
+<circle cx="463.3" cy="195.4" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M450.3 188.2 L473.5 188.2" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M469.8 184.5 L473.5 188.2 L469.8 191.8" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M453.2 195.4 L476.4 195.4" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M472.7 191.8 L476.4 195.4 L472.7 199" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M450.3 202.6 L473.5 202.6" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M469.8 199 L473.5 202.6 L469.8 206.2" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="505.3" y="201.4" font-size="20" font-weight="700" fill="#0E1726">Power path</text>
+<text x="435.3" y="249.8" font-size="17" fill="#2B3442">Runs the system from the input while</text>
+<text x="435.3" y="274.5" font-size="17" fill="#2B3442">the cell charges: input current limit,</text>
+<text x="435.3" y="299.1" font-size="17" fill="#2B3442">VSYS minimum, battery FET</text>
+<rect x="435.3" y="317.7" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="443.3" y="335.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<rect x="546.7" y="317.7" width="175.5" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="554.7" y="335.8" font-size="16" font-weight="700" fill="#334155">VBUS_INLIM_CNFG</text>
+<rect x="435.3" y="351.7" width="145.9" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="443.3" y="369.8" font-size="16" font-weight="700" fill="#334155">VBUS_LIN_DPM</text>
+<rect x="589.2" y="351.7" width="164.9" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="597.2" y="369.8" font-size="16" font-weight="700" fill="#334155">VBUS2SYS_CNFG</text>
+<rect x="435.3" y="385.7" width="139" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="443.3" y="403.8" font-size="16" font-weight="700" fill="#334155">BATFET_CNFG</text>
+<circle cx="848.7" cy="195.4" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M845.8 199.7 L845.8 185.3 L851.6 185.3 L851.6 199.7" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="848.7" cy="203.4" r="5.1" fill="none" stroke="#9A4A17" stroke-width="2.5"/>
+<path d="M855.2 189.6 L858.8 189.6" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M855.2 194 L858.8 194" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="890.7" y="188.4" font-size="20" font-weight="700" fill="#0E1726">Battery thermistor and</text>
+<text x="890.7" y="214.4" font-size="20" font-weight="700" fill="#0E1726">JEITA</text>
+<text x="820.7" y="249.8" font-size="17" fill="#2B3442">Reads the cell's thermistor and lowers</text>
+<text x="820.7" y="274.5" font-size="17" fill="#2B3442">or stops the charge when the cell is</text>
+<text x="820.7" y="299.1" font-size="17" fill="#2B3442">too cold or too hot</text>
+<rect x="820.7" y="317.7" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="828.7" y="335.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<rect x="932" y="317.7" width="154.3" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="940" y="335.8" font-size="16" font-weight="700" fill="#334155">THM_REG_CNFG</text>
+<rect x="820.7" y="351.7" width="181.2" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="828.7" y="369.8" font-size="16" font-weight="700" fill="#334155">THM_ADJ_SETTING</text>
+<rect x="1009.9" y="351.7" width="111.3" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="1017.9" y="369.8" font-size="16" font-weight="700" fill="#334155">THM_COLD</text>
+<rect x="820.7" y="385.7" width="100.9" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="828.7" y="403.8" font-size="16" font-weight="700" fill="#334155">THM_HOT</text>
+<circle cx="78" cy="499.3" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M65 506.6 L65 492.1 L72.2 492.1 L72.2 506.6 L79.4 506.6 L79.4 492.1 L86.7 492.1 L86.7 506.6 L91 506.6" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="120" y="505.3" font-size="20" font-weight="700" fill="#0E1726">Buck regulators</text>
+<text x="50" y="553.8" font-size="17" fill="#2B3442">Sets SW1 to SW3 per state (run,</text>
+<text x="50" y="578.4" font-size="17" fill="#2B3442">standby, sleep), with dynamic voltage</text>
+<text x="50" y="603.1" font-size="17" fill="#2B3442">scaling on SW1 and SW2</text>
+<rect x="50" y="621.6" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="58" y="639.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<rect x="161.4" y="621.6" width="106.7" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="169.4" y="639.8" font-size="16" font-weight="700" fill="#334155">SW1_VOLT</text>
+<rect x="50" y="655.6" width="104.7" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="58" y="673.8" font-size="16" font-weight="700" fill="#334155">SW1_CTRL</text>
+<rect x="162.7" y="655.6" width="110.1" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="170.7" y="673.8" font-size="16" font-weight="700" fill="#334155">SW2_VOLT</text>
+<rect x="280.8" y="655.6" width="85.4" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="288.8" y="673.8" font-size="16" font-weight="700" fill="#334155">+3 more</text>
+<circle cx="463.3" cy="499.3" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M465.5 486.3 L454.7 501.5 L462.6 501.5 L461.2 512.4 L472 497.2 L464.1 497.2 Z" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="505.3" y="492.3" font-size="20" font-weight="700" fill="#0E1726">LDOs, VREFDDR and</text>
+<text x="505.3" y="518.3" font-size="20" font-weight="700" fill="#0E1726">VSNVS</text>
+<text x="435.3" y="553.8" font-size="17" fill="#2B3442">Sets LDO1 to LDO3, the DDR</text>
+<text x="435.3" y="578.4" font-size="17" fill="#2B3442">reference, the RTC supply, the coin</text>
+<text x="435.3" y="603.1" font-size="17" fill="#2B3442">cell charger and the USB PHY</text>
+<text x="435.3" y="627.7" font-size="17" fill="#2B3442">regulator</text>
+<rect x="435.3" y="646.3" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="443.3" y="664.4" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<rect x="546.7" y="646.3" width="112.9" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="554.7" y="664.4" font-size="16" font-weight="700" fill="#334155">LDO1_VOLT</text>
+<rect x="435.3" y="680.3" width="110.9" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="443.3" y="698.4" font-size="16" font-weight="700" fill="#334155">LDO1_CTRL</text>
+<rect x="554.2" y="680.3" width="148.4" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="562.2" y="698.4" font-size="16" font-weight="700" fill="#334155">VREFDDR_CTRL</text>
+<rect x="435.3" y="714.3" width="85.4" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="443.3" y="732.4" font-size="16" font-weight="700" fill="#334155">+3 more</text>
+<circle cx="848.7" cy="499.3" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M848.7 487.1 L862.4 510.9 L834.9 510.9 Z" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M848.7 495.7 L848.7 502.2" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="848.7" cy="506.6" r="2" fill="#9A4A17"/>
+<text x="890.7" y="505.3" font-size="20" font-weight="700" fill="#0E1726">Interrupts and status</text>
+<text x="820.7" y="553.8" font-size="17" fill="#2B3442">Pulls INTB low on a fault or event; the</text>
+<text x="820.7" y="578.4" font-size="17" fill="#2B3442">driver reads, latches and clears each</text>
+<text x="820.7" y="603.1" font-size="17" fill="#2B3442">interrupt group</text>
+<rect x="820.7" y="621.6" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="828.7" y="639.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<rect x="932" y="621.6" width="149.2" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="940" y="639.8" font-size="16" font-weight="700" fill="#334155">INT_CATEGORY</text>
+<rect x="820.7" y="655.6" width="91" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="828.7" y="673.8" font-size="16" font-weight="700" fill="#334155">CHG_INT</text>
+<rect x="919.7" y="655.6" width="147.7" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="927.7" y="673.8" font-size="16" font-weight="700" fill="#334155">SW_INT_STAT0</text>
+<rect x="820.7" y="689.6" width="85.1" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="828.7" y="707.8" font-size="16" font-weight="700" fill="#334155">+2 more</text>
+<circle cx="78" cy="827.9" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M80.9 816.4 A11.6 11.6 0 0 0 80.9 839.5" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M80.9 839.5 A9.4 9.4 0 0 1 80.9 816.4" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="120" y="820.9" font-size="20" font-weight="700" fill="#0E1726">Power states and</text>
+<text x="120" y="846.9" font-size="20" font-weight="700" fill="#0E1726">sequencer</text>
+<text x="50" y="882.4" font-size="17" fill="#2B3442">Run, standby, sleep, core off and ship</text>
+<text x="50" y="907" font-size="17" fill="#2B3442">states, with the order rails start and</text>
+<text x="50" y="931.7" font-size="17" fill="#2B3442">stop in</text>
+<rect x="50" y="950.2" width="87.5" height="26" rx="13" fill="#8A3C0B"/>
+<text x="58" y="968.4" font-size="16" font-weight="700" fill="#FFFFFF">Guarded</text>
+<rect x="145.5" y="950.2" width="111.8" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="153.5" y="968.4" font-size="16" font-weight="700" fill="#334155">PWRCTRL0</text>
+<rect x="265.3" y="950.2" width="111.3" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="273.3" y="968.4" font-size="16" font-weight="700" fill="#334155">PWRCTRL3</text>
+<rect x="50" y="984.2" width="121.5" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="58" y="1002.4" font-size="16" font-weight="700" fill="#334155">STATE_INFO</text>
+<rect x="179.5" y="984.2" width="85.1" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="187.5" y="1002.4" font-size="16" font-weight="700" fill="#334155">+2 more</text>
+<circle cx="463.3" cy="827.9" r="28" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1.2"/>
+<path d="M456.1 819.3 L470.6 819.3 L470.6 836.6 L456.1 836.6 Z" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M451.8 823.6 L456.1 823.6" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M451.8 827.9 L456.1 827.9" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M451.8 832.3 L456.1 832.3" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M470.6 823.6 L474.9 823.6" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M470.6 827.9 L474.9 827.9" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M470.6 832.3 L474.9 832.3" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="505.3" y="820.9" font-size="20" font-weight="700" fill="#0E1726">OTP start-up</text>
+<text x="505.3" y="846.9" font-size="20" font-weight="700" fill="#0E1726">configuration</text>
+<text x="435.3" y="882.4" font-size="17" fill="#2B3442">Fuses hold the start-up sequence,</text>
+<text x="435.3" y="907" font-size="17" fill="#2B3442">voltages and charger defaults; the</text>
+<text x="435.3" y="931.7" font-size="17" fill="#2B3442">driver reads the option, never fuses</text>
+<rect x="435.3" y="950.2" width="117.9" height="26" rx="13" fill="#334155"/>
+<text x="443.3" y="968.4" font-size="16" font-weight="700" fill="#FFFFFF">Not covered</text>
+<rect x="561.2" y="950.2" width="128.5" height="26" rx="13" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="569.2" y="968.4" font-size="16" font-weight="700" fill="#334155">OTP_FLAVOR</text>
+<rect x="32" y="1044.3" width="14" height="14" rx="4" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<text x="54" y="1058.9" font-size="16" fill="#566070">Supported: the driver covers it and a host test checks it</text>
+<rect x="32" y="1076.3" width="14" height="14" rx="4" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<text x="54" y="1090.9" font-size="16" fill="#566070">Guarded: covered, behind an explicit acknowledgement because a wrong value can do harm</text>
+<rect x="32" y="1108.3" width="14" height="14" rx="4" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4"/>
+<text x="54" y="1122.9" font-size="16" fill="#566070">Not covered: the chip has it and the driver leaves it alone</text>
+</svg>

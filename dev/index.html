@@ -100,72 +100,6 @@
   <meta property="og:description" content="C++20 driver for the NXP PF1550 power management IC (single-cell Li-ion linear charger, three buck regulators, three LDOs) on I2C">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-pf1550/latest/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -537,10 +471,65 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-get" class="md-nav__link">
+  <a href="#what-it-does" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you get
+        What it does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where it is used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inside-the-chip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inside the chip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pins-and-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pins and wiring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Driver coverage
       
     </span>
   </a>
@@ -585,6 +574,8 @@
   
     
     
+      
+        
       
         
       
@@ -868,10 +859,65 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-get" class="md-nav__link">
+  <a href="#what-it-does" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you get
+        What it does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where it is used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inside-the-chip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inside the chip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pins-and-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pins and wiring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Driver coverage
       
     </span>
   </a>
@@ -928,7 +974,7 @@
 
 
 <div class="kb-hero">
-<p><span class="kb-kicker">Driver</span></p>
+<p><span class="kb-kicker">Power management IC with Li-ion charger</span></p>
 <h1 id="pf1550-driver">PF1550 Driver<a class="headerlink" href="#pf1550-driver" title="Permanent link">&para;</a></h1>
 <p>A C++20 driver for the PF1550 power management IC. It starts the chip, checks the charger against limits
 you declare, writes a typed configuration with read-back, and controls the charger, the bucks, the LDOs and the
@@ -937,31 +983,191 @@ power states, on any MCU.</p>
 <a class="md-button" href="api-guide/">API guide</a>
 <a class="md-button" href="https://github.com/kokeb-labs-drivers/driver-pf1550">Source on GitHub</a></p>
 </div>
+<!-- generated: chip-summary -->
+<p>The <strong>PF1550</strong> is a power management IC for battery-powered boards built around a low-power application processor: it
+charges a single Li-ion cell and supplies the processor, the memory and the peripherals from three buck converters,
+three linear regulators and an RTC supply (1 General description, p. 1).</p>
+<!-- /generated -->
+
+<figure class="kb-figure">
+<img src="diagrams/chip-hero.svg#only-light" alt="Overview of the PF1550, a power management IC for battery-powered boards built around a low-power application processor: it charges a single Li-ion cell and supplies the processor, the memory and the peripherals from three buck converters, three linear regulators and an RTC supply. A MCU talks to it over I2C; it drives Supply rails, then Processor and memory; it reads back Charger input, Li-ion cell, Push buttons. Headline figures: 4.1 to 6.0 V charger input on VBUSIN, USB or adapter; 3 x 1.0 A buck converters, two with voltage scaling; 3 LDOs 300 mA, 400 mA and 300 mA; up to 1 A charge current from 100 mA, charge voltage 3.5 to 4.44 V; 400 kHz I2C, fast mode, 7-bit address; 5 x 5 mm 40-pin QFN with exposed pad." width="1200" height="890"><img src="diagrams/chip-hero.dark.svg#only-dark" alt="Overview of the PF1550, a power management IC for battery-powered boards built around a low-power application processor: it charges a single Li-ion cell and supplies the processor, the memory and the peripherals from three buck converters, three linear regulators and an RTC supply. A MCU talks to it over I2C; it drives Supply rails, then Processor and memory; it reads back Charger input, Li-ion cell, Push buttons. Headline figures: 4.1 to 6.0 V charger input on VBUSIN, USB or adapter; 3 x 1.0 A buck converters, two with voltage scaling; 3 LDOs 300 mA, 400 mA and 300 mA; up to 1 A charge current from 100 mA, charge voltage 3.5 to 4.44 V; 400 kHz I2C, fast mode, 7-bit address; 5 x 5 mm 40-pin QFN with exposed pad." width="1200" height="890">
+<figcaption>PF1550</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The PF1550 in the middle, drawn as its HVQFN-40 package. On the left the MCU that runs the driver, joined to it by I2C. To the right, what the chip drives, in the order the power flows. Below it, what the chip reads back. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
+</details>
+<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-capabilities.svg#only-light" alt="Capability map of the PF1550: Battery charger (supported): Charges one Li-ion cell: charge voltage and current, termination, timers, watchdog and the status LED; Power path (supported): Runs the system from the input while the cell charges: input current limit, VSYS minimum, battery FET; Battery thermistor and JEITA (supported): Reads the cell&#x27;s thermistor and lowers or stops the charge when the cell is too cold or too hot; Buck regulators (supported): Sets SW1 to SW3 per state (run, standby, sleep), with dynamic voltage scaling on SW1 and SW2; LDOs, VREFDDR and VSNVS (supported): Sets LDO1 to LDO3, the DDR reference, the RTC supply, the coin cell charger and the USB PHY regulator; Interrupts and status (supported): Pulls INTB low on a fault or event; the driver reads, latches and clears each interrupt group; Power states and sequencer (guarded): Run, standby, sleep, core off and ship states, with the order rails start and stop in; OTP start-up configuration (not covered): Fuses hold the start-up sequence, voltages and charger defaults; the driver reads the option, never fuses." width="1200" height="1158" loading="lazy"><img src="diagrams/chip-capabilities.dark.svg#only-dark" alt="Capability map of the PF1550: Battery charger (supported): Charges one Li-ion cell: charge voltage and current, termination, timers, watchdog and the status LED; Power path (supported): Runs the system from the input while the cell charges: input current limit, VSYS minimum, battery FET; Battery thermistor and JEITA (supported): Reads the cell&#x27;s thermistor and lowers or stops the charge when the cell is too cold or too hot; Buck regulators (supported): Sets SW1 to SW3 per state (run, standby, sleep), with dynamic voltage scaling on SW1 and SW2; LDOs, VREFDDR and VSNVS (supported): Sets LDO1 to LDO3, the DDR reference, the RTC supply, the coin cell charger and the USB PHY regulator; Interrupts and status (supported): Pulls INTB low on a fault or event; the driver reads, latches and clears each interrupt group; Power states and sequencer (guarded): Run, standby, sleep, core off and ship states, with the order rails start and stop in; OTP start-up configuration (not covered): Fuses hold the start-up sequence, voltages and charger defaults; the driver reads the option, never fuses." width="1200" height="1158" loading="lazy">
+<figcaption>What the PF1550 does</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>Each card is one function of the PF1550: an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the chip registers behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
+</details>
+<h2 id="where-it-is-used">Where it is used<a class="headerlink" href="#where-it-is-used" title="Permanent link">&para;</a></h2>
+<!-- generated: chip-uses -->
+<ul>
+<li>Smart mobile and wearable devices</li>
+<li>Low-power IoT devices</li>
+<li>Wireless game controllers</li>
+<li>Embedded monitoring systems</li>
+<li>Home automation</li>
+<li>Point-of-sale terminals</li>
+<li>E-readers</li>
+</ul>
+<p>Uses named by the datasheet (1.2 Applications, p. 2).</p>
+<!-- /generated -->
+
+<h2 id="inside-the-chip">Inside the chip<a class="headerlink" href="#inside-the-chip" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-blocks.svg#only-light" alt="Block diagram of the PF1550: its function blocks, how they connect and which package pins reach each block." width="1200" height="687" loading="lazy"><img src="diagrams/chip-blocks.dark.svg#only-dark" alt="Block diagram of the PF1550: its function blocks, how they connect and which package pins reach each block." width="1200" height="687" loading="lazy">
+<figcaption>Inside the PF1550</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The PF1550's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
+</details>
+<h2 id="pins-and-wiring">Pins and wiring<a class="headerlink" href="#pins-and-wiring" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-pinout.svg#only-light" alt="Pinout of the PF1550 in HVQFN-40, top view: 40 pins and an exposed pad, each with its name, its electrical type as a colour and the driver hook that uses it." width="1182" height="1269" loading="lazy"><img src="diagrams/chip-pinout.dark.svg#only-dark" alt="Pinout of the PF1550 in HVQFN-40, top view: 40 pins and an exposed pad, each with its name, its electrical type as a colour and the driver hook that uses it." width="1182" height="1269" loading="lazy">
+<figcaption>PF1550 pinout, HVQFN-40</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The PF1550 seen from the top, in its HVQFN-40 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver. The dashed square is the exposed pad.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
+</details>
+<figure class="kb-figure">
+<img src="diagrams/chip-wiring-typical.svg#only-light" alt="Wiring of the PF1550 for the Control connections to a host processor: Host I2C SDA to SDA (Write(), WriteRead()); Host I2C SCL to SCL (Write(), WriteRead()); Host GPIO (STANDBY) to STANDBY (GpioSet(CtrlPin::Standby)); Host GPIO (INTB) to INTB (GpioGet(CtrlPin::Intb)). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="938" loading="lazy"><img src="diagrams/chip-wiring-typical.dark.svg#only-dark" alt="Wiring of the PF1550 for the Control connections to a host processor: Host I2C SDA to SDA (Write(), WriteRead()); Host I2C SCL to SCL (Write(), WriteRead()); Host GPIO (STANDBY) to STANDBY (GpioSet(CtrlPin::Standby)); Host GPIO (INTB) to INTB (GpioGet(CtrlPin::Intb)). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="938" loading="lazy">
+<figcaption>Wiring: Control connections to a host processor</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The Host on the left, the PF1550 in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
+</details>
+<p>Every pin, the bus settings, the package and the power: <a href="hardware/">Hardware</a>.</p>
+<h2 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<p>Wire the chip as above, write the port (<a href="porting/">Porting</a>), then declare your limits and start the driver:</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"pf1550.hpp"</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">start_pmic</span><span class="p">(</span><span class="n">MyPort</span><span class="o">&amp;</span><span class="w"> </span><span class="n">port</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="n">pf1550</span><span class="o">::</span><span class="n">Config</span><span class="w"> </span><span class="n">config</span><span class="p">{};</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="n">config</span><span class="p">.</span><span class="n">limits</span><span class="p">.</span><span class="n">cell_max_mv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4200</span><span class="p">;</span><span class="w">          </span><span class="c1">// from your cell's data sheet</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="n">config</span><span class="p">.</span><span class="n">limits</span><span class="p">.</span><span class="n">cell_max_charge_ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">500</span><span class="p">;</span><span class="w">    </span><span class="c1">// from your cell's data sheet</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="n">config</span><span class="p">.</span><span class="n">limits</span><span class="p">.</span><span class="n">input_max_ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w">         </span><span class="c1">// what your supply delivers</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="n">pf1550</span><span class="o">::</span><span class="n">PF1550</span><span class="o">&lt;</span><span class="n">MyPort</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pmic</span><span class="p">(</span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">);</span><span class="w"> </span><span class="c1">// no I/O yet</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pmic</span><span class="p">.</span><span class="n">EnsureInitialized</span><span class="p">();</span><span class="w"> </span><span class="o">!</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 1. bus up, DEVICE_ID, charger as found</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">error</span><span class="p">);</span><span class="w"> </span><span class="c1">//    NoDevice, DeviceIdMismatch, Unsafe, OutOfLimits ...</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pmic</span><span class="p">.</span><span class="n">ReadChargerStatus</span><span class="p">();</span><span class="w"> </span><span class="c1">// 2. read only</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">status</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">status</span><span class="p">.</span><span class="n">error</span><span class="p">);</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">status</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="n">fault</span><span class="p">);</span><span class="w"> </span><span class="c1">// 3. 0 is Fault::None</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>The steps explained: <a href="quickstart/">Quickstart</a>.</p>
+<h2 id="driver-coverage">Driver coverage<a class="headerlink" href="#driver-coverage" title="Permanent link">&para;</a></h2>
+<!-- generated: chip-coverage -->
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>What the chip does</th>
+<th>Driver API</th>
+<th>Registers</th>
+<th>Status</th>
+<th>Datasheet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="api-guide/#charge">Battery charger</a></td>
+<td>Charges one Li-ion cell: charge voltage and current, termination, timers, watchdog and the status LED (charging starts only through SetChargerMode, within the Limits you declare)</td>
+<td><code>SetChargerMode</code>, <code>RestartCharger</code>, <code>ServiceChargerWatchdog</code>, <code>ReadChargerStatus</code>, <code>CheckChargerAgainstLimits</code></td>
+<td><code>CHG_OPER</code>, <code>BATT_REG</code>, <code>CHG_CURR_CNFG</code>, <code>CHG_EOC_CNFG</code>, <code>CHG_TMR</code>, <code>LED_CNFG</code></td>
+<td>Supported</td>
+<td>8, p. 42</td>
+</tr>
+<tr>
+<td><a href="configuration/#charger-chargerconfig">Power path</a></td>
+<td>Runs the system from the input while the cell charges: input current limit, VSYS minimum, battery FET</td>
+<td><code>Configure</code>, <code>VbusOptions</code>, <code>BatfetConfig</code></td>
+<td><code>VBUS_INLIM_CNFG</code>, <code>VBUS_LIN_DPM</code>, <code>VBUS2SYS_CNFG</code>, <code>BATFET_CNFG</code></td>
+<td>Supported</td>
+<td>8.7, p. 55</td>
+</tr>
+<tr>
+<td><a href="configuration/#charger-chargerconfig">Battery thermistor and JEITA</a></td>
+<td>Reads the cell's thermistor and lowers or stops the charge when the cell is too cold or too hot</td>
+<td><code>Configure</code>, <code>JeitaConfig</code></td>
+<td><code>THM_REG_CNFG</code>, <code>THM_ADJ_SETTING</code>, <code>THM_COLD</code>, <code>THM_HOT</code></td>
+<td>Supported</td>
+<td>8.7.3, p. 56</td>
+</tr>
+<tr>
+<td><a href="api-guide/#rails">Buck regulators</a></td>
+<td>Sets SW1 to SW3 per state (run, standby, sleep), with dynamic voltage scaling on SW1 and SW2</td>
+<td><code>SetRailVoltage</code>, <code>SetRailModes</code>, <code>ReadRail</code>, <code>BuckConfig</code></td>
+<td><code>SW1_VOLT</code>, <code>SW1_CTRL</code>, <code>SW2_VOLT</code>, <code>SW2_CTRL</code>, <code>SW3_VOLT</code>, <code>SW3_CTRL</code></td>
+<td>Supported</td>
+<td>6.1, p. 25</td>
+</tr>
+<tr>
+<td><a href="api-guide/#rails">LDOs, VREFDDR and VSNVS</a></td>
+<td>Sets LDO1 to LDO3, the DDR reference, the RTC supply, the coin cell charger and the USB PHY regulator (the LDO1 and LDO3 load switch mode needs a confirmation token)</td>
+<td><code>SetRailVoltage</code>, <code>SetRailModes</code>, <code>EnableLoadSwitch</code>, <code>LdoConfig</code>, <code>CoinCell</code></td>
+<td><code>LDO1_VOLT</code>, <code>LDO1_CTRL</code>, <code>VREFDDR_CTRL</code>, <code>VSNVS_CTRL</code>, <code>COINCELL_CONTROL</code>, <code>USB_PHY_LDO_CNFG</code></td>
+<td>Supported</td>
+<td>7, p. 34</td>
+</tr>
+<tr>
+<td><a href="api-guide/#interrupts">Interrupts and status</a></td>
+<td>Pulls INTB low on a fault or event; the driver reads, latches and clears each interrupt group</td>
+<td><code>ServiceInterrupts</code>, <code>SetIrqMask</code>, <code>ReadCategories</code>, <code>GetLatchedEvents</code>, <code>ReadSnapshot</code></td>
+<td><code>INT_CATEGORY</code>, <code>CHG_INT</code>, <code>SW_INT_STAT0</code>, <code>LDO_INT_STAT0</code>, <code>MISC_INT_STAT0</code></td>
+<td>Supported</td>
+<td>9.4, p. 70</td>
+</tr>
+<tr>
+<td><a href="api-guide/#power-states">Power states and sequencer</a></td>
+<td>Run, standby, sleep, core off and ship states, with the order rails start and stop in (SHIP and CORE_OFF need a confirmation token, the power-down order an acknowledgement)</td>
+<td><code>RequestStandby</code>, <code>EnterShip</code>, <code>EnterCoreOff</code>, <code>ReadPowerState</code>, <code>SetPowerDownSequence</code></td>
+<td><code>PWRCTRL0</code>, <code>PWRCTRL3</code>, <code>STATE_INFO</code>, <code>SW1_PWRDN_SEQ</code>, <code>LDO1_PWRDN_SEQ</code></td>
+<td>Guarded</td>
+<td>10, p. 72</td>
+</tr>
+<tr>
+<td><a href="datasheet/#what-is-not-covered">OTP start-up configuration</a></td>
+<td>Fuses hold the start-up sequence, voltages and charger defaults; the driver reads the option, never fuses</td>
+<td><code>ReadVariant</code></td>
+<td><code>OTP_FLAVOR</code></td>
+<td>Not covered</td>
+<td>11.2, p. 79</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Supported</strong>: the driver covers it and a host test checks it; <strong>Guarded</strong>: covered, behind an explicit acknowledgement
+because a wrong value can do harm; <strong>Not covered</strong>: the chip has it and the driver leaves it alone.</p>
+<p>From <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <code>kokeb-docs hardware --check</code> confirms that every API name is in
+<code>inc/pf1550.hpp</code>, <code>inc/pf1550_config.hpp</code>, <code>inc/pf1550_types.hpp</code> and every register in <code>inc/pf1550_registers.hpp</code>.</p>
+<!-- /generated -->
+
 <p>The driver has no platform code. You give it a small class that brings the bus up and moves bytes; it does the
 rest: the limit and acknowledgement checks, the register framing, the write order the datasheet needs, the read-backs,
 the bounded waits and the error mapping.</p>
-<div class="kb-chip">
-<div class="kb-chip__head">
-<span class="kb-chip__kicker">Power management IC</span>
-<span class="kb-chip__name">PF1550</span>
-<span class="kb-chip__vendor">NXP Semiconductors</span>
-</div>
-<dl>
-<dt>Charger</dt>
-<dd>Linear single-cell charger with power path, 3.5 V to 4.44 V, 100 mA to 1 A, JEITA, watchdog, LED driver</dd>
-<dt>Regulators</dt>
-<dd>SW1 and SW2 buck with DVS, SW3 buck, LDO1 to LDO3, VREFDDR, VSNVS, coin cell charger</dd>
-<dt>Interface</dt>
-<dd>I2C up to 400 kHz; 7-bit address <code>0x08</code> to <code>0x0F</code> set by OTP; single-register transfers</dd>
-<dt>States</dt>
-<dd>Run, Standby, Sleep, SHIP, CORE_OFF; power-up and power-down sequencer</dd>
-<dt>Interrupts</dt>
-<dd>INTB, 31 sources in 8 groups, each with a status, mask and sense register</dd>
-<dt>Supply</dt>
-<dd>Charger input 4.1 V to 6.0 V; I/O 1.7 V to 3.3 V</dd>
-</dl>
-</div>
-<h2 id="what-you-get">What you get<a class="headerlink" href="#what-you-get" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>One object per chip.</strong> <code>PF1550&lt;YourPort&gt;</code> takes a reference to your port and a <code>Config</code>, and does no I/O until
   <code>EnsureInitialized()</code>. See <a href="api-guide/">API guide</a>.</li>

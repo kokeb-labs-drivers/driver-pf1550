@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="681" viewBox="0 0 640 681" role="img" aria-labelledby="i2c-timing-title i2c-timing-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="i2c-timing-title">I2C address byte</title>
+<desc id="i2c-timing-desc">I2C address byte of the PF1550: the start condition, the 7-bit address 0x08 with the write bit and the acknowledge, with the clock limit and the minimum edge time the data sheet gives.</desc>
+<rect x="0.5" y="0.5" width="639" height="680" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="44.4" font-size="13" font-weight="700" letter-spacing="1.2" fill="#7A360E">ON THE BUS</text>
+<text x="32" y="76.2" font-size="24" font-weight="700" fill="#0E1726">I2C address byte</text>
+<text x="32" y="102.7" font-size="15" fill="#566070">Datasheet: 9.7.2 I2C operation, p. 72; 9.7 Control interface I2C block</text>
+<text x="32" y="124.5" font-size="15" fill="#566070">description, p. 71; 9.7.1 I2C device ID, p. 71; 9.7.2 I2C operation, Figure 25</text>
+<text x="32" y="146.2" font-size="15" fill="#566070">I2C sequence, p. 72.</text>
+<rect x="32" y="162.2" width="576" height="1" fill="#E2E7EE"/>
+<path d="M88 222.4 L88 306.4" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M130.8 222.4 L130.8 306.4" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M173.7 222.4 L173.7 306.4" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M216.5 222.4 L216.5 306.4" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M259.3 222.4 L259.3 306.4" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M302.2 222.4 L302.2 306.4" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M345 222.4 L345 306.4" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M387.8 222.4 L387.8 306.4" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M430.7 222.4 L430.7 306.4" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M473.5 222.4 L473.5 306.4" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M516.3 222.4 L516.3 306.4" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M559.2 222.4 L559.2 306.4" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M602 222.4 L602 306.4" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M32 352.5 L608 352.5" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M32 425.3 L608 425.3" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M32 498.2 L608 498.2" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M32 571 L608 571" fill="none" stroke="#E2E7EE" stroke-width="1"/>
+<path d="M174.7 213.4 L174.7 208.4 L472.5 208.4 L472.5 213.4" fill="none" stroke="#64748B" stroke-width="1.4"/>
+<path d="M517.3 213.4 L517.3 208.4 L558.2 208.4 L558.2 213.4" fill="none" stroke="#64748B" stroke-width="1.4"/>
+<path d="M88 227.4 L130.8 227.4 L173.7 227.4 L173.7 227.4 L173.7 253.4 L195.1 253.4 L195.1 253.4 L195.1 227.4 L216.5 227.4 L216.5 227.4 L216.5 253.4 L237.9 253.4 L237.9 253.4 L237.9 227.4 L259.3 227.4 L259.3 227.4 L259.3 253.4 L280.8 253.4 L280.8 253.4 L280.8 227.4 L302.2 227.4 L302.2 227.4 L302.2 253.4 L323.6 253.4 L323.6 253.4 L323.6 227.4 L345 227.4 L345 227.4 L345 253.4 L366.4 253.4 L366.4 253.4 L366.4 227.4 L387.8 227.4 L387.8 227.4 L387.8 253.4 L409.2 253.4 L409.2 253.4 L409.2 227.4 L430.7 227.4 L430.7 227.4 L430.7 253.4 L452.1 253.4 L452.1 253.4 L452.1 227.4 L473.5 227.4 L473.5 227.4 L473.5 253.4 L494.9 253.4 L494.9 253.4 L494.9 227.4 L516.3 227.4 L516.3 227.4 L516.3 253.4 L537.8 253.4 L537.8 253.4 L537.8 227.4 L559.2 227.4 L602 227.4" fill="none" stroke="#2B3442" stroke-width="2"/>
+<path d="M88 275.4 L130.8 275.4 L130.8 275.4 L130.8 301.4 L173.7 301.4" fill="none" stroke="#2B3442" stroke-width="2"/>
+<path d="M173.7 301.4 L173.7 288.4" fill="none" stroke="#2B3442" stroke-width="2"/>
+<path d="M516.3 301.4 L602 301.4" fill="none" stroke="#2B3442" stroke-width="2"/>
+<path d="M173.7 288.4 L178.7 275.4 L211.5 275.4 L216.5 288.4 L211.5 301.4 L178.7 301.4 Z" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M216.5 288.4 L221.5 275.4 L254.3 275.4 L259.3 288.4 L254.3 301.4 L221.5 301.4 Z" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M259.3 288.4 L264.3 275.4 L297.2 275.4 L302.2 288.4 L297.2 301.4 L264.3 301.4 Z" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M302.2 288.4 L307.2 275.4 L340 275.4 L345 288.4 L340 301.4 L307.2 301.4 Z" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M345 288.4 L350 275.4 L382.8 275.4 L387.8 288.4 L382.8 301.4 L350 301.4 Z" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M387.8 288.4 L392.8 275.4 L425.7 275.4 L430.7 288.4 L425.7 301.4 L392.8 301.4 Z" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M430.7 288.4 L435.7 275.4 L468.5 275.4 L473.5 288.4 L468.5 301.4 L435.7 301.4 Z" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M473.5 288.4 L478.5 275.4 L511.3 275.4 L516.3 288.4 L511.3 301.4 L478.5 301.4 Z" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="32" y="585" width="576" height="65.1" rx="10" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="323.6" y="197.5" font-size="14" font-weight="600" text-anchor="middle" fill="#334155">address 0x08 and W</text>
+<text x="537.8" y="197.5" font-size="14" font-weight="600" text-anchor="middle" fill="#334155">ACK</text>
+<text x="32" y="245.8" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">SCL</text>
+<text x="32" y="293.8" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">SDA</text>
+<text x="195.1" y="293.4" font-size="14" font-weight="600" text-anchor="middle" fill="#1E429F">A6</text>
+<text x="237.9" y="293.4" font-size="14" font-weight="600" text-anchor="middle" fill="#1E429F">A5</text>
+<text x="280.8" y="293.4" font-size="14" font-weight="600" text-anchor="middle" fill="#1E429F">A4</text>
+<text x="323.6" y="293.4" font-size="14" font-weight="600" text-anchor="middle" fill="#1E429F">A3</text>
+<text x="366.4" y="293.4" font-size="14" font-weight="600" text-anchor="middle" fill="#1E429F">A2</text>
+<text x="409.2" y="293.4" font-size="14" font-weight="600" text-anchor="middle" fill="#1E429F">A1</text>
+<text x="452.1" y="293.4" font-size="14" font-weight="600" text-anchor="middle" fill="#1E429F">A0</text>
+<text x="494.9" y="293.4" font-size="14" font-weight="600" text-anchor="middle" fill="#1E429F">W</text>
+<text x="32" y="336.8" font-size="17" font-weight="700" fill="#0E1726">Timing values</text>
+<text x="32" y="373.2" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">fSCL</text>
+<text x="608" y="373.2" font-size="15" font-weight="700" text-anchor="end" fill="#0E1726">max 400 kHz</text>
+<text x="32" y="393.5" font-size="15" fill="#2B3442">SCL clock rate, fast mode</text>
+<text x="32" y="413.6" font-size="14" fill="#566070">Datasheet 9.7.2 I2C operation, p. 72</text>
+<text x="32" y="446.1" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">tr</text>
+<text x="608" y="446.1" font-size="15" font-weight="700" text-anchor="end" fill="#0E1726">min 20 ns</text>
+<text x="32" y="466.3" font-size="15" fill="#2B3442">Rise time of SCL and SDA</text>
+<text x="32" y="486.5" font-size="14" fill="#566070">Datasheet 9.7 Control interface I2C block description, p. 71</text>
+<text x="32" y="519" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">tf</text>
+<text x="608" y="519" font-size="15" font-weight="700" text-anchor="end" fill="#0E1726">min 20 ns</text>
+<text x="32" y="539.2" font-size="15" fill="#2B3442">Fall time of SCL and SDA</text>
+<text x="32" y="559.3" font-size="14" fill="#566070">Datasheet 9.7 Control interface I2C block description, p. 71</text>
+<text x="46" y="613.5" font-size="17" font-weight="700" fill="#334155">Notes</text>
+<text x="46" y="633.9" font-size="15" fill="#334155">7-bit addresses only; no general call.</text>
+</svg>

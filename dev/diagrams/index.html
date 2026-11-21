@@ -102,72 +102,6 @@
   <meta property="og:description" content="C++20 driver for the NXP PF1550 power management IC (single-cell Li-ion linear charger, three buck regulators, three LDOs) on I2C">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-pf1550/latest/diagrams/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -505,6 +439,8 @@
   
     
     
+      
+        
       
         
       
@@ -1043,10 +979,32 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-the-pf1550-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the PF1550 does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pf1550-control-connections-to-a-host-processor" class="md-nav__link">
     <span class="md-ellipsis">
       
         PF1550: Control connections to a host processor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pf1550" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PF1550
       
     </span>
   </a>
@@ -1076,6 +1034,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#wiring-control-connections-to-a-host-processor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wiring: Control connections to a host processor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-layers-one-of-them-yours" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1091,6 +1060,17 @@
     <span class="md-ellipsis">
       
         One register read on the I2C bus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i2c-address-byte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I2C address byte
       
     </span>
   </a>
@@ -1148,13 +1128,30 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The PF1550's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></li>
+</ul>
+<h2 id="what-the-pf1550-does">What the PF1550 does<a class="headerlink" href="#what-the-pf1550-does" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-capabilities.svg#only-light" alt="Capability map of the PF1550: Battery charger (supported): Charges one Li-ion cell: charge voltage and current, termination, timers, watchdog and the status LED; Power path (supported): Runs the system from the input while the cell charges: input current limit, VSYS minimum, battery FET; Battery thermistor and JEITA (supported): Reads the cell&#x27;s thermistor and lowers or stops the charge when the cell is too cold or too hot; Buck regulators (supported): Sets SW1 to SW3 per state (run, standby, sleep), with dynamic voltage scaling on SW1 and SW2; LDOs, VREFDDR and VSNVS (supported): Sets LDO1 to LDO3, the DDR reference, the RTC supply, the coin cell charger and the USB PHY regulator; Interrupts and status (supported): Pulls INTB low on a fault or event; the driver reads, latches and clears each interrupt group; Power states and sequencer (guarded): Run, standby, sleep, core off and ship states, with the order rails start and stop in; OTP start-up configuration (not covered): Fuses hold the start-up sequence, voltages and charger defaults; the driver reads the option, never fuses." width="1200" height="1158" loading="lazy"><img src="chip-capabilities.dark.svg#only-dark" alt="Capability map of the PF1550: Battery charger (supported): Charges one Li-ion cell: charge voltage and current, termination, timers, watchdog and the status LED; Power path (supported): Runs the system from the input while the cell charges: input current limit, VSYS minimum, battery FET; Battery thermistor and JEITA (supported): Reads the cell&#x27;s thermistor and lowers or stops the charge when the cell is too cold or too hot; Buck regulators (supported): Sets SW1 to SW3 per state (run, standby, sleep), with dynamic voltage scaling on SW1 and SW2; LDOs, VREFDDR and VSNVS (supported): Sets LDO1 to LDO3, the DDR reference, the RTC supply, the coin cell charger and the USB PHY regulator; Interrupts and status (supported): Pulls INTB low on a fault or event; the driver reads, latches and clears each interrupt group; Power states and sequencer (guarded): Run, standby, sleep, core off and ship states, with the order rails start and stop in; OTP start-up configuration (not covered): Fuses hold the start-up sequence, voltages and charger defaults; the driver reads the option, never fuses." width="1200" height="1158" loading="lazy">
+<figcaption>What the PF1550 does</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>Each card is one function of the PF1550: an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the chip registers behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></li>
 </ul>
 <h2 id="pf1550-control-connections-to-a-host-processor">PF1550: Control connections to a host processor<a class="headerlink" href="#pf1550-control-connections-to-a-host-processor" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1165,13 +1162,30 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></li>
+</ul>
+<h2 id="pf1550">PF1550<a class="headerlink" href="#pf1550" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-hero.svg#only-light" alt="Overview of the PF1550, a power management IC for battery-powered boards built around a low-power application processor: it charges a single Li-ion cell and supplies the processor, the memory and the peripherals from three buck converters, three linear regulators and an RTC supply. A MCU talks to it over I2C; it drives Supply rails, then Processor and memory; it reads back Charger input, Li-ion cell, Push buttons. Headline figures: 4.1 to 6.0 V charger input on VBUSIN, USB or adapter; 3 x 1.0 A buck converters, two with voltage scaling; 3 LDOs 300 mA, 400 mA and 300 mA; up to 1 A charge current from 100 mA, charge voltage 3.5 to 4.44 V; 400 kHz I2C, fast mode, 7-bit address; 5 x 5 mm 40-pin QFN with exposed pad." width="1200" height="890" loading="lazy"><img src="chip-hero.dark.svg#only-dark" alt="Overview of the PF1550, a power management IC for battery-powered boards built around a low-power application processor: it charges a single Li-ion cell and supplies the processor, the memory and the peripherals from three buck converters, three linear regulators and an RTC supply. A MCU talks to it over I2C; it drives Supply rails, then Processor and memory; it reads back Charger input, Li-ion cell, Push buttons. Headline figures: 4.1 to 6.0 V charger input on VBUSIN, USB or adapter; 3 x 1.0 A buck converters, two with voltage scaling; 3 LDOs 300 mA, 400 mA and 300 mA; up to 1 A charge current from 100 mA, charge voltage 3.5 to 4.44 V; 400 kHz I2C, fast mode, 7-bit address; 5 x 5 mm 40-pin QFN with exposed pad." width="1200" height="890" loading="lazy">
+<figcaption>PF1550</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The PF1550 in the middle, drawn as its HVQFN-40 package. On the left the MCU that runs the driver, joined to it by I2C. To the right, what the chip drives, in the order the power flows. Below it, what the chip reads back. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></li>
 </ul>
 <h2 id="pf1550-package-hvqfn-40">PF1550 package, HVQFN-40<a class="headerlink" href="#pf1550-package-hvqfn-40" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1182,13 +1196,13 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The PF1550 package seen from the top and, when the height is known, from the side, drawn to scale: 5.0 x 5.0 mm. The arrows carry the datasheet's dimensions, the dot marks pin 1 and the pads are numbered counter-clockwise from it, coloured by the pin's electrical type (legend below). Pads sit centred on each side, evenly spaced; the datasheet's land pattern is the reference for a board.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></li>
 </ul>
 <h2 id="pf1550-pinout-hvqfn-40">PF1550 pinout, HVQFN-40<a class="headerlink" href="#pf1550-pinout-hvqfn-40" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1199,13 +1213,30 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The PF1550 seen from the top, in its HVQFN-40 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver. The dashed square is the exposed pad.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></li>
+</ul>
+<h2 id="wiring-control-connections-to-a-host-processor">Wiring: Control connections to a host processor<a class="headerlink" href="#wiring-control-connections-to-a-host-processor" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-wiring-typical.svg#only-light" alt="Wiring of the PF1550 for the Control connections to a host processor: Host I2C SDA to SDA (Write(), WriteRead()); Host I2C SCL to SCL (Write(), WriteRead()); Host GPIO (STANDBY) to STANDBY (GpioSet(CtrlPin::Standby)); Host GPIO (INTB) to INTB (GpioGet(CtrlPin::Intb)). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="938" loading="lazy"><img src="chip-wiring-typical.dark.svg#only-dark" alt="Wiring of the PF1550 for the Control connections to a host processor: Host I2C SDA to SDA (Write(), WriteRead()); Host I2C SCL to SCL (Write(), WriteRead()); Host GPIO (STANDBY) to STANDBY (GpioSet(CtrlPin::Standby)); Host GPIO (INTB) to INTB (GpioGet(CtrlPin::Intb)). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="938" loading="lazy">
+<figcaption>Wiring: Control connections to a host processor</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The Host on the left, the PF1550 in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></li>
 </ul>
 <h2 id="the-layers-one-of-them-yours">The layers, one of them yours<a class="headerlink" href="#the-layers-one-of-them-yours" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1216,13 +1247,13 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top to bottom, each arrow is a call. Your application calls one object, whose public calls are listed from the umbrella header in inc/. The core turns each call into register reads and writes and hands them to the port contract (the CRTP base in inc/*_interface.hpp), which forwards them, at compile time, to the hooks of the port class you write; your port moves the bytes on the bus. The notes on the right say which layers stay the same on every MCU and which one you write. A library without a port contract has only the first two layers.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550.hpp"><code>inc/pf1550.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a> <code>I2cInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550.hpp"><code>inc/pf1550.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a> <code>I2cInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
 </details>
-<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a></p>
+<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a></p>
 <p>Drawn from:</p>
 <ul>
-<li><code>public calls</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550.hpp"><code>inc/pf1550.hpp</code></a></li>
-<li><code>I2cInterface</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/e4bda9cb097629dc2f636450f244c7fb3b17d8c3/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></li>
+<li><code>public calls</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550.hpp"><code>inc/pf1550.hpp</code></a></li>
+<li><code>I2cInterface</code> in <a href="https://github.com/kokeb-labs-drivers/driver-pf1550/blob/27e1ca992571fcec7601d2eb01274b054a6b3efc/inc/pf1550_i2c_interface.hpp"><code>inc/pf1550_i2c_interface.hpp</code></a></li>
 </ul>
 <h2 id="one-register-read-on-the-i2c-bus">One register read on the I2C bus<a class="headerlink" href="#one-register-read-on-the-i2c-bus" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1239,6 +1270,22 @@ committed figure no longer matches the code. Each figure below lists the files i
 <p>Drawn from:</p>
 <ul>
 <li><a href="../model/i2c-register-read.seq.yml"><code>docs/model/i2c-register-read.seq.yml</code></a></li>
+</ul>
+<h2 id="i2c-address-byte">I2C address byte<a class="headerlink" href="#i2c-address-byte" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="i2c-timing.svg#only-light" alt="I2C address byte of the PF1550: the start condition, the 7-bit address 0x08 with the write bit and the acknowledge, with the clock limit and the minimum edge time the data sheet gives." width="640" height="681" loading="lazy"><img src="i2c-timing.dark.svg#only-dark" alt="I2C address byte of the PF1550: the start condition, the 7-bit address 0x08 with the write bit and the acknowledge, with the clock limit and the minimum edge time the data sheet gives." width="640" height="681" loading="lazy">
+<figcaption>I2C address byte</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The two lanes are SCL and SDA, left to right in time. SDA falls while SCL is high (the start), the seven address bits and the write bit follow, each stable while SCL is high, then the PF1550 pulls SDA low for the acknowledge. The table gives the fast-mode clock limit and the edge time the lines must exceed.</p>
+<p>Drawn from: <a href="../model/i2c-timing.timing.yml"><code>docs/model/i2c-timing.timing.yml</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../model/i2c-timing.timing.yml"><code>docs/model/i2c-timing.timing.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../model/i2c-timing.timing.yml"><code>docs/model/i2c-timing.timing.yml</code></a></li>
 </ul>
 <h2 id="one-call-through-the-layers">One call through the layers<a class="headerlink" href="#one-call-through-the-layers" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
